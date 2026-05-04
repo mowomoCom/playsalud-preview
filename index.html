@@ -1248,13 +1248,22 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    align-items: start;
+  }
+  .form-row.split > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
   }
   .form-label {
+    display: block;
     font-size: 12px;
     font-weight: 600;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 1.2px;
+    line-height: 1.4;
   }
   .form-input,
   .form-select,
