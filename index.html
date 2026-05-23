@@ -21,11 +21,11 @@
     --bg-tinted:   #f1f5f9;
     --bg-deep:     #0d1b2e;        /* used only for ctas/inverted blocks */
 
-    /* Brand */
-    --sky:         #0891b2;        /* darker sky for white-bg contrast (was #7dd4e8) */
-    --sky-light:   #cffafe;        /* tag fills */
-    --sky-soft:    #67e8f9;        /* hover */
-    --orange:      #d97706;        /* darker orange for white-bg contrast */
+    /* Brand — darker for white-bg contrast */
+    --sky:         #0891b2;
+    --sky-light:   #cffafe;
+    --sky-soft:    #67e8f9;
+    --orange:      #d97706;
     --orange-light:#fef3c7;
     --orange-soft: #f59e0b;
 
@@ -109,6 +109,12 @@
     font-weight: 700;
   }
 
+  /* Weight utilities — juego fino/negrita en titulares (feedback cliente 2026-05-06) */
+  .t-thin   { font-weight: 300; }
+  .t-light  { font-weight: 400; }
+  .t-medium { font-weight: 500; }
+  .t-bold   { font-weight: 800; }
+
   /* ============================================================
      NAV
      ============================================================ */
@@ -126,10 +132,11 @@
     transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
   }
   nav.scrolled {
-    background: rgba(255,255,255,0.96);
+    background: rgba(255,255,255,0.92);
     border-bottom-color: var(--border-faint);
-    box-shadow: 0 1px 0 rgba(13,27,46,0.04);
+    box-shadow: 0 1px 0 rgba(13,27,46,0.05);
   }
+  /* Logo image keeps its natural colors on white nav */
   .nav-inner {
     max-width: var(--maxw);
     width: 100%;
@@ -157,15 +164,15 @@
     list-style: none;
   }
   .nav-links a {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
-    color: var(--text-dim);
-    padding: 8px 14px;
+    color: var(--text-main);
+    padding: 9px 16px;
     border-radius: 8px;
     transition: color 0.2s, background 0.2s;
   }
   .nav-links a:hover {
-    color: var(--text-main);
+    color: var(--sky);
     background: var(--bg-tinted);
   }
   .nav-cta {
@@ -222,11 +229,12 @@
   }
 
   .btn-sky {
-    background: var(--sky);
+    background: #0e7490;
     color: #ffffff;
   }
   .btn-sky:hover {
-    background: #0e7490;
+    background: var(--sky);
+    color: var(--bg-deep);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sky);
   }
@@ -292,8 +300,8 @@
   #hero {
     padding: calc(76px + 5rem) 0 6rem;
     background:
-      radial-gradient(ellipse 70% 60% at 90% 10%, rgba(8,145,178,0.06), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 5% 90%, rgba(217,119,6,0.05), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 90% 10%, rgba(125,212,232,0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 5% 90%, rgba(240,168,50,0.05), transparent 60%),
       var(--bg-base);
     overflow: hidden;
     position: relative;
@@ -329,7 +337,7 @@
     align-items: center;
     gap: 10px;
     background: var(--sky-light);
-    border: 1px solid rgba(8,145,178,0.18);
+    border: 1px solid rgba(125,212,232,0.18);
     color: var(--sky);
     font-size: 12px;
     font-weight: 600;
@@ -424,18 +432,18 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.95);
+    background: rgba(8,15,28,0.78);
     backdrop-filter: blur(10px);
     padding: 8px 14px;
     border-radius: 100px;
-    border: 1px solid var(--border-faint);
+    border: 1px solid var(--border);
   }
   .hero-photo-meta-tag {
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--sky);
+    color: #7dd4e8; /* over navy semi-transparent meta */
   }
   .hero-photo-meta-dot {
     width: 3px; height: 3px;
@@ -451,11 +459,12 @@
   /* Floating cards */
   .float-card {
     position: absolute;
-    background: #ffffff;
-    border: 1px solid var(--border-faint);
+    background: var(--bg-card);
+    border: 1px solid var(--border-md);
     border-radius: 14px;
     padding: 14px 18px;
     box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
     z-index: 3;
   }
   .float-care {
@@ -575,6 +584,81 @@
   }
 
   /* ============================================================
+     BANNER FULL-WIDTH · S2B (entre stats y verticales)
+     ============================================================ */
+  #banner {
+    padding: 0;
+    background: var(--bg-base);
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-strip {
+    position: relative;
+    width: 100%;
+    height: clamp(280px, 38vw, 460px);
+    background:
+      linear-gradient(110deg, rgba(8,15,28,0.85) 0%, rgba(8,15,28,0.55) 45%, rgba(8,15,28,0.20) 100%),
+      url('assets/hero.png') center / cover no-repeat;
+    display: flex;
+    align-items: center;
+  }
+  .banner-strip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 12% 50%, rgba(125,212,232,0.18), transparent 60%),
+      radial-gradient(ellipse 50% 60% at 95% 30%, rgba(240,168,50,0.14), transparent 60%);
+    pointer-events: none;
+  }
+  .banner-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--maxw);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .banner-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(8,15,28,0.55);
+    border: 1px solid rgba(125,212,232,0.25);
+    color: #7dd4e8; /* hardcoded for navy banner readability on both themes */
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+  .banner-eyebrow-dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--orange);
+  }
+  .banner-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+    line-height: 1.12;
+    letter-spacing: -1px;
+    max-width: 760px;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+  .banner-title .accent { color: #7dd4e8; /* hardcoded for navy banner readability */ }
+  .banner-sub {
+    font-size: 15px;
+    color: rgba(230,242,251,0.78);
+    max-width: 580px;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
      VERTICALES · S3
      ============================================================ */
   #verticales { background: var(--bg-base); }
@@ -622,11 +706,12 @@
     padding: 6px 14px;
     border-radius: 100px;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.95);
+    background: rgba(8,15,28,0.85);
+    border: 1px solid var(--border-md);
     backdrop-filter: blur(8px);
   }
-  .vert-photo-tag.care { color: var(--sky); }
-  .vert-photo-tag.academy { color: var(--orange); }
+  .vert-photo-tag.care { color: #7dd4e8; /* over navy semi-transparent */ }
+  .vert-photo-tag.academy { color: #f0a832; /* over navy semi-transparent */ }
 
   .vert-content {
     padding: 2rem 2.25rem 2.25rem;
@@ -661,7 +746,7 @@
 
   .modulos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
     margin-bottom: 3rem;
   }
@@ -698,15 +783,15 @@
     position: absolute;
     top: 14px;
     left: 14px;
-    background: rgba(255,255,255,0.95);
-    color: var(--sky);
+    background: rgba(8,15,28,0.85);
+    color: #7dd4e8; /* over navy semi-transparent */
     font-size: 11px;
     font-weight: 700;
     padding: 6px 12px;
     border-radius: 100px;
+    border: 1px solid rgba(125,212,232,0.25);
     backdrop-filter: blur(6px);
     letter-spacing: 0.3px;
-    box-shadow: var(--shadow-soft);
   }
 
   .modulo-body { padding: 1.5rem; }
@@ -757,7 +842,73 @@
   #muestra .section-title .accent { color: #7dd4e8; }
   #muestra .eyebrow { color: #7dd4e8; }
 
-  .muestra-inner { max-width: 980px; margin: 0 auto; }
+  .muestra-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+  /* Carrusel — feedback cliente 2026-05-06 #6 */
+  .muestra-carousel {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .muestra-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+  }
+  .muestra-track::-webkit-scrollbar { display: none; }
+  .muestra-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    min-width: 0;
+  }
+  .muestra-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(8,15,28,0.85);
+    border: 1px solid rgba(125,212,232,0.25);
+    color: #7dd4e8; /* hardcoded for navy muestra-section readability on both themes */
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.2s, border-color 0.2s, transform 0.18s;
+    backdrop-filter: blur(10px);
+  }
+  .muestra-arrow:hover {
+    background: #7dd4e8;
+    color: #0d1b2e;
+    border-color: #7dd4e8;
+    transform: translateY(-50%) scale(1.06);
+  }
+  .muestra-arrow.prev { left: -16px; }
+  .muestra-arrow.next { right: -16px; }
+  .muestra-arrow svg { width: 22px; height: 22px; }
+  .muestra-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0.5rem;
+  }
+  .muestra-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: rgba(125,212,232,0.25);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, width 0.3s;
+  }
+  .muestra-dot.active {
+    background: #7dd4e8; /* hardcoded for navy bg */
+    width: 28px;
+    border-radius: 100px;
+  }
+
   .muestra-player {
     position: relative;
     aspect-ratio: 16 / 9;
@@ -838,17 +989,149 @@
   #muestra .section-subtitle { color: rgba(214,234,248,0.82); }
 
   /* ============================================================
-     ACADEMY CURSO I · S6 (block invertido para destacar)
+     ACADEMY CURSOS · S6 (3 tarjetas con datos reales)
      ============================================================ */
   #curso {
     background: var(--bg-tinted);
   }
+  .cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 3rem;
+  }
+  .curso-mini {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .curso-mini.featured {
+    border-color: rgba(240,168,50,0.45);
+    box-shadow: 0 16px 48px rgba(240,168,50,0.10);
+  }
+  .curso-mini:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card);
+  }
+  .curso-mini-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg-deep);
+    cursor: pointer;
+  }
+  .curso-mini-video img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.92;
+    transition: transform 0.5s, opacity 0.3s;
+  }
+  .curso-mini-video::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(8,15,28,0.55));
+    pointer-events: none;
+  }
+  .curso-mini:hover .curso-mini-video img { transform: scale(1.04); opacity: 1; }
+  .curso-mini-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    z-index: 2;
+    transition: transform 0.2s;
+  }
+  .curso-mini-video:hover .curso-mini-play { transform: translate(-50%, -50%) scale(1.08); }
+  .curso-mini-play svg { width: 22px; height: 22px; color: var(--bg-deep); margin-left: 3px; }
+  .curso-mini-status {
+    position: absolute;
+    top: 14px; left: 14px;
+    z-index: 3;
+    background: rgba(8,15,28,0.82);
+    border: 1px solid rgba(240,168,50,0.35);
+    backdrop-filter: blur(8px);
+    color: #f0a832; /* over navy semi-transparent */
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 100px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+  }
+  .curso-mini-status.upcoming {
+    color: rgba(214,234,248,0.8);
+    border-color: rgba(125,212,232,0.18);
+  }
+  .curso-mini-body {
+    padding: 1.75rem 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .curso-mini-tag {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .curso-mini.upcoming .curso-mini-tag { color: var(--text-mute); }
+  .curso-mini-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 0.75rem;
+  }
+  .curso-mini-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .curso-mini-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+  .curso-mini-chip {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-main);
+    background: var(--bg-soft);
+    border: 1px solid var(--border-faint);
+    padding: 5px 10px;
+    border-radius: 100px;
+  }
+  .curso-mini-cta {
+    margin-top: auto;
+  }
+  .curso-mini.upcoming .curso-mini-video img { opacity: 0.45; filter: grayscale(0.5); }
+  .curso-mini.upcoming .curso-mini-play { display: none; }
   .curso-card {
     background:
-      radial-gradient(ellipse 60% 80% at 100% 0%, rgba(217,119,6,0.10), transparent 60%),
-      linear-gradient(160deg, var(--bg-deep) 0%, #142a4a 100%);
-    color: var(--text-on-dark);
-    border: 1px solid #1a3055;
+      radial-gradient(ellipse 60% 80% at 100% 0%, rgba(240,168,50,0.18), transparent 60%),
+      radial-gradient(ellipse 40% 60% at 0% 100%, rgba(125,212,232,0.10), transparent 60%),
+      linear-gradient(160deg, var(--bg-card) 0%, #1a3055 100%);
+    color: var(--text-main);
+    border: 1px solid var(--border-md);
     border-radius: var(--radius-xl);
     padding: 3.5rem;
     display: grid;
@@ -862,9 +1145,9 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: rgba(217,119,6,0.18);
-    color: #fbbf24;
-    border: 1px solid rgba(217,119,6,0.32);
+    background: var(--orange-light);
+    color: var(--orange);
+    border: 1px solid rgba(240,168,50,0.32);
     padding: 6px 14px;
     border-radius: 100px;
     margin-bottom: 1.5rem;
@@ -873,12 +1156,12 @@
     font-size: 1.95rem;
     line-height: 1.1;
     letter-spacing: -0.8px;
-    color: #ffffff;
+    color: var(--text-strong);
     margin-bottom: 1.25rem;
   }
   .curso-desc {
     font-size: 16px;
-    color: rgba(230,242,251,0.78);
+    color: rgba(230,242,251,0.82);
     line-height: 1.65;
     margin-bottom: 2rem;
   }
@@ -886,14 +1169,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: rgba(125,212,232,0.12);
-    border: 1px solid rgba(125,212,232,0.18);
+    background: var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
     margin-bottom: 2rem;
   }
   .curso-meta-item {
-    background: rgba(8,15,28,0.4);
+    background: rgba(8,15,28,0.55);
     padding: 1.25rem 1.5rem;
   }
   .curso-meta-label {
@@ -908,7 +1191,7 @@
     font-family: var(--font-display);
     font-size: 18px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-strong);
     letter-spacing: -0.3px;
   }
   .curso-cta-row {
@@ -923,7 +1206,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #fbbf24;
+    color: var(--orange);
     margin-bottom: 1.5rem;
   }
   .curso-lessons {
@@ -933,8 +1216,8 @@
     gap: 12px;
   }
   .curso-lesson {
-    background: rgba(8,15,28,0.4);
-    border: 1px solid rgba(125,212,232,0.10);
+    background: rgba(8,15,28,0.55);
+    border: 1px solid var(--border-faint);
     border-radius: var(--radius-md);
     padding: 1.1rem 1.4rem;
     display: flex;
@@ -943,26 +1226,26 @@
     transition: border-color 0.2s, background 0.2s;
   }
   .curso-lesson:hover {
-    border-color: rgba(125,212,232,0.22);
-    background: rgba(125,212,232,0.05);
+    border-color: var(--border-md);
+    background: rgba(125,212,232,0.06);
   }
   .curso-lesson-num {
     font-family: var(--font-display);
     font-size: 14px;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--bg-deep);
     width: 32px; height: 32px;
     border-radius: 50%;
     background: var(--orange);
-    border: 1px solid rgba(217,119,6,0.45);
+    border: 1px solid rgba(240,168,50,0.45);
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(217,119,6,0.35);
+    box-shadow: 0 2px 12px rgba(240,168,50,0.4);
   }
   .curso-lesson-text {
     font-size: 15px;
-    color: #e6f2fb;
+    color: var(--text-main);
     font-weight: 500;
   }
 
@@ -1044,10 +1327,10 @@
     position: relative;
     box-shadow: var(--shadow-card);
     background:
-      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(8,145,178,0.10), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 10% 95%, rgba(217,119,6,0.08), transparent 60%),
-      linear-gradient(160deg, #ffffff 0%, var(--bg-soft) 100%);
-    border: 1px solid var(--border-faint);
+      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(125,212,232,0.16), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 95%, rgba(240,168,50,0.12), transparent 60%),
+      linear-gradient(160deg, var(--bg-card) 0%, var(--bg-soft) 100%);
+    border: 1px solid var(--border-md);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1059,8 +1342,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(13,27,46,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(13,27,46,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(125,212,232,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125,212,232,0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     mask-image: radial-gradient(ellipse 90% 90% at 30% 70%, black, transparent);
     -webkit-mask-image: radial-gradient(ellipse 90% 90% at 30% 70%, black, transparent);
@@ -1072,7 +1355,7 @@
     top: 28px; right: 28px;
     width: 72px; height: 72px;
     color: var(--sky);
-    opacity: 0.18;
+    opacity: 0.32;
     z-index: 1;
   }
   .about-quote {
@@ -1102,12 +1385,12 @@
   .about-signature-mark {
     width: 38px; height: 38px;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--sky), var(--sky-deep, #0e7490));
+    background: linear-gradient(135deg, var(--sky), #0e7490);
     display: grid;
     place-items: center;
-    color: #ffffff;
+    color: var(--bg-deep);
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(8,145,178,0.25);
+    box-shadow: 0 4px 16px rgba(125,212,232,0.35);
   }
   .about-signature-name {
     font-family: var(--font-display);
@@ -1127,7 +1410,7 @@
     bottom: 24px; right: 24px;
     z-index: 2;
     background: var(--orange-light);
-    border: 1px solid rgba(217,119,6,0.25);
+    border: 1px solid rgba(240,168,50,0.25);
     color: var(--orange);
     font-size: 10px;
     font-weight: 700;
@@ -1139,14 +1422,14 @@
   .about-visual-tag {
     position: absolute;
     top: 24px; left: 24px;
-    background: rgba(255,255,255,0.95);
+    background: rgba(8,15,28,0.7);
     backdrop-filter: blur(10px);
     padding: 8px 14px;
     border-radius: 100px;
-    border: 1px solid var(--border-faint);
+    border: 1px solid rgba(125,212,232,0.25);
     font-size: 11px;
     font-weight: 700;
-    color: var(--sky);
+    color: #7dd4e8; /* hardcoded for navy semi-transparent badge */
     letter-spacing: 1.5px;
     text-transform: uppercase;
     z-index: 3;
@@ -1182,13 +1465,13 @@
   }
 
   /* ============================================================
-     INSTITUCIONES · S9
+     INSTITUCIONES · S9 — segmentado por tipo de cliente
      ============================================================ */
   #instituciones { background: var(--bg-base); }
 
   .inst-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
   }
   .inst-card {
@@ -1197,7 +1480,8 @@
     border-radius: var(--radius-lg);
     padding: 2rem;
     display: flex;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
     align-items: flex-start;
     transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   }
@@ -1211,7 +1495,7 @@
     width: 52px; height: 52px;
     border-radius: var(--radius-md);
     background: var(--sky-light);
-    border: 1px solid rgba(8,145,178,0.15);
+    border: 1px solid rgba(125,212,232,0.15);
     display: grid;
     place-items: center;
     color: var(--sky);
@@ -1301,7 +1585,7 @@
   .form-textarea:focus {
     outline: none;
     border-color: var(--sky);
-    box-shadow: 0 0 0 3px rgba(8,145,178,0.15);
+    box-shadow: 0 0 0 3px rgba(125,212,232,0.15);
   }
   .form-textarea {
     min-height: 110px;
@@ -1328,6 +1612,32 @@
     font-size: 12px;
     color: var(--text-mute);
   }
+  .form-multi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 4px;
+  }
+  .form-multi-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-main);
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-multi-opt:hover { border-color: var(--border-md); }
+  .form-multi-opt input { accent-color: var(--sky); }
+  .form-multi-opt:has(input:checked) {
+    background: var(--sky-light);
+    border-color: var(--sky);
+    color: var(--sky);
+  }
 
   .contacto-side .section-title { margin-bottom: 1.5rem; }
   .contacto-features {
@@ -1345,7 +1655,7 @@
     width: 40px; height: 40px;
     border-radius: 10px;
     background: var(--orange-light);
-    border: 1px solid rgba(217,119,6,0.18);
+    border: 1px solid rgba(240,168,50,0.18);
     display: grid;
     place-items: center;
     color: var(--orange);
@@ -1381,7 +1691,7 @@
   }
   .footer-brand .logo img {
     height: 38px;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); /* footer keeps navy bg, so logo is inverted to white */
   }
   .footer-tagline {
     font-size: 14px;
@@ -1469,8 +1779,12 @@
   @media (max-width: 1080px) {
     .hero-inner { gap: 3rem; }
     .modulos-grid { grid-template-columns: repeat(2, 1fr); }
+    .cursos-grid { grid-template-columns: 1fr; }
+    .inst-grid { grid-template-columns: repeat(2, 1fr); }
     .curso-card { gap: 3rem; padding: 2.5rem; }
     .aval-grid { grid-template-columns: repeat(3, 1fr); }
+    .muestra-arrow.prev { left: 8px; }
+    .muestra-arrow.next { right: 8px; }
   }
 
   @media (max-width: 880px) {
@@ -1491,6 +1805,8 @@
     .inst-grid { grid-template-columns: 1fr; }
     .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .banner-strip { height: clamp(240px, 60vw, 360px); }
+    .banner-title { font-size: clamp(1.4rem, 5.5vw, 2rem); }
   }
 
   @media (max-width: 560px) {
@@ -1538,19 +1854,19 @@
         Plataforma de salud audiovisual
       </div>
       <h1 class="hero-title">
-        Salud en vídeo. <br>
-        <span class="accent">Seria cuando toca,</span><br>
-        cercana cuando ayuda.
+        <span class="t-bold">Salud en vídeo.</span> <br>
+        <span class="t-thin accent">Seria cuando toca,</span><br>
+        <span class="t-thin">cercana cuando ayuda.</span>
       </h1>
       <p class="hero-subtitle">
-        PlaySalud reúne cientos de vídeos de cuidados de salud y formación sanitaria en IA, diseñados para instituciones, profesionales y pacientes.
+        PlaySalud transforma información clínica compleja en vídeos breves, claros y basados en evidencia. Ayuda a los pacientes a entender mejor su proceso y a los profesionales sanitarios a formarse de forma práctica y segura.
       </p>
       <div class="hero-ctas">
-        <a href="#verticales" class="btn btn-primary btn-lg">
-          Descubre PlayCare
+        <a href="#contacto" class="btn btn-primary btn-lg">
+          Solicitar demo institucional
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#curso" class="btn btn-ghost btn-lg">Cursos PlayAcademy</a>
+        <a href="#verticales" class="btn btn-ghost btn-lg">Explorar PlayCare y PlayAcademy</a>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-dots" aria-hidden="true">
@@ -1594,21 +1910,38 @@
     <div class="stats-eyebrow eyebrow">Datos clave</div>
     <div class="stats-grid">
       <div class="stat reveal">
-        <div class="stat-value">300<span class="small">+</span></div>
-        <div class="stat-label">vídeos de salud</div>
+        <div class="stat-value">10</div>
+        <div class="stat-label">módulos clínicos en PlayCare</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-value">2</div>
-        <div class="stat-label">verticales complementarias</div>
+        <div class="stat-value">180<span class="small">+</span></div>
+        <div class="stat-label">vídeos animados basados en evidencia</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-value text">En curso</div>
-        <div class="stat-label">acreditación con sociedades</div>
+        <div class="stat-value">56<span class="small">h</span></div>
+        <div class="stat-label">de formación en IA sanitaria · Curso I</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-value text">B2B</div>
-        <div class="stat-label">preparado para instituciones</div>
+        <div class="stat-value text">B2B + B2C</div>
+        <div class="stat-label">institucional y acceso individual</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANNER FULL-WIDTH · S2B ============ -->
+<section id="banner">
+  <div class="banner-strip">
+    <div class="banner-inner">
+      <div class="banner-eyebrow">
+        <span class="banner-eyebrow-dot"></span>
+        Plataforma sanitaria audiovisual
+      </div>
+      <h2 class="banner-title">
+        <span class="t-thin">Educación sanitaria</span> <span class="t-bold accent">basada en evidencia,</span><br>
+        <span class="t-thin">para pacientes, profesionales e instituciones.</span>
+      </h2>
+      <p class="banner-sub">Vídeos breves, claros y revisados por profesionales. Listos para integrarse en hospitales, aseguradoras, universidades, sociedades científicas y asociaciones de pacientes.</p>
     </div>
   </div>
 </section>
@@ -1618,7 +1951,7 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Dos brazos, un lenguaje</div>
-      <h2 class="section-title">PlayCare y <span class="accent-orange">PlayAcademy</span>.</h2>
+      <h2 class="section-title"><span class="t-bold accent">PlayCare</span> <span class="t-thin">y</span> <span class="t-bold accent-orange">PlayAcademy</span>.</h2>
       <p class="section-subtitle">Dos verticales complementarias. Mismo compromiso editorial. Misma exigencia visual.</p>
     </div>
     <div class="vert-grid">
@@ -1666,52 +1999,74 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">PlayCare</div>
-      <h2 class="section-title">Módulos de cuidados,<br>en formato vídeo.</h2>
-      <p class="section-subtitle">Un índice curado. Sólo mostramos vídeos de muestra — el catálogo completo vive dentro de la plataforma institucional.</p>
+      <h2 class="section-title"><span class="t-thin">Módulos de cuidados,</span><br><span class="t-bold">en formato vídeo.</span></h2>
+      <p class="section-subtitle">Catálogo modular y escalable, basado en evidencia y revisado por profesionales. Estos son algunos de los módulos destacados — el catálogo completo vive dentro de la plataforma institucional.</p>
     </div>
 
     <div class="modulos-grid">
       <article class="modulo-card reveal">
         <div class="modulo-photo">
-          <span class="modulo-badge">14 vídeos</span>
-          <img src="assets/mod-higiene.png" alt="Higiene hospitalaria">
+          <span class="modulo-badge">35 vídeos</span>
+          <img src="assets/mod-cirugia.png" alt="Cáncer colorrectal">
         </div>
         <div class="modulo-body">
-          <h3 class="modulo-title">Higiene hospitalaria</h3>
-          <p class="modulo-desc">Protocolos visuales para profesionales y familias.</p>
+          <h3 class="modulo-title">Cáncer colorrectal</h3>
+          <p class="modulo-desc">Diagnóstico, tratamiento, cirugía, recuperación y vida posterior al proceso oncológico.</p>
         </div>
       </article>
 
       <article class="modulo-card reveal">
         <div class="modulo-photo">
-          <span class="modulo-badge">12 vídeos</span>
-          <img src="assets/mod-postop.png" alt="Cuidados postoperatorios">
+          <span class="modulo-badge">42 vídeos</span>
+          <img src="assets/mod-postop.png" alt="RICA Especialidades">
         </div>
         <div class="modulo-body">
-          <h3 class="modulo-title">Cuidados postoperatorios</h3>
-          <p class="modulo-desc">Pautas visuales para el alta y la recuperación.</p>
+          <h3 class="modulo-title">RICA Especialidades</h3>
+          <p class="modulo-desc">Recuperación intensificada adaptada a distintas áreas médico-quirúrgicas.</p>
+        </div>
+      </article>
+
+      <article class="modulo-card reveal">
+        <div class="modulo-photo">
+          <span class="modulo-badge">20 vídeos</span>
+          <img src="assets/mod-higiene.png" alt="RICA General">
+        </div>
+        <div class="modulo-body">
+          <h3 class="modulo-title">RICA General</h3>
+          <p class="modulo-desc">Recuperación intensificada, preparación del paciente y papel activo en el proceso quirúrgico.</p>
+        </div>
+      </article>
+
+      <article class="modulo-card reveal">
+        <div class="modulo-photo">
+          <span class="modulo-badge">20 vídeos</span>
+          <img src="assets/mod-nutricion.png" alt="Incontinencia fecal">
+        </div>
+        <div class="modulo-body">
+          <h3 class="modulo-title">Incontinencia fecal</h3>
+          <p class="modulo-desc">Comprensión del problema, hábitos, suelo pélvico y opciones terapéuticas.</p>
+        </div>
+      </article>
+
+      <article class="modulo-card reveal">
+        <div class="modulo-photo">
+          <span class="modulo-badge">15 vídeos</span>
+          <img src="assets/mod-higiene.png" alt="Qué saber de la anestesia">
+        </div>
+        <div class="modulo-body">
+          <h3 class="modulo-title">Qué saber de la anestesia</h3>
+          <p class="modulo-desc">Consulta preanestésica, medicación y anestesia en quirófano para pacientes quirúrgicos.</p>
         </div>
       </article>
 
       <article class="modulo-card reveal">
         <div class="modulo-photo">
           <span class="modulo-badge">10 vídeos</span>
-          <img src="assets/mod-nutricion.png" alt="Nutrición clínica">
+          <img src="assets/mod-postop.png" alt="Ostomías">
         </div>
         <div class="modulo-body">
-          <h3 class="modulo-title">Nutrición clínica</h3>
-          <p class="modulo-desc">Planes de alimentación adaptados a patologías.</p>
-        </div>
-      </article>
-
-      <article class="modulo-card reveal">
-        <div class="modulo-photo">
-          <span class="modulo-badge">18 vídeos</span>
-          <img src="assets/mod-cirugia.png" alt="Cirugía">
-        </div>
-        <div class="modulo-body">
-          <h3 class="modulo-title">Cirugía</h3>
-          <p class="modulo-desc">Preparación e información pre y postquirúrgica.</p>
+          <h3 class="modulo-title">Ostomías</h3>
+          <p class="modulo-desc">Preparación, autocuidados, adaptación y signos de alarma para pacientes ostomizados.</p>
         </div>
       </article>
     </div>
@@ -1729,127 +2084,194 @@
 <section id="muestra">
   <div class="container">
     <div class="section-header center reveal">
-      <div class="eyebrow">Una muestra</div>
-      <h2 class="section-title">Mira un capítulo completo.</h2>
-      <p class="section-subtitle">Así se ve PlaySalud en una consulta. Un vídeo real de nuestro catálogo — sin filtros, sin editar para la demo. Reproduce sin registro.</p>
+      <div class="eyebrow">Capítulos de muestra</div>
+      <h2 class="section-title"><span class="t-thin">Mira algunos</span> <span class="t-bold">capítulos completos.</span></h2>
+      <p class="section-subtitle">Vídeos reales del catálogo PlayCare — sin filtros, sin editar para la demo. Navega por los ejemplos con las flechas o desliza horizontalmente.</p>
     </div>
 
     <div class="muestra-inner reveal">
-      <div class="muestra-player" role="button" tabindex="0" aria-label="Reproducir capítulo de muestra">
-        <img src="assets/muestra-thumb.png" alt="Cómo cuidar tu herida postoperatoria">
-        <div class="muestra-play">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <div class="muestra-carousel">
+        <button class="muestra-arrow prev" aria-label="Anterior" type="button" onclick="muestraNav(-1)">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="muestra-arrow next" aria-label="Siguiente" type="button" onclick="muestraNav(1)">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="muestra-track" id="muestra-track">
+          <div class="muestra-slide">
+            <div class="muestra-player" role="button" tabindex="0" aria-label="Reproducir capítulo: Cómo cuidar tu herida postoperatoria">
+              <img src="assets/muestra-thumb.png" alt="Cómo cuidar tu herida postoperatoria">
+              <div class="muestra-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="muestra-meta-row">
+              <span class="muestra-title-vid">Cómo cuidar tu herida postoperatoria</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-time">3:42</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-tag">Cirugía · Nivel paciente</span>
+            </div>
+          </div>
+
+          <div class="muestra-slide">
+            <div class="muestra-player" role="button" tabindex="0" aria-label="Reproducir capítulo: Preparación para la consulta preanestésica">
+              <img src="assets/mod-higiene.png" alt="Preparación para la consulta preanestésica">
+              <div class="muestra-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="muestra-meta-row">
+              <span class="muestra-title-vid">Preparación para la consulta preanestésica</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-time">4:18</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-tag">Anestesia · Nivel paciente</span>
+            </div>
+          </div>
+
+          <div class="muestra-slide">
+            <div class="muestra-player" role="button" tabindex="0" aria-label="Reproducir capítulo: Vivir con una ostomía: primeros días en casa">
+              <img src="assets/mod-postop.png" alt="Vivir con una ostomía: primeros días en casa">
+              <div class="muestra-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="muestra-meta-row">
+              <span class="muestra-title-vid">Vivir con una ostomía: primeros días en casa</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-time">5:06</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-tag">Ostomías · Nivel paciente</span>
+            </div>
+          </div>
+
+          <div class="muestra-slide">
+            <div class="muestra-player" role="button" tabindex="0" aria-label="Reproducir capítulo: Entender el cáncer colorrectal">
+              <img src="assets/mod-cirugia.png" alt="Entender el cáncer colorrectal">
+              <div class="muestra-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="muestra-meta-row">
+              <span class="muestra-title-vid">Entender el cáncer colorrectal: diagnóstico y tratamiento</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-time">6:24</span>
+              <span class="muestra-dot"></span>
+              <span class="muestra-tag">Cáncer colorrectal · Nivel paciente</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="muestra-meta-row">
-        <span class="muestra-title-vid">Cómo cuidar tu herida postoperatoria</span>
-        <span class="muestra-dot"></span>
-        <span class="muestra-time">3:42</span>
-        <span class="muestra-dot"></span>
-        <span class="muestra-tag">Cirugía · Nivel paciente</span>
+
+        <div class="muestra-dots" id="muestra-dots">
+          <button class="muestra-dot active" aria-label="Capítulo 1" onclick="muestraGo(0)"></button>
+          <button class="muestra-dot" aria-label="Capítulo 2" onclick="muestraGo(1)"></button>
+          <button class="muestra-dot" aria-label="Capítulo 3" onclick="muestraGo(2)"></button>
+          <button class="muestra-dot" aria-label="Capítulo 4" onclick="muestraGo(3)"></button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CURSO PLAYACADEMY · S6 ============ -->
+<!-- ============ CURSOS PLAYACADEMY · S6 ============ -->
 <section id="curso">
   <div class="container">
     <div class="section-header reveal">
-      <div class="eyebrow academy">PlayAcademy · Curso I</div>
-      <h2 class="section-title">Entender la IA en Salud<br><span class="accent-orange">desde cero</span>.</h2>
+      <div class="eyebrow academy">PlayAcademy</div>
+      <h2 class="section-title"><span class="t-thin">Itinerario formativo en</span><br><span class="t-bold accent-orange">IA aplicada a la salud.</span></h2>
+      <p class="section-subtitle">Tres cursos diseñados para profesionales sanitarios — sin necesidad de programar. El Curso I se lanza en septiembre de 2026. Los Cursos II y III llegan después.</p>
     </div>
 
-    <div class="curso-card reveal">
-      <div class="curso-info">
-        <span class="curso-tag">Curso I</span>
-        <h3 class="curso-title">Entender la IA en Salud desde cero.</h3>
-        <p class="curso-desc">Diseñado para sanitarios sin formación técnica previa. Pensado para asimilar sin abandono. El curso cubre fundamentos, casos reales y límites éticos. Profesionalmente útil, humanamente honesto. Acreditación en proceso con sociedades científicas.</p>
-
-        <div class="curso-meta">
-          <div class="curso-meta-item">
-            <div class="curso-meta-label">Duración</div>
-            <div class="curso-meta-value">8 semanas</div>
+    <div class="cursos-grid">
+      <!-- Curso I — activo -->
+      <article class="curso-mini featured reveal">
+        <div class="curso-mini-video">
+          <span class="curso-mini-status">Lanzamiento sept-2026</span>
+          <img src="assets/academy-ia-salud.png" alt="Curso I — Entender la IA en salud desde cero">
+          <div class="curso-mini-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="curso-mini-body">
+          <span class="curso-mini-tag">Curso I · Inicial</span>
+          <h3 class="curso-mini-title">Entender la inteligencia artificial en salud desde cero.</h3>
+          <p class="curso-mini-desc">Itinerario introductorio para profesionales sanitarios LOPS sin conocimientos previos de programación. Comprender la IA, valorar herramientas, identificar riesgos y participar en proyectos con criterio clínico.</p>
+          <div class="curso-mini-meta">
+            <span class="curso-mini-chip">56 h lectivas</span>
+            <span class="curso-mini-chip">10 módulos</span>
+            <span class="curso-mini-chip">3 meses</span>
+            <span class="curso-mini-chip">E-learning tutorizado</span>
+            <span class="curso-mini-chip">Acreditación en proceso</span>
           </div>
-          <div class="curso-meta-item">
-            <div class="curso-meta-label">Dedicación</div>
-            <div class="curso-meta-value">3–4 h / sem</div>
-          </div>
-          <div class="curso-meta-item">
-            <div class="curso-meta-label">Formato</div>
-            <div class="curso-meta-value">100% online</div>
-          </div>
-          <div class="curso-meta-item">
-            <div class="curso-meta-label">Acreditación</div>
-            <div class="curso-meta-value">En curso</div>
+          <div class="curso-mini-cta">
+            <a href="#contacto" class="btn btn-primary btn-md">
+              Solicita información del curso
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
+      </article>
 
-        <div class="curso-cta-row">
-          <a href="#contacto" class="btn btn-primary btn-md">
-            Solicita información
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#" class="btn btn-ghost btn-md" style="color:#e6f2fb; border-color:rgba(125,212,232,0.3);">Descarga la guía docente</a>
+      <!-- Curso II — próximamente -->
+      <article class="curso-mini upcoming reveal">
+        <div class="curso-mini-video">
+          <span class="curso-mini-status upcoming">Próximamente</span>
+          <img src="assets/vert-academy.png" alt="Curso II — IA generativa aplicada">
         </div>
-      </div>
+        <div class="curso-mini-body">
+          <span class="curso-mini-tag">Curso II · Intermedio</span>
+          <h3 class="curso-mini-title">IA generativa aplicada para profesionales sanitarios.</h3>
+          <p class="curso-mini-desc">Uso práctico de IA generativa para ahorrar tiempo, comunicar mejor, enseñar mejor y trabajar con más orden — siempre con supervisión clínica y respeto a la privacidad.</p>
+          <div class="curso-mini-meta">
+            <span class="curso-mini-chip">Formato audiovisual</span>
+            <span class="curso-mini-chip">Práctico aplicado</span>
+          </div>
+          <div class="curso-mini-cta">
+            <a href="#contacto" class="btn btn-ghost btn-md">Avísame cuando abra</a>
+          </div>
+        </div>
+      </article>
 
-      <div class="curso-temario">
-        <h4>Temario · 4 módulos</h4>
-        <ol class="curso-lessons">
-          <li class="curso-lesson">
-            <span class="curso-lesson-num">1</span>
-            <span class="curso-lesson-text">Qué es la IA y qué no es</span>
-          </li>
-          <li class="curso-lesson">
-            <span class="curso-lesson-num">2</span>
-            <span class="curso-lesson-text">IA y datos clínicos</span>
-          </li>
-          <li class="curso-lesson">
-            <span class="curso-lesson-num">3</span>
-            <span class="curso-lesson-text">Casos reales en salud</span>
-          </li>
-          <li class="curso-lesson">
-            <span class="curso-lesson-num">4</span>
-            <span class="curso-lesson-text">Límites éticos y regulación</span>
-          </li>
-        </ol>
-      </div>
+      <!-- Curso III — próximamente -->
+      <article class="curso-mini upcoming reveal">
+        <div class="curso-mini-video">
+          <span class="curso-mini-status upcoming">Próximamente</span>
+          <img src="assets/academy-ia-salud.png" alt="Curso III — IA práctica por perfiles y procesos">
+        </div>
+        <div class="curso-mini-body">
+          <span class="curso-mini-tag">Curso III · Intermedio-Avanzado</span>
+          <h3 class="curso-mini-title">IA práctica por perfiles y procesos sanitarios.</h3>
+          <p class="curso-mini-desc">Aplicación real de IA en consulta, hospitalización, quirófano, urgencias, cuidados, gestión, docencia e innovación — por perfiles y con casos reales.</p>
+          <div class="curso-mini-meta">
+            <span class="curso-mini-chip">Por perfiles</span>
+            <span class="curso-mini-chip">Casos reales</span>
+          </div>
+          <div class="curso-mini-cta">
+            <a href="#contacto" class="btn btn-ghost btn-md">Avísame cuando abra</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="#contacto" class="btn btn-sky btn-md">
+        Hablar con el equipo formativo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ AVAL · S7 ============ -->
+<!-- ============ AVAL · S7 ============
+     OCULTO por petición del cliente 2026-05-06 — reactivar cuando haya avales suficientes.
+     Copy final: "Con el aval de partners, hospitales, sociedades y universidades."
 <section id="aval">
   <div class="container">
     <div class="aval-header reveal">
-      <div class="eyebrow">Con el aval de</div>
-      <p style="font-size: 16px; color: var(--text-dim); margin-top: 0.5rem;">Trabajamos con hospitales, sociedades y universidades.</p>
+      <div class="eyebrow">Con el aval de partners, hospitales, sociedades y universidades</div>
     </div>
     <div class="aval-grid">
-      <div class="aval-logo reveal">
-        <div class="aval-mark">HU</div>
-        <div class="aval-label">Hospital<br>Universitario</div>
-      </div>
-      <div class="aval-logo reveal">
-        <div class="aval-mark">SE</div>
-        <div class="aval-label">Sociedad<br>Española</div>
-      </div>
-      <div class="aval-logo reveal">
-        <div class="aval-mark">UV</div>
-        <div class="aval-label">Universidad</div>
-      </div>
-      <div class="aval-logo reveal">
-        <div class="aval-mark">AS</div>
-        <div class="aval-label">Aseguradora</div>
-      </div>
-      <div class="aval-logo reveal">
-        <div class="aval-mark">FN</div>
-        <div class="aval-label">Fundación</div>
-      </div>
+      <div class="aval-logo reveal"><div class="aval-mark">HU</div><div class="aval-label">Hospital<br>Universitario</div></div>
+      <div class="aval-logo reveal"><div class="aval-mark">SE</div><div class="aval-label">Sociedad<br>Española</div></div>
+      <div class="aval-logo reveal"><div class="aval-mark">UV</div><div class="aval-label">Universidad</div></div>
+      <div class="aval-logo reveal"><div class="aval-mark">AS</div><div class="aval-label">Aseguradora</div></div>
+      <div class="aval-logo reveal"><div class="aval-mark">FN</div><div class="aval-label">Fundación</div></div>
     </div>
   </div>
 </section>
+============ FIN AVAL OCULTO ============ -->
 
 <!-- ============ ABOUT · S8 ============ -->
 <section id="about">
@@ -1857,7 +2279,7 @@
     <div class="about-grid">
       <div class="reveal">
         <div class="eyebrow">Quiénes somos</div>
-        <h2 class="about-title">Un equipo serio,<br>con un <span class="accent">lenguaje propio</span>.</h2>
+        <h2 class="about-title"><span class="t-thin">Un equipo serio,</span><br><span class="t-bold">con un <span class="accent">lenguaje propio</span>.</span></h2>
         <p class="about-p">PlaySalud nace de la convicción de que la salud merece una voz audiovisual propia — ni folclórica, ni fría. Trabajamos con equipos clínicos, sociedades científicas y universidades para construir un catálogo útil, riguroso y humano.</p>
         <p class="about-p">No producimos contenido viral. No hacemos píldoras motivacionales. Hacemos vídeos que un profesional firmaría sin incomodidad, y que un paciente entiende sin sentirse infantilizado.</p>
       </div>
@@ -1909,13 +2331,13 @@
   </div>
 </section>
 
-<!-- ============ INSTITUCIONES · S9 ============ -->
+<!-- ============ INSTITUCIONES · S9 — segmentado por tipo de cliente ============ -->
 <section id="instituciones">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Para instituciones</div>
-      <h2 class="section-title">Licencias corporativas <span class="accent">a medida</span>.</h2>
-      <p class="section-subtitle">PlaySalud se adapta a hospitales, aseguradoras, sociedades científicas y universidades. Consulta las opciones de contratación para tu organización.</p>
+      <h2 class="section-title"><span class="t-thin">Una plataforma para</span> <span class="t-bold accent">cada tipo de institución</span>.</h2>
+      <p class="section-subtitle">PlaySalud se despliega por módulos, packs temáticos, campus, intranet, QR, marca blanca o integración en plataformas institucionales. Adaptamos la propuesta a tu organización.</p>
     </div>
 
     <div class="inst-grid">
@@ -1924,18 +2346,28 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h2v2H9zM13 9h2v2h-2zM9 13h2v2H9zM13 13h2v2h-2zM9 17h6v4H9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
         <div>
-          <h3 class="inst-title">Licencias institucionales</h3>
-          <p class="inst-desc">Acceso al catálogo completo de PlayCare y PlayAcademy para todos los profesionales y pacientes de tu centro.</p>
+          <h3 class="inst-title">Hospitales y grupos hospitalarios</h3>
+          <p class="inst-desc">Estandariza información al paciente y forma a tus equipos. PlayCare por rutas clínicas + PlayAcademy para profesionales.</p>
         </div>
       </div>
 
       <div class="inst-card reveal">
         <div class="inst-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M16 11a4 4 0 11-8 0 4 4 0 018 0zM3 21a7 7 0 0114 0M14 7a3 3 0 116 0 3 3 0 01-6 0zM18 14a5 5 0 014 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 2l9 4v6c0 5-3.8 9.4-9 10-5.2-.6-9-5-9-10V6l9-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div>
-          <h3 class="inst-title">Gestión multi-usuario</h3>
-          <p class="inst-desc">Panel de administración con perfiles por rol: profesional, paciente, administrador. Control de accesos por departamento.</p>
+          <h3 class="inst-title">Aseguradoras</h3>
+          <p class="inst-desc">Acompaña al asegurado y mejora la experiencia con módulos PlayCare por procesos frecuentes y bonos de acceso.</p>
+        </div>
+      </div>
+
+      <div class="inst-card reveal">
+        <div class="inst-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3 class="inst-title">Universidades</h3>
+          <p class="inst-desc">Formación visual, moderna y acreditable. PlayAcademy integrado en LMS, Moodle o campus institucional.</p>
         </div>
       </div>
 
@@ -1944,18 +2376,28 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 8l10 6 10-6-10-6zM2 16l10 6 10-6M2 12l10 6 10-6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
         <div>
-          <h3 class="inst-title">Acuerdos con sociedades científicas</h3>
-          <p class="inst-desc">Cursos en proceso de acreditación oficial. Valor formativo reconocible para la carrera profesional de tus sanitarios.</p>
+          <h3 class="inst-title">Sociedades científicas</h3>
+          <p class="inst-desc">Ofrece formación y contenido de valor a tus socios. Cursos co-brandeados y módulos especializados.</p>
         </div>
       </div>
 
       <div class="inst-card reveal">
         <div class="inst-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 21V3M3 21h18M7 17V9M11 17V5M15 17v-7M19 17V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M9 11a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div>
-          <h3 class="inst-title">Descuentos por volumen</h3>
-          <p class="inst-desc">Condiciones especiales para organizaciones con más de 50 profesionales. Consulta las tarifas institucionales.</p>
+          <h3 class="inst-title">Asociaciones de pacientes</h3>
+          <p class="inst-desc">Información fiable, clara y accesible. Módulos PlayCare abiertos o patrocinados para tus colectivos.</p>
+        </div>
+      </div>
+
+      <div class="inst-card reveal">
+        <div class="inst-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3 class="inst-title">Industria sanitaria responsable</h3>
+          <p class="inst-desc">Patrocina educación sanitaria con impacto. Licencia de módulos, becas, bonos o acceso abierto patrocinado.</p>
         </div>
       </div>
     </div>
@@ -1965,7 +2407,7 @@
         Hablar con el equipo comercial
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#contacto" class="btn btn-ghost btn-lg">Solicitar información</a>
+      <a href="#contacto" class="btn btn-ghost btn-lg">Solicitar propuesta B2B</a>
     </div>
   </div>
 </section>
@@ -1976,8 +2418,8 @@
     <div class="contacto-grid">
       <div class="contacto-side reveal">
         <div class="eyebrow">Contacto</div>
-        <h2 class="section-title">Solicita información para tu <span class="accent">institución</span>.</h2>
-        <p class="section-subtitle">Cuéntanos qué necesitas y nos pondremos en contacto contigo.</p>
+        <h2 class="section-title"><span class="t-thin">Solicita información</span><br><span class="t-bold">para tu <span class="accent">institución</span>.</span></h2>
+        <p class="section-subtitle">Cuéntanos qué necesitas y nos pondremos en contacto contigo en 1–2 días laborables.</p>
 
         <div class="contacto-features">
           <div class="contacto-feature">
@@ -2013,32 +2455,52 @@
       <form class="form-card reveal" onsubmit="event.preventDefault(); alert('Formulario de demostración. En producción se conectaría al backend.');">
         <div class="form-row split">
           <div>
-            <label class="form-label" for="f-nombre">Nombre</label>
+            <label class="form-label" for="f-nombre">Nombre y apellidos</label>
             <input class="form-input" id="f-nombre" type="text" placeholder="Tu nombre completo" required>
           </div>
           <div>
-            <label class="form-label" for="f-org">Institución</label>
-            <input class="form-input" id="f-org" type="text" placeholder="Hospital, universidad, aseguradora…" required>
+            <label class="form-label" for="f-email">Email</label>
+            <input class="form-input" id="f-email" type="email" placeholder="tu@institucion.org" required>
+          </div>
+        </div>
+
+        <div class="form-row split">
+          <div>
+            <label class="form-label" for="f-org">Institución o empresa</label>
+            <input class="form-input" id="f-org" type="text" placeholder="Hospital, universidad, aseguradora…">
+          </div>
+          <div>
+            <label class="form-label" for="f-cargo">Cargo</label>
+            <input class="form-input" id="f-cargo" type="text" placeholder="Director, jefe de servicio, profesor…">
           </div>
         </div>
 
         <div class="form-row">
-          <label class="form-label" for="f-email">Email institucional</label>
-          <input class="form-input" id="f-email" type="email" placeholder="tu@institucion.org" required>
-        </div>
-
-        <div class="form-row">
-          <label class="form-label" for="f-perfil">Tipo de perfil</label>
-          <select class="form-select" id="f-perfil">
+          <label class="form-label" for="f-soy">Soy</label>
+          <select class="form-select" id="f-soy">
             <option>Institución</option>
             <option>Profesional sanitario</option>
-            <option>Otro</option>
+            <option>Asociación</option>
+            <option>Paciente o cuidador</option>
+            <option>Empresa patrocinadora</option>
           </select>
         </div>
 
         <div class="form-row">
-          <label class="form-label" for="f-msg">¿Qué necesitas?</label>
-          <textarea class="form-textarea" id="f-msg" placeholder="Cuéntanos brevemente el caso de uso…"></textarea>
+          <label class="form-label">Me interesa</label>
+          <div class="form-multi">
+            <label class="form-multi-opt"><input type="checkbox" value="playcare"> PlayCare</label>
+            <label class="form-multi-opt"><input type="checkbox" value="playacademy"> PlayAcademy</label>
+            <label class="form-multi-opt"><input type="checkbox" value="ambos"> Ambos</label>
+            <label class="form-multi-opt"><input type="checkbox" value="patrocinio"> Patrocinio</label>
+            <label class="form-multi-opt"><input type="checkbox" value="marca-blanca"> Marca blanca</label>
+            <label class="form-multi-opt"><input type="checkbox" value="acceso-individual"> Acceso individual</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="f-msg">Mensaje</label>
+          <textarea class="form-textarea" id="f-msg" placeholder="Cuéntanos tu objetivo, número estimado de usuarios y plazos…"></textarea>
         </div>
 
         <label class="form-check">
@@ -2145,6 +2607,34 @@
       }
     });
   });
+
+  // Muestra carousel — flechas, dots y sync por scroll
+  (function () {
+    const track = document.getElementById('muestra-track');
+    const dotsWrap = document.getElementById('muestra-dots');
+    if (!track || !dotsWrap) return;
+    const dots = Array.from(dotsWrap.querySelectorAll('.muestra-dot'));
+    let current = 0;
+
+    window.muestraGo = function (i) {
+      const slide = track.children[i];
+      if (!slide) return;
+      track.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
+    };
+    window.muestraNav = function (dir) {
+      const next = Math.max(0, Math.min(track.children.length - 1, current + dir));
+      window.muestraGo(next);
+    };
+
+    track.addEventListener('scroll', () => {
+      const slideW = track.children[0].offsetWidth + 24; // gap aprox
+      const i = Math.round(track.scrollLeft / slideW);
+      if (i !== current) {
+        current = i;
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+      }
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>
