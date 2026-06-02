@@ -1,1 +1,14 @@
 # nothing yet
+/*
+
+# Excepciones: theme y plugin propios
+!themes/
+themes/*
+!themes/mwm-author-mowomo/
+
+!plugins/
+plugins/*
+!plugins/mwm-blocks/
+!.gitignore
+
+/playsalud-preview/
