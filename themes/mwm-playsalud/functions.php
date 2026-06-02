@@ -8,6 +8,15 @@ define( 'MWM_PLAYSALUD_THEME_VERSION', '1.0.0' );
 function mwm_playsalud_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 60,
+			'width'       => 220,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
@@ -40,10 +49,11 @@ add_action( 'wp_enqueue_scripts', 'mwm_playsalud_enqueue_assets' );
 function mwm_playsalud_enqueue_editor_assets() {
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
+	$editor_css = $theme_path . '/assets/css/editor.css';
+	$editor_ver = file_exists( $editor_css ) ? filemtime( $editor_css ) : MWM_PLAYSALUD_THEME_VERSION;
 
-	// Solo estilos encapsulados para bloques MWM dentro del canvas del editor.
-	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array(), filemtime( $theme_path . '/assets/css/editor.css' ) );
-	wp_enqueue_style( 'mwm-playsalud-editor-fonts', $theme_uri . '/assets/fonts/fonts.css', array(), filemtime( $theme_path . '/assets/fonts/fonts.css' ) );
+	// Solo estilos encapsulados dentro del canvas del editor.
+	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array(), $editor_ver );
 }
 add_action( 'enqueue_block_editor_assets', 'mwm_playsalud_enqueue_editor_assets' );
 

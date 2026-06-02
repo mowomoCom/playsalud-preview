@@ -8,7 +8,38 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Contacto"
+    },
+    "title": {
+      "type": "string",
+      "default": "Solicita informacion para tu institucion."
+    },
+    "lead": {
+      "type": "string",
+      "default": "Cuentanos que necesitas y te contactamos en 1 o 2 dias laborables."
+    },
+    "nameLabel": {
+      "type": "string",
+      "default": "Nombre"
+    },
+    "emailLabel": {
+      "type": "string",
+      "default": "Email"
+    },
+    "messageLabel": {
+      "type": "string",
+      "default": "Mensaje"
+    },
+    "submitText": {
+      "type": "string",
+      "default": "Enviar consulta"
+    }
+  },
   "supports": { "anchor": true }
 }

@@ -7,9 +7,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="mwm-container">
 		<div class="mwm-footer__grid">
 			<div class="mwm-footer__brand">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mwm-footer__logo">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php esc_attr_e( 'PlaySalud', 'mwm-playsalud' ); ?>">
-				</a>
+				<?php if ( has_custom_logo() ) : ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mwm-footer__logo" rel="home" aria-label="<?php esc_attr_e( 'PlaySalud', 'mwm-playsalud' ); ?>">
+						<?php
+						$custom_logo_id = get_theme_mod( 'custom_logo' );
+						echo wp_get_attachment_image( $custom_logo_id, 'full', false, array( 'class' => 'custom-logo' ) );
+						?>
+					</a>
+				<?php else : ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mwm-footer__logo">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php esc_attr_e( 'PlaySalud', 'mwm-playsalud' ); ?>">
+					</a>
+				<?php endif; ?>
 				<p class="mwm-footer__tagline"><?php esc_html_e( 'Salud en video. Formacion y comunicacion clinica con estandares editoriales.', 'mwm-playsalud' ); ?></p>
 			</div>
 			<div>

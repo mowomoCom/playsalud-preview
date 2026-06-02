@@ -8,7 +8,29 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Para instituciones"
+    },
+    "title": {
+      "type": "string",
+      "default": "Una plataforma para cada tipo de institucion."
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        { "title": "Hospitales", "description": "Rutas clinicas + formacion." },
+        { "title": "Aseguradoras", "description": "Mejora de experiencia del asegurado." },
+        { "title": "Universidades", "description": "Integracion en LMS o campus." },
+        { "title": "Sociedades cientificas", "description": "Cursos co-brandeados." },
+        { "title": "Asociaciones de pacientes", "description": "Informacion fiable y accesible." },
+        { "title": "Industria sanitaria", "description": "Patrocinio educativo responsable." }
+      ]
+    }
+  },
   "supports": { "anchor": true }
 }

@@ -8,7 +8,23 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Datos clave"
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        { "value": "10", "label": "modulos clinicos en PlayCare" },
+        { "value": "180+", "label": "videos animados basados en evidencia" },
+        { "value": "56h", "label": "de formacion en IA sanitaria" },
+        { "value": "B2B + B2C", "label": "institucional y acceso individual" }
+      ]
+    }
+  },
   "supports": { "anchor": true }
 }

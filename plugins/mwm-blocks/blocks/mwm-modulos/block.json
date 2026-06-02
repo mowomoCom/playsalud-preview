@@ -8,7 +8,29 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "PlayCare"
+    },
+    "title": {
+      "type": "string",
+      "default": "Modulos de cuidados en formato video."
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        { "title": "Cancer colorrectal", "meta": "35 videos" },
+        { "title": "RICA Especialidades", "meta": "42 videos" },
+        { "title": "RICA General", "meta": "20 videos" },
+        { "title": "Incontinencia fecal", "meta": "20 videos" },
+        { "title": "Que saber de la anestesia", "meta": "15 videos" },
+        { "title": "Ostomias", "meta": "10 videos" }
+      ]
+    }
+  },
   "supports": { "anchor": true }
 }

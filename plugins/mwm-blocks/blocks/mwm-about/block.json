@@ -8,7 +8,26 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Quienes somos"
+    },
+    "title": {
+      "type": "string",
+      "default": "Un equipo serio con un lenguaje propio."
+    },
+    "lead": {
+      "type": "string",
+      "default": "PlaySalud nace de la conviccion de que la salud merece una voz audiovisual propia: rigurosa, humana y util."
+    },
+    "quote": {
+      "type": "string",
+      "default": "Hacemos videos que un profesional firmaria sin incomodidad y que un paciente entiende sin sentirse infantilizado."
+    }
+  },
   "supports": { "anchor": true }
 }

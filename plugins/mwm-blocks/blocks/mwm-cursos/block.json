@@ -8,7 +8,26 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "PlayAcademy"
+    },
+    "title": {
+      "type": "string",
+      "default": "Itinerario formativo en IA aplicada a la salud."
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        { "title": "Curso I: Entender la IA en salud desde cero.", "meta": "56 horas lectivas, 10 modulos, 3 meses.", "featured": true },
+        { "title": "Curso II: IA generativa aplicada.", "meta": "Proximamente.", "featured": false },
+        { "title": "Curso III: IA por perfiles y procesos.", "meta": "Proximamente.", "featured": false }
+      ]
+    }
+  },
   "supports": { "anchor": true }
 }

@@ -8,8 +8,47 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Plataforma de salud audiovisual"
+    },
+    "title": {
+      "type": "string",
+      "default": "Salud en video. Seria cuando toca, cercana cuando ayuda."
+    },
+    "lead": {
+      "type": "string",
+      "default": "PlaySalud transforma informacion clinica compleja en videos breves, claros y basados en evidencia para pacientes y profesionales."
+    },
+    "primaryText": {
+      "type": "string",
+      "default": "Solicitar demo institucional"
+    },
+    "primaryUrl": {
+      "type": "string",
+      "default": "#contacto"
+    },
+    "secondaryText": {
+      "type": "string",
+      "default": "Explorar PlayCare y PlayAcademy"
+    },
+    "secondaryUrl": {
+      "type": "string",
+      "default": "#verticales"
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": "PlaySalud"
+    }
+  },
   "supports": {
     "anchor": true,
     "align": ["wide", "full"]

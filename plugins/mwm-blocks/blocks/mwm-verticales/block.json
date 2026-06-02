@@ -8,7 +8,50 @@
   "textdomain": "mwm-blocks",
   "style": "file:./style.css",
   "editorStyle": "file:./editor.css",
+  "editorScript": "file:./editor.js",
   "viewScript": "file:./view.js",
   "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Dos brazos, un lenguaje"
+    },
+    "title": {
+      "type": "string",
+      "default": "PlayCare y PlayAcademy."
+    },
+    "careTitle": {
+      "type": "string",
+      "default": "PlayCare"
+    },
+    "careText": {
+      "type": "string",
+      "default": "Videos de cuidados de salud por modulos para instituciones y equipos clinicos."
+    },
+    "careButtonText": {
+      "type": "string",
+      "default": "Ver modulos"
+    },
+    "careButtonUrl": {
+      "type": "string",
+      "default": "#modulos"
+    },
+    "academyTitle": {
+      "type": "string",
+      "default": "PlayAcademy"
+    },
+    "academyText": {
+      "type": "string",
+      "default": "Cursos acreditados para sanitarios con itinerario progresivo en IA aplicada."
+    },
+    "academyButtonText": {
+      "type": "string",
+      "default": "Ver curso"
+    },
+    "academyButtonUrl": {
+      "type": "string",
+      "default": "#curso"
+    }
+  },
   "supports": { "anchor": true }
 }

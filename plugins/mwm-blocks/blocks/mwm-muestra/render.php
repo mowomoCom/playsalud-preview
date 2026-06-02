@@ -2,20 +2,35 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+$defaults = array(
+	'eyebrow'   => 'Capitulos de muestra',
+	'title'     => 'Mira algunos capitulos completos.',
+	'items'     => array(
+		array( 'title' => 'Como cuidar tu herida postoperatoria' ),
+		array( 'title' => 'Preparacion para consulta preanestesica' ),
+		array( 'title' => 'Vivir con una ostomia' ),
+		array( 'title' => 'Entender el cancer colorrectal' ),
+	),
+	'prevLabel' => 'Anterior',
+	'nextLabel' => 'Siguiente',
+);
+
+$attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
+$items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
 ?>
 <section id="muestra" class="mwm-home-section mwm-muestra">
 	<div class="mwm-container">
-		<p class="mwm-eyebrow">Capitulos de muestra</p>
-		<h2>Mira algunos capitulos completos.</h2>
+		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<h2><?php echo wp_kses_post( $attributes['title'] ); ?></h2>
 		<div class="mwm-muestra__track" data-mwm-muestra-track>
-			<article class="mwm-muestra__slide"><span>Como cuidar tu herida postoperatoria</span></article>
-			<article class="mwm-muestra__slide"><span>Preparacion para consulta preanestesica</span></article>
-			<article class="mwm-muestra__slide"><span>Vivir con una ostomia</span></article>
-			<article class="mwm-muestra__slide"><span>Entender el cancer colorrectal</span></article>
+			<?php foreach ( $items as $item ) : ?>
+				<article class="mwm-muestra__slide"><span><?php echo esc_html( isset( $item['title'] ) ? (string) $item['title'] : '' ); ?></span></article>
+			<?php endforeach; ?>
 		</div>
 		<div class="mwm-muestra__nav">
-			<button type="button" class="mwm-btn mwm-btn--ghost mwm-btn--sm" data-mwm-prev>Anterior</button>
-			<button type="button" class="mwm-btn mwm-btn--ghost mwm-btn--sm" data-mwm-next>Siguiente</button>
+			<button type="button" class="mwm-btn mwm-btn--ghost mwm-btn--sm" data-mwm-prev><?php echo esc_html( $attributes['prevLabel'] ); ?></button>
+			<button type="button" class="mwm-btn mwm-btn--ghost mwm-btn--sm" data-mwm-next><?php echo esc_html( $attributes['nextLabel'] ); ?></button>
 		</div>
 	</div>
 </section>

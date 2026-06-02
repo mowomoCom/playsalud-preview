@@ -4,7 +4,4 @@
   font-display: swap;
 }
 
-body,
-.editor-styles-wrapper {
-  font-family: "Plus Jakarta Sans", sans-serif;
-}
+/* Solo define la fuente; el scope se aplica desde CSS de front/editor. */

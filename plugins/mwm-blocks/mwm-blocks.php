@@ -49,6 +49,30 @@ function mwm_blocks_register_all() {
 }
 add_action( 'init', 'mwm_blocks_register_all' );
 
+/**
+ * Fuerza auto registro en cliente para bloques dinamicos MWM.
+ *
+ * En WP 7+, esto permite que bloques registrados solo en PHP
+ * aparezcan en el inserter sin requerir registro JS manual.
+ */
+function mwm_blocks_enable_auto_register( $args, $block_type ) {
+	if ( ! is_string( $block_type ) || 0 !== strpos( $block_type, 'mwm/' ) ) {
+		return $args;
+	}
+
+	$supports = array();
+	if ( isset( $args['supports'] ) && is_array( $args['supports'] ) ) {
+		$supports = $args['supports'];
+	}
+
+	$supports['auto_register'] = true;
+	$supports['autoRegister']  = true;
+	$args['supports']          = $supports;
+
+	return $args;
+}
+add_filter( 'register_block_type_args', 'mwm_blocks_enable_auto_register', 10, 2 );
+
 function mwm_blocks_enqueue_editor_script() {
 	wp_enqueue_script(
 		'mwm-blocks-editor',

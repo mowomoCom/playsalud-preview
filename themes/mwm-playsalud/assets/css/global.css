@@ -19,6 +19,7 @@ body {
   margin: 0;
   background: var(--mwm-bg-base);
   color: var(--mwm-text-main);
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .mwm-main {
