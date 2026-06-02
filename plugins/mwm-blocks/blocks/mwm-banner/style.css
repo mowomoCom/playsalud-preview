@@ -1,0 +1,21 @@
+.wp-block-mwm-banner {
+  padding: 4.5rem 0;
+  background: linear-gradient(135deg, #0d1b2e 0%, #133250 100%);
+  color: #e6f2fb;
+}
+
+.mwm-banner__inner h2 {
+  margin: 0.5rem 0 1rem;
+  color: #fff;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+}
+
+.mwm-banner__inner p {
+  margin: 0;
+  max-width: 900px;
+  color: #cbd5e1;
+}
+
+.wp-block-mwm-banner .mwm-eyebrow {
+  color: #67e8f9;
+}

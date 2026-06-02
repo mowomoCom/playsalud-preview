@@ -1,0 +1,17 @@
+.wp-block-mwm-contacto {
+  padding: 5rem 0;
+  background: #f8fafc;
+}
+
+.mwm-contacto__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .mwm-contacto__grid {
+    grid-template-columns: 1fr;
+  }
+}

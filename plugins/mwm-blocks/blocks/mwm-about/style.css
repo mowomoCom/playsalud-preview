@@ -1,0 +1,24 @@
+.wp-block-mwm-about {
+  padding: 5rem 0;
+}
+
+.mwm-about__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.mwm-about__quote {
+  margin: 0;
+  border-radius: 16px;
+  background: #0d1b2e;
+  color: #e6f2fb;
+  padding: 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .mwm-about__grid {
+    grid-template-columns: 1fr;
+  }
+}

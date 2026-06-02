@@ -1,0 +1,28 @@
+.wp-block-mwm-cursos {
+  padding: 5rem 0;
+  background: #f1f5f9;
+}
+
+.mwm-cursos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.mwm-cursos__card {
+  border-radius: 14px;
+  border: 1px solid var(--mwm-border);
+  background: #fff;
+  padding: 1.2rem;
+}
+
+.mwm-cursos__card--featured {
+  border-color: #d97706;
+  box-shadow: 0 10px 22px rgba(217, 119, 6, 0.18);
+}
+
+@media (max-width: 900px) {
+  .mwm-cursos__grid {
+    grid-template-columns: 1fr;
+  }
+}

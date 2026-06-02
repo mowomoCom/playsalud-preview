@@ -1,0 +1,31 @@
+.wp-block-mwm-verticales {
+  padding: 5rem 0;
+}
+
+.mwm-verticales__title {
+  margin: 0.4rem 0 1.3rem;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.mwm-verticales__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.mwm-verticales__card {
+  border: 1px solid var(--mwm-border);
+  border-radius: var(--mwm-radius-lg);
+  padding: 1.6rem;
+  background: #fff;
+}
+
+.mwm-verticales__card p {
+  color: var(--mwm-text-dim);
+}
+
+@media (max-width: 900px) {
+  .mwm-verticales__grid {
+    grid-template-columns: 1fr;
+  }
+}

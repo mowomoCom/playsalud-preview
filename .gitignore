@@ -5,10 +5,10 @@
 !themes/
 themes/*
 !themes/mwm-author-mowomo/
+!themes/mwm-playsalud/
 
 !plugins/
 plugins/*
 !plugins/mwm-blocks/
 !.gitignore
 
-/playsalud-preview/

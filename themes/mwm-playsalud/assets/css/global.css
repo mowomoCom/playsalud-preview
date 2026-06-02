@@ -1,0 +1,79 @@
+:root {
+  --mwm-bg-base: #ffffff;
+  --mwm-bg-soft: #f8fafc;
+  --mwm-bg-tinted: #f1f5f9;
+  --mwm-bg-deep: #0d1b2e;
+  --mwm-sky: #0891b2;
+  --mwm-orange: #d97706;
+  --mwm-orange-soft: #f59e0b;
+  --mwm-text-main: #0d1b2e;
+  --mwm-text-dim: #475569;
+  --mwm-border: #cbd5e1;
+  --mwm-radius-sm: 8px;
+  --mwm-radius-md: 14px;
+  --mwm-radius-lg: 22px;
+  --mwm-shadow-card: 0 4px 12px rgba(13, 27, 46, 0.06), 0 2px 6px rgba(13, 27, 46, 0.04);
+}
+
+body {
+  margin: 0;
+  background: var(--mwm-bg-base);
+  color: var(--mwm-text-main);
+}
+
+.mwm-main {
+  overflow-x: hidden;
+}
+
+.mwm-container {
+  width: min(1240px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.mwm-section {
+  padding: 6rem 0;
+}
+
+.mwm-eyebrow {
+  display: inline-block;
+  color: var(--mwm-sky);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.mwm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mwm-btn--primary {
+  background: var(--mwm-orange);
+  color: #fff;
+}
+
+.mwm-btn--primary:hover {
+  background: var(--mwm-orange-soft);
+}
+
+.mwm-btn--ghost {
+  background: transparent;
+  border-color: var(--mwm-border);
+  color: var(--mwm-text-main);
+}
+
+.mwm-btn--sm { padding: 0.6rem 1rem; border-radius: 10px; font-size: 0.875rem; }
+.mwm-btn--md { padding: 0.75rem 1.25rem; border-radius: 12px; font-size: 0.95rem; }
+.mwm-btn--lg { padding: 1rem 1.6rem; border-radius: 14px; font-size: 1rem; }
+
+.mwm-not-found {
+  max-width: 640px;
+  text-align: center;
+  margin: 0 auto;
+}
