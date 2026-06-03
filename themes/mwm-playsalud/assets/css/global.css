@@ -9,10 +9,29 @@
   --mwm-text-main: #0d1b2e;
   --mwm-text-dim: #475569;
   --mwm-border: #cbd5e1;
+
+  /* Text */
+  --text-main:   #0d1b2e;
+  --text-strong: #050b18;
+  --text-dim:    #475569;
+  --text-mute:   #94a3b8;
+  --text-faint:  #cbd5e1;
+  --text-on-dark:#e6f2fb;
+
+  --sky-light:   #cffafe;
+
   --mwm-radius-sm: 8px;
   --mwm-radius-md: 14px;
   --mwm-radius-lg: 22px;
   --mwm-shadow-card: 0 4px 12px rgba(13, 27, 46, 0.06), 0 2px 6px rgba(13, 27, 46, 0.04);
+  --shadow-sky:   0 12px 32px rgba(8,145,178,0.18);
+  --shadow-orange:0 12px 32px rgba(217,119,6,0.20);
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -22,13 +41,18 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+section{
+  margin: 0;
+}
+
 .mwm-main {
   overflow-x: hidden;
 }
 
 .mwm-container {
-  width: min(1240px, 100% - 3rem);
-  margin-inline: auto;
+  max-width:1240px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
 }
 
 .mwm-section {
@@ -36,42 +60,85 @@ body {
 }
 
 .mwm-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sky-light);
+  border: 1px solid rgba(125,212,232,0.18);
   color: var(--mwm-sky);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
 }
 
+.mwm-eyebrow-dot{
+  width: 7px; height: 7px;
+  background: var(--mwm-sky);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--mwm-sky);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Botones */
 .mwm-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid transparent;
-  text-decoration: none;
+  gap: .625rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.18s, background 0.18s, box-shadow 0.2s, border-color 0.18s;
+  white-space: nowrap;
 }
 
 .mwm-btn--primary {
   background: var(--mwm-orange);
-  color: #fff;
+  color: var(--mwm-bg-base);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
 }
 
 .mwm-btn--primary:hover {
   background: var(--mwm-orange-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-orange);
 }
 
 .mwm-btn--ghost {
   background: transparent;
-  border-color: var(--mwm-border);
+  border: 1px solid var(--mwm-border);
   color: var(--mwm-text-main);
+}
+
+.mwm-btn--ghost:hover {
+  background: var(--mwm-bg-tinted);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
 }
 
 .mwm-btn--sm { padding: 0.6rem 1rem; border-radius: 10px; font-size: 0.875rem; }
 .mwm-btn--md { padding: 0.75rem 1.25rem; border-radius: 12px; font-size: 0.95rem; }
 .mwm-btn--lg { padding: 1rem 1.6rem; border-radius: 14px; font-size: 1rem; }
+
+.mwm-btn--link {
+  color: var(--mwm-sky);
+  background: none;
+  padding: 0;
+  font-weight: 600;
+  font-size: 15px;
+}
+.mwm-btn--link:hover { color: var(--mwm-sky); }
+.mwm-btn--link .arrow { transition: transform 0.2s; }
+.mwm-btn--link:hover .arrow { transform: translateX(4px); }
 
 .mwm-not-found {
   max-width: 640px;

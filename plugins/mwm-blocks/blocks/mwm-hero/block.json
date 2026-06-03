@@ -16,6 +16,27 @@
       "type": "string",
       "default": "Plataforma de salud audiovisual"
     },
+    "titleLines": {
+      "type": "array",
+      "default": [
+        {
+          "text": "Salud en video.",
+          "className": "t-bold"
+        },
+        {
+          "text": "Seria cuando toca,",
+          "className": "t-thin accent"
+        },
+        {
+          "text": "cercana cuando ayuda.",
+          "className": "t-thin"
+        }
+      ]
+    },
+    "titleLineCount": {
+      "type": "number",
+      "default": 3
+    },
     "title": {
       "type": "string",
       "default": "Salud en video. Seria cuando toca, cercana cuando ayuda."
@@ -39,6 +60,62 @@
     "secondaryUrl": {
       "type": "string",
       "default": "#verticales"
+    },
+    "trustText": {
+      "type": "string",
+      "default": "Hospitales, sociedades cientificas y universidades nos avalan"
+    },
+    "trustDotsCount": {
+      "type": "number",
+      "default": 3
+    },
+    "showTrust": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFloatCare": {
+      "type": "boolean",
+      "default": true
+    },
+    "floatCareLabel": {
+      "type": "string",
+      "default": "PlayCare"
+    },
+    "floatCareValue": {
+      "type": "string",
+      "default": "300+"
+    },
+    "floatCareSub": {
+      "type": "string",
+      "default": "videos clinicos"
+    },
+    "showFloatAcademy": {
+      "type": "boolean",
+      "default": true
+    },
+    "floatAcademyLabel": {
+      "type": "string",
+      "default": "PlayAcademy"
+    },
+    "floatAcademyValue": {
+      "type": "string",
+      "default": "Curso I"
+    },
+    "floatAcademySub": {
+      "type": "string",
+      "default": "IA en Salud - 8 sem."
+    },
+    "showPhotoMeta": {
+      "type": "boolean",
+      "default": true
+    },
+    "photoMetaTag": {
+      "type": "string",
+      "default": "Cirugia"
+    },
+    "photoMetaTime": {
+      "type": "string",
+      "default": "3:42"
     },
     "imageUrl": {
       "type": "string",

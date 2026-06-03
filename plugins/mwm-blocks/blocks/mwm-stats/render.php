@@ -30,7 +30,7 @@ $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $default
 ?>
 <section id="stats" class="mwm-home-section mwm-stats">
 	<div class="mwm-container">
-		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<p class="mwm-eyebrow-stats mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 		<div class="mwm-stats__grid">
 			<?php foreach ( $items as $item ) : ?>
 				<article class="mwm-stats__item">

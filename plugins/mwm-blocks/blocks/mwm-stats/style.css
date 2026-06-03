@@ -1,6 +1,38 @@
-.wp-block-mwm-stats {
-  padding: 4rem 0;
-  background: #f8fafc;
+.mwm-stats {
+  padding: 4.5rem 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(125,212,232,0.08), transparent 70%),
+    var(--mwm-text-main);
+  color: var(--text-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.mwm-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(125,212,232,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125,212,232,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+  pointer-events: none;
+}
+
+.mwm-stats .mwm-container { position: relative; z-index: 2; }
+
+.mwm-eyebrow-stats{
+  color: #7dd4e8 !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 2rem !important;
+  text-align: center !important;
 }
 
 .mwm-stats__grid {
