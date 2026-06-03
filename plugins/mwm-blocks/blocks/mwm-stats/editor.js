@@ -9,6 +9,24 @@
 		return Array.isArray( items ) ? items : [];
 	}
 
+	function splitStatValue( value ) {
+		const raw = ( value || '' ).trim();
+		const match = raw.match( /^(\d+)\s*([^\d\s]+)$/u );
+		if ( match ) {
+			return {
+				main: match[1],
+				suffix: match[2],
+				isText: false,
+			};
+		}
+
+		return {
+			main: raw,
+			suffix: '',
+			isText: /\s/u.test( raw ) || /[a-z]/iu.test( raw ),
+		};
+	}
+
 	function renderStatsEdit( props ) {
 		const { attributes, setAttributes } = props;
 		const items = normalizeItems( attributes.items );
@@ -99,16 +117,36 @@
 				el(
 					'div',
 					{ className: 'mwm-container' },
-					el( 'p', { className: 'mwm-eyebrow' }, attributes.eyebrow || '' ),
+					el(
+						'p',
+						{ className: 'mwm-eyebrow-stats mwm-eyebrow stats-eyebrow eyebrow' },
+						attributes.eyebrow || ''
+					),
 					el(
 						'div',
-						{ className: 'mwm-stats__grid' },
+						{ className: 'mwm-stats__grid stats-grid' },
 						items.map( function ( item, index ) {
+							const valueData = splitStatValue( item && item.value ? item.value : '' );
 							return el(
 								'article',
-								{ key: index, className: 'mwm-stats__item' },
-								el( 'strong', null, item && item.value ? item.value : '' ),
-								el( 'span', null, item && item.label ? item.label : '' )
+								{ key: index, className: 'mwm-stats__item stat reveal' },
+								el(
+									'div',
+									{
+										className:
+											'mwm-stats__value stat-value' +
+											( valueData.isText ? ' text stat-value--text' : '' ),
+									},
+									valueData.main,
+									valueData.suffix
+										? el( 'span', { className: 'small' }, valueData.suffix )
+										: null
+								),
+								el(
+									'p',
+									{ className: 'mwm-stats__label stat-label' },
+									item && item.label ? item.label : ''
+								)
 							);
 						} )
 					)

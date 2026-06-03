@@ -30,12 +30,31 @@ $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $default
 ?>
 <section id="stats" class="mwm-home-section mwm-stats">
 	<div class="mwm-container">
-		<p class="mwm-eyebrow-stats mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
-		<div class="mwm-stats__grid">
+		<p class="mwm-eyebrow-stats mwm-eyebrow stats-eyebrow eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<div class="mwm-stats__grid stats-grid">
 			<?php foreach ( $items as $item ) : ?>
-				<article class="mwm-stats__item">
-					<strong><?php echo esc_html( isset( $item['value'] ) ? (string) $item['value'] : '' ); ?></strong>
-					<span><?php echo esc_html( isset( $item['label'] ) ? (string) $item['label'] : '' ); ?></span>
+				<?php
+				$raw_value = isset( $item['value'] ) ? trim( (string) $item['value'] ) : '';
+				$label     = isset( $item['label'] ) ? (string) $item['label'] : '';
+				$main      = $raw_value;
+				$suffix    = '';
+				$is_text   = false;
+
+				if ( '' !== $raw_value && preg_match( '/^(\d+)\s*([^\d\s]+)$/u', $raw_value, $parts ) ) {
+					$main   = $parts[1];
+					$suffix = $parts[2];
+				} elseif ( preg_match( '/\s/u', $raw_value ) || preg_match( '/[a-z]/iu', $raw_value ) ) {
+					$is_text = true;
+				}
+				?>
+				<article class="mwm-stats__item stat reveal">
+					<div class="mwm-stats__value stat-value<?php echo $is_text ? ' text stat-value--text' : ''; ?>">
+						<?php echo esc_html( $main ); ?>
+						<?php if ( '' !== $suffix ) : ?>
+							<span class="small"><?php echo esc_html( $suffix ); ?></span>
+						<?php endif; ?>
+					</div>
+					<p class="mwm-stats__label stat-label"><?php echo esc_html( $label ); ?></p>
 				</article>
 			<?php endforeach; ?>
 		</div>
