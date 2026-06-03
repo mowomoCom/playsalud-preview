@@ -6,48 +6,120 @@ if ( ! defined( 'ABSPATH' ) ) {
 $defaults = array(
 	'eyebrow' => 'PlayCare',
 	'title'   => 'Modulos de cuidados en formato video.',
+	'titleLight' => 'Modulos de cuidados,',
+	'titleBold' => 'en formato video.',
+	'sectionDescription' => 'Catalogo modular y escalable, basado en evidencia y revisado por profesionales.',
+	'buttonUrl' => '#contacto',
+	'buttonLabel' => 'Ver todos los modulos',
 	'items'   => array(
 		array(
-			'title' => 'Cancer colorrectal',
-			'meta'  => '35 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '35 videos',
+			'title'        => 'Cancer colorrectal',
+			'description'  => 'Diagnostico, tratamiento, cirugia, recuperacion y vida posterior al proceso oncologico.',
 		),
 		array(
-			'title' => 'RICA Especialidades',
-			'meta'  => '42 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '42 videos',
+			'title'        => 'RICA Especialidades',
+			'description'  => 'Recuperacion intensificada adaptada a distintas areas medico-quirurgicas.',
 		),
 		array(
-			'title' => 'RICA General',
-			'meta'  => '20 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '20 videos',
+			'title'        => 'RICA General',
+			'description'  => 'Recuperacion intensificada, preparacion del paciente y papel activo en el proceso quirurgico.',
 		),
 		array(
-			'title' => 'Incontinencia fecal',
-			'meta'  => '20 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '20 videos',
+			'title'        => 'Incontinencia fecal',
+			'description'  => 'Comprension del problema, habitos, suelo pelvico y opciones terapeuticas.',
 		),
 		array(
-			'title' => 'Que saber de la anestesia',
-			'meta'  => '15 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '15 videos',
+			'title'        => 'Que saber de la anestesia',
+			'description'  => 'Consulta preanestesica, medicacion y anestesia en quirofano para pacientes quirurgicos.',
 		),
 		array(
-			'title' => 'Ostomias',
-			'meta'  => '10 videos',
+			'imageId'      => 0,
+			'imageUrl'     => '',
+			'caption'      => '10 videos',
+			'title'        => 'Ostomias',
+			'description'  => 'Preparacion, autocuidados, adaptacion y signos de alarma para pacientes ostomizados.',
 		),
 	),
 );
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
+$title_light = isset( $attributes['titleLight'] ) ? trim( (string) $attributes['titleLight'] ) : '';
+$title_bold = isset( $attributes['titleBold'] ) ? trim( (string) $attributes['titleBold'] ) : '';
+$title_legacy = isset( $attributes['title'] ) ? trim( (string) $attributes['title'] ) : '';
+$section_description = isset( $attributes['sectionDescription'] ) ? trim( (string) $attributes['sectionDescription'] ) : '';
+$button_url = isset( $attributes['buttonUrl'] ) ? trim( (string) $attributes['buttonUrl'] ) : '';
+$button_label = isset( $attributes['buttonLabel'] ) ? trim( (string) $attributes['buttonLabel'] ) : '';
+$has_split_title = '' !== $title_light || '' !== $title_bold;
 ?>
 <section id="modulos" class="mwm-home-section mwm-modulos">
 	<div class="mwm-container">
 		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
-		<h2><?php echo wp_kses_post( $attributes['title'] ); ?></h2>
+		<h2 class="mwm-modulos__section-title">
+			<?php if ( $has_split_title ) : ?>
+				<span class="mwm-modulos__title-light"><?php echo esc_html( $title_light ); ?></span>
+				<?php if ( '' !== $title_bold ) : ?>
+					<br>
+					<span class="mwm-modulos__title-bold"><?php echo esc_html( $title_bold ); ?></span>
+				<?php endif; ?>
+			<?php else : ?>
+				<span class="mwm-modulos__title-bold"><?php echo esc_html( $title_legacy ); ?></span>
+			<?php endif; ?>
+		</h2>
+		<?php if ( '' !== $section_description ) : ?>
+			<p class="mwm-modulos__section-desc"><?php echo esc_html( $section_description ); ?></p>
+		<?php endif; ?>
 		<div class="mwm-modulos__grid">
 			<?php foreach ( $items as $item ) : ?>
+				<?php
+				$item_data    = is_array( $item ) ? $item : array();
+				$title        = isset( $item_data['title'] ) ? (string) $item_data['title'] : '';
+				$image_url    = isset( $item_data['imageUrl'] ) ? (string) $item_data['imageUrl'] : '';
+				$description  = isset( $item_data['description'] ) ? (string) $item_data['description'] : '';
+				$legacy_meta  = isset( $item_data['meta'] ) ? (string) $item_data['meta'] : '';
+				$caption      = isset( $item_data['caption'] ) && '' !== trim( (string) $item_data['caption'] )
+					? (string) $item_data['caption']
+					: $legacy_meta;
+				?>
 				<article class="mwm-modulos__card">
-					<h3><?php echo esc_html( isset( $item['title'] ) ? (string) $item['title'] : '' ); ?></h3>
-					<p><?php echo esc_html( isset( $item['meta'] ) ? (string) $item['meta'] : '' ); ?></p>
+					<div class="mwm-modulos__photo">
+						<?php if ( '' !== $caption ) : ?>
+							<span class="mwm-modulos__badge"><?php echo esc_html( $caption ); ?></span>
+						<?php endif; ?>
+						<?php if ( '' !== $image_url ) : ?>
+							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+						<?php else : ?>
+							<div class="mwm-modulos__photo-placeholder"></div>
+						<?php endif; ?>
+					</div>
+					<div class="mwm-modulos__body">
+						<h3 class="mwm-modulos__title"><?php echo esc_html( $title ); ?></h3>
+						<p class="mwm-modulos__desc"><?php echo esc_html( $description ); ?></p>
+					</div>
 				</article>
 			<?php endforeach; ?>
 		</div>
+		<?php if ( '' !== $button_label ) : ?>
+			<div class="mwm-modulos__cta-row">
+				<a class="mwm-modulos__cta" href="<?php echo esc_url( '' !== $button_url ? $button_url : '#' ); ?>">
+					<?php echo esc_html( $button_label ); ?>
+				</a>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

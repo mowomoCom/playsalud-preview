@@ -1,24 +1,223 @@
-.wp-block-mwm-about {
+.wp-block-mwm-about.mwm-about {
   padding: 5rem 0;
+  background: var(--bg-soft, #f2f6fb);
 }
 
-.mwm-about__grid {
+.wp-block-mwm-about.mwm-about .about-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 1rem;
-  align-items: stretch;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 4rem;
 }
 
-.mwm-about__quote {
-  margin: 0;
-  border-radius: 16px;
-  background: #0d1b2e;
-  color: #e6f2fb;
-  padding: 1.4rem;
+.wp-block-mwm-about.mwm-about .about-title {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-strong, #0d1b2e);
 }
 
-@media (max-width: 900px) {
-  .mwm-about__grid {
+.wp-block-mwm-about.mwm-about .about-title .t-bold {
+  font-weight: 800;
+}
+
+.wp-block-mwm-about.mwm-about .about-title .t-thin {
+  font-weight: 300;
+}
+
+.wp-block-mwm-about.mwm-about .about-title .accent {
+  color: var(--sky, #0891b2);
+}
+
+.wp-block-mwm-about.mwm-about .about-p {
+  font-size: 16px;
+  color: var(--text-dim, #4b5563);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.wp-block-mwm-about.mwm-about .about-visual {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl, 22px);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-card, 0 16px 32px rgba(13, 27, 46, 0.14));
+  background:
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(125, 212, 232, 0.16), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 95%, rgba(240, 168, 50, 0.12), transparent 60%),
+    linear-gradient(160deg, var(--bg-card, #ffffff) 0%, var(--bg-soft, #f2f6fb) 100%);
+  border: 1px solid var(--border-md, rgba(13, 27, 46, 0.12));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2.5rem 2.5rem;
+}
+
+.wp-block-mwm-about.mwm-about .about-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(125, 212, 232, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 212, 232, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 90% 90% at 30% 70%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 30% 70%, black, transparent);
+  pointer-events: none;
+}
+
+.wp-block-mwm-about.mwm-about .about-quote-mark {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 72px;
+  height: 72px;
+  color: var(--sky, #0891b2);
+  opacity: 0.32;
+  z-index: 1;
+}
+
+.wp-block-mwm-about.mwm-about .about-quote {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.4px;
+  color: var(--text-strong, #0d1b2e);
+  margin-bottom: 2rem;
+}
+
+.wp-block-mwm-about.mwm-about .about-quote em {
+  font-style: normal;
+  color: var(--sky, #0891b2);
+}
+
+.wp-block-mwm-about.mwm-about .about-signature {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-faint, rgba(13, 27, 46, 0.08));
+}
+
+.wp-block-mwm-about.mwm-about .about-signature-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--sky, #0891b2), #0e7490);
+  display: grid;
+  place-items: center;
+  color: var(--bg-deep, #081325);
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(125, 212, 232, 0.35);
+}
+
+.wp-block-mwm-about.mwm-about .about-signature-name {
+  font-family: var(--font-display, inherit);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-strong, #0d1b2e);
+  letter-spacing: -0.2px;
+}
+
+.wp-block-mwm-about.mwm-about .about-signature-role {
+  font-size: 12px;
+  color: var(--text-mute, #6b7280);
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
+.wp-block-mwm-about.mwm-about .about-stamp {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2;
+  background: var(--orange-light, rgba(240, 168, 50, 0.14));
+  border: 1px solid rgba(240, 168, 50, 0.25);
+  color: var(--orange, #f59e0b);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 100px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.wp-block-mwm-about.mwm-about .about-visual-tag {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(8, 15, 28, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(125, 212, 232, 0.25);
+  font-size: 11px;
+  font-weight: 700;
+  color: #7dd4e8;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.wp-block-mwm-about.mwm-about .pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-faint, rgba(13, 27, 46, 0.08));
+  border: 1px solid var(--border-faint, rgba(13, 27, 46, 0.08));
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+}
+
+.wp-block-mwm-about.mwm-about .pillar {
+  background: var(--bg-card, #ffffff);
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+}
+
+.wp-block-mwm-about.mwm-about .pillar-label {
+  font-family: var(--font-display, inherit);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--sky, #0891b2);
+  letter-spacing: 2px;
+  margin-bottom: 0.65rem;
+}
+
+.wp-block-mwm-about.mwm-about .pillar-claim {
+  font-size: 14px;
+  color: var(--text-main, #1f2937);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 880px) {
+  .wp-block-mwm-about.mwm-about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .wp-block-mwm-about.mwm-about .about-visual {
+    aspect-ratio: 16 / 10;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .wp-block-mwm-about.mwm-about .pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .wp-block-mwm-about.mwm-about .pillars {
     grid-template-columns: 1fr;
   }
 }

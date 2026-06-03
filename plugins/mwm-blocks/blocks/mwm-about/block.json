@@ -16,6 +16,27 @@
       "type": "string",
       "default": "Quienes somos"
     },
+    "titleLines": {
+      "type": "array",
+      "default": [
+        {
+          "text": "Un equipo serio,",
+          "className": "t-thin"
+        },
+        {
+          "text": "con un",
+          "className": "t-bold"
+        }
+      ]
+    },
+    "titleLineCount": {
+      "type": "number",
+      "default": 2
+    },
+    "titleAccent": {
+      "type": "string",
+      "default": "lenguaje propio."
+    },
     "title": {
       "type": "string",
       "default": "Un equipo serio con un lenguaje propio."
@@ -24,9 +45,58 @@
       "type": "string",
       "default": "PlaySalud nace de la conviccion de que la salud merece una voz audiovisual propia: rigurosa, humana y util."
     },
+    "leadSecondary": {
+      "type": "string",
+      "default": "No producimos contenido viral. No hacemos pildoras motivacionales. Hacemos videos que un profesional firmaria sin incomodidad y que un paciente entiende sin sentirse infantilizado."
+    },
+    "visualTag": {
+      "type": "string",
+      "default": "Manifiesto"
+    },
     "quote": {
       "type": "string",
-      "default": "Hacemos videos que un profesional firmaria sin incomodidad y que un paciente entiende sin sentirse infantilizado."
+      "default": "Hacemos videos que un profesional"
+    },
+    "quoteEmphasis": {
+      "type": "string",
+      "default": "firmaria sin incomodidad"
+    },
+    "quoteSuffix": {
+      "type": "string",
+      "default": ", y que un paciente entiende sin sentirse infantilizado."
+    },
+    "signatureName": {
+      "type": "string",
+      "default": "Equipo editorial PlaySalud"
+    },
+    "signatureRole": {
+      "type": "string",
+      "default": "Asesoria clinica - Produccion audiovisual"
+    },
+    "stamp": {
+      "type": "string",
+      "default": "Edicion 2026"
+    },
+    "pillars": {
+      "type": "array",
+      "default": [
+        {
+          "label": "RIGOR",
+          "claim": "Asesor clinico por video."
+        },
+        {
+          "label": "TONO",
+          "claim": "Ni frivolo, ni solemne."
+        },
+        {
+          "label": "ALCANCE",
+          "claim": "B2B institucional."
+        },
+        {
+          "label": "MODELO",
+          "claim": "Produccion con redaccion propia."
+        }
+      ]
     }
   },
   "supports": { "anchor": true }

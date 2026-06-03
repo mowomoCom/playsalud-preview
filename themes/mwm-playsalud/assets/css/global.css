@@ -113,6 +113,18 @@ section{
   box-shadow: var(--shadow-orange);
 }
 
+.mwm-btn--sky {
+  background: var(--mwm-sky);
+  color: var(--mwm-bg-base);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
+}
+
+.mwm-btn--sky:hover {
+  background: color-mix(in srgb, var(--mwm-sky) 85%, #38bdf8 15%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sky);
+}
+
 .mwm-btn--ghost {
   background: transparent;
   border: 1px solid var(--mwm-border);

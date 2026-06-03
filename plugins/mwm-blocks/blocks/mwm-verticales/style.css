@@ -1,31 +1,130 @@
 .wp-block-mwm-verticales {
-  padding: 5rem 0;
+  padding: 7rem 0;
+  background: var(--mwm-bg-base);
 }
 
 .mwm-verticales__title {
-  margin: 0.4rem 0 1.3rem;
+  margin: 0.2rem 0 0.75rem;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--text-strong, var(--mwm-text-main));
+  letter-spacing: -0.6px;
+}
+
+.mwm-verticales__subtitle {
+  margin: 0 0 2rem;
+  color: var(--text-dim, var(--mwm-text-dim));
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 760px;
 }
 
 .mwm-verticales__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 24px;
 }
 
 .mwm-verticales__card {
-  border: 1px solid var(--mwm-border);
+  position: relative;
+  overflow: hidden;
   border-radius: var(--mwm-radius-lg);
-  padding: 1.6rem;
-  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--mwm-border) 75%, #ffffff 25%);
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
-.mwm-verticales__card p {
-  color: var(--mwm-text-dim);
+.mwm-verticales__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--mwm-shadow-card);
+  border-color: var(--mwm-border);
 }
 
-@media (max-width: 900px) {
+.mwm-verticales__photo-wrap {
+  position: relative;
+}
+
+.mwm-verticales__photo {
+  aspect-ratio: 16 / 9;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--mwm-bg-tinted);
+}
+
+.mwm-verticales__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.mwm-verticales__card:hover .mwm-verticales__photo img {
+  transform: scale(1.05);
+}
+
+.mwm-verticales__photo-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  background: rgba(8, 15, 28, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.mwm-verticales__photo-tag.is-care {
+  color: #7dd4e8;
+}
+
+.mwm-verticales__photo-tag.is-academy {
+  color: #f0a832;
+}
+
+.mwm-verticales__content {
+  padding: 2rem 2.25rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mwm-verticales__card-title {
+  font-size: 1.6rem;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+  letter-spacing: -0.6px;
+  color: var(--text-strong, var(--mwm-text-main));
+}
+
+.mwm-verticales__card-desc {
+  font-size: 15px;
+  color: var(--text-dim, var(--mwm-text-dim));
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+}
+
+.mwm-verticales__cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+@media (max-width: 880px) {
   .mwm-verticales__grid {
     grid-template-columns: 1fr;
+  }
+
+  .wp-block-mwm-verticales {
+    padding: 5rem 0;
   }
 }

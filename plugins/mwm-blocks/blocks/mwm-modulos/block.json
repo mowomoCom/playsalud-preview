@@ -20,15 +20,71 @@
       "type": "string",
       "default": "Modulos de cuidados en formato video."
     },
+    "titleLight": {
+      "type": "string",
+      "default": "Modulos de cuidados,"
+    },
+    "titleBold": {
+      "type": "string",
+      "default": "en formato video."
+    },
+    "sectionDescription": {
+      "type": "string",
+      "default": "Catalogo modular y escalable, basado en evidencia y revisado por profesionales."
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#contacto"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Ver todos los modulos"
+    },
     "items": {
       "type": "array",
       "default": [
-        { "title": "Cancer colorrectal", "meta": "35 videos" },
-        { "title": "RICA Especialidades", "meta": "42 videos" },
-        { "title": "RICA General", "meta": "20 videos" },
-        { "title": "Incontinencia fecal", "meta": "20 videos" },
-        { "title": "Que saber de la anestesia", "meta": "15 videos" },
-        { "title": "Ostomias", "meta": "10 videos" }
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "35 videos",
+          "title": "Cancer colorrectal",
+          "description": "Diagnostico, tratamiento, cirugia, recuperacion y vida posterior al proceso oncologico."
+        },
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "42 videos",
+          "title": "RICA Especialidades",
+          "description": "Recuperacion intensificada adaptada a distintas areas medico-quirurgicas."
+        },
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "20 videos",
+          "title": "RICA General",
+          "description": "Recuperacion intensificada, preparacion del paciente y papel activo en el proceso quirurgico."
+        },
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "20 videos",
+          "title": "Incontinencia fecal",
+          "description": "Comprension del problema, habitos, suelo pelvico y opciones terapeuticas."
+        },
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "15 videos",
+          "title": "Que saber de la anestesia",
+          "description": "Consulta preanestesica, medicacion y anestesia en quirofano para pacientes quirurgicos."
+        },
+        {
+          "imageId": 0,
+          "imageUrl": "",
+          "caption": "10 videos",
+          "title": "Ostomias",
+          "description": "Preparacion, autocuidados, adaptacion y signos de alarma para pacientes ostomizados."
+        }
       ]
     }
   },

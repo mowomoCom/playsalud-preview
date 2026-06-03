@@ -20,13 +20,33 @@
       "type": "string",
       "default": "PlayCare y PlayAcademy."
     },
-    "careTitle": {
+    "subtitle": {
+      "type": "string",
+      "default": "Dos verticales complementarias. Mismo compromiso editorial. Misma exigencia visual."
+    },
+    "careTag": {
       "type": "string",
       "default": "PlayCare"
     },
+    "careTitle": {
+      "type": "string",
+      "default": "Videos de cuidados de salud por modulos."
+    },
     "careText": {
       "type": "string",
-      "default": "Videos de cuidados de salud por modulos para instituciones y equipos clinicos."
+      "default": "Contenido audiovisual organizado para instituciones que quieren ofrecer informacion visual a sus pacientes y profesionales."
+    },
+    "careImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "careImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "careImageAlt": {
+      "type": "string",
+      "default": "Videos de cuidados de salud por modulos"
     },
     "careButtonText": {
       "type": "string",
@@ -36,13 +56,37 @@
       "type": "string",
       "default": "#modulos"
     },
-    "academyTitle": {
+    "careSecondaryButtonText": {
+      "type": "string",
+      "default": "Solicitar informacion"
+    },
+    "careSecondaryButtonUrl": {
+      "type": "string",
+      "default": "#contacto"
+    },
+    "academyTag": {
       "type": "string",
       "default": "PlayAcademy"
     },
+    "academyTitle": {
+      "type": "string",
+      "default": "Aprendizaje visual y practico."
+    },
     "academyText": {
       "type": "string",
-      "default": "Cursos acreditados para sanitarios con itinerario progresivo en IA aplicada."
+      "default": "Cursos acreditados para sanitarios. Abrimos con Entender la IA en Salud desde cero, disenado para asimilar sin abandono."
+    },
+    "academyImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "academyImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "academyImageAlt": {
+      "type": "string",
+      "default": "Aprendizaje visual y practico"
     },
     "academyButtonText": {
       "type": "string",
@@ -51,6 +95,14 @@
     "academyButtonUrl": {
       "type": "string",
       "default": "#curso"
+    },
+    "academySecondaryButtonText": {
+      "type": "string",
+      "default": "Solicitar informacion"
+    },
+    "academySecondaryButtonUrl": {
+      "type": "string",
+      "default": "#contacto"
     }
   },
   "supports": { "anchor": true }

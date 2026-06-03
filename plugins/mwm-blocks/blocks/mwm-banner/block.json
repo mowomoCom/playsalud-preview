@@ -23,6 +23,18 @@
     "lead": {
       "type": "string",
       "default": "Videos breves, claros y revisados por profesionales. Listos para integrarse en hospitales, aseguradoras y universidades."
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": "PlaySalud"
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": { "anchor": true }

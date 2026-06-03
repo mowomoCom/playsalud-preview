@@ -1,3 +1,21 @@
 .editor-styles-wrapper .wp-block-mwm-banner {
   outline: 1px dashed rgba(8, 145, 178, 0.25);
 }
+
+.editor-styles-wrapper .wp-block-mwm-banner.mwm-banner-editor {
+  position: relative;
+  overflow: hidden;
+}
+
+.editor-styles-wrapper .wp-block-mwm-banner.mwm-banner-editor .mwm-banner__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(280px, 38vw, 460px);
+  display: grid;
+  place-items: center;
+  color: #e6f2fb;
+  background: linear-gradient(135deg, #0d1b2e 0%, #133250 100%);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
