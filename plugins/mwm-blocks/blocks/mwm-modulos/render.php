@@ -66,10 +66,17 @@ $section_description = isset( $attributes['sectionDescription'] ) ? trim( (strin
 $button_url = isset( $attributes['buttonUrl'] ) ? trim( (string) $attributes['buttonUrl'] ) : '';
 $button_label = isset( $attributes['buttonLabel'] ) ? trim( (string) $attributes['buttonLabel'] ) : '';
 $has_split_title = '' !== $title_light || '' !== $title_bold;
+$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'modulos';
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'id'    => $section_id,
+		'class' => 'mwm-home-section mwm-modulos',
+	)
+);
 ?>
-<section id="modulos" class="mwm-home-section mwm-modulos">
+<section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
-		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<p class="mwm-eyebrow mwm-eyebrow-modulos"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 		<h2 class="mwm-modulos__section-title">
 			<?php if ( $has_split_title ) : ?>
 				<span class="mwm-modulos__title-light"><?php echo esc_html( $title_light ); ?></span>
@@ -116,7 +123,7 @@ $has_split_title = '' !== $title_light || '' !== $title_bold;
 		</div>
 		<?php if ( '' !== $button_label ) : ?>
 			<div class="mwm-modulos__cta-row">
-				<a class="mwm-modulos__cta" href="<?php echo esc_url( '' !== $button_url ? $button_url : '#' ); ?>">
+				<a class="mwm-btn mwm-btn--sky mwm-btn--lg" href="<?php echo esc_url( '' !== $button_url ? $button_url : '#' ); ?>">
 					<?php echo esc_html( $button_label ); ?>
 				</a>
 			</div>

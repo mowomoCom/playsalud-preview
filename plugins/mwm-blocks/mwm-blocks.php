@@ -43,11 +43,74 @@ function mwm_blocks_register_all() {
 	foreach ( $entries as $entry ) {
 		$block_json = trailingslashit( $entry ) . 'block.json';
 		if ( file_exists( $block_json ) ) {
-			register_block_type( $entry );
+			$registered_block = register_block_type( $entry );
+			mwm_blocks_ensure_theme_global_style_dependency( $registered_block );
 		}
 	}
 }
 add_action( 'init', 'mwm_blocks_register_all' );
+
+/**
+ * Hace que los estilos de bloques MWM se impriman despues del global del theme PlaySalud.
+ */
+function mwm_blocks_ensure_theme_global_style_dependency( $registered_block ) {
+	if ( ! ( $registered_block instanceof WP_Block_Type ) ) {
+		return;
+	}
+
+	// En el admin (editor), esta dependencia puede impedir que Gutenberg imprima estilos del bloque.
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( ! mwm_blocks_is_playsalud_theme_active() ) {
+		return;
+	}
+
+	if ( ! function_exists( 'wp_styles' ) ) {
+		return;
+	}
+
+	$styles  = wp_styles();
+	$handles = array();
+
+	if ( ! empty( $registered_block->style_handles ) && is_array( $registered_block->style_handles ) ) {
+		$handles = array_merge( $handles, $registered_block->style_handles );
+	}
+
+	if ( ! empty( $registered_block->view_style_handles ) && is_array( $registered_block->view_style_handles ) ) {
+		$handles = array_merge( $handles, $registered_block->view_style_handles );
+	}
+
+	$handles = array_unique( array_filter( $handles ) );
+
+	foreach ( $handles as $handle ) {
+		if ( ! isset( $styles->registered[ $handle ] ) ) {
+			continue;
+		}
+
+		$deps = $styles->registered[ $handle ]->deps;
+		if ( ! is_array( $deps ) ) {
+			$deps = array();
+		}
+
+		if ( in_array( 'mwm-playsalud-global', $deps, true ) ) {
+			continue;
+		}
+
+		$deps[]                           = 'mwm-playsalud-global';
+		$styles->registered[ $handle ]->deps = $deps;
+	}
+}
+
+/**
+ * Limita esta compatibilidad al theme de PlaySalud para no afectar otros themes.
+ */
+function mwm_blocks_is_playsalud_theme_active() {
+	$theme = wp_get_theme();
+
+	return 'mwm-playsalud' === $theme->get_stylesheet() || 'mwm-playsalud' === $theme->get_template();
+}
 
 /**
  * Fuerza auto registro en cliente para bloques dinamicos MWM.
@@ -74,15 +137,36 @@ function mwm_blocks_enable_auto_register( $args, $block_type ) {
 add_filter( 'register_block_type_args', 'mwm_blocks_enable_auto_register', 10, 2 );
 
 function mwm_blocks_enqueue_editor_script() {
+	$editor_script_path = MWM_BLOCKS_PATH . 'assets/js/editor.js';
+
 	wp_enqueue_script(
 		'mwm-blocks-editor',
 		MWM_BLOCKS_URL . 'assets/js/editor.js',
 		array( 'wp-dom-ready' ),
-		filemtime( MWM_BLOCKS_PATH . 'assets/js/editor.js' ),
+		file_exists( $editor_script_path ) ? filemtime( $editor_script_path ) : null,
 		true
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'mwm_blocks_enqueue_editor_script' );
+
+function mwm_blocks_enqueue_editor_base_style() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	$editor_style_path = MWM_BLOCKS_PATH . 'assets/css/editor-base.css';
+	if ( ! file_exists( $editor_style_path ) ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'mwm-blocks-editor-base',
+		MWM_BLOCKS_URL . 'assets/css/editor-base.css',
+		array(),
+		filemtime( $editor_style_path )
+	);
+}
+add_action( 'enqueue_block_assets', 'mwm_blocks_enqueue_editor_base_style' );
 
 function mwm_blocks_enqueue_frontend_script() {
 	wp_enqueue_script(

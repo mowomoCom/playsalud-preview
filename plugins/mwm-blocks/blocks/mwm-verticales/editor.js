@@ -287,7 +287,16 @@
 					'div',
 					{ className: 'mwm-container' },
 					el( 'p', { className: 'mwm-eyebrow' }, attributes.eyebrow || '' ),
-					el( 'h2', { className: 'mwm-verticales__title' }, attributes.title || '' ),
+					el(
+						'h2',
+						{ className: 'mwm-verticales__title' },
+						el( 'span', { className: 't-bold accent' }, attributes.careTag || 'PlayCare' ),
+						' ',
+						el( 'span', { className: 't-thin' }, 'y' ),
+						' ',
+						el( 'span', { className: 't-bold accent-orange' }, attributes.academyTag || 'PlayAcademy' ),
+						'.'
+					),
 					el( 'p', { className: 'mwm-verticales__subtitle' }, attributes.subtitle || '' ),
 					el(
 						'div',

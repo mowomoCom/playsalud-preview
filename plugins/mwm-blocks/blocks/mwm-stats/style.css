@@ -1,4 +1,4 @@
-.mwm-stats {
+.wp-block-mwm-stats.mwm-stats {
   --stats-bg-deep: var(--bg-deep, var(--mwm-bg-deep, #0d1b2e));
   --stats-text-on-dark: var(--text-on-dark, #e6f2fb);
   --stats-border-faint: var(--border-faint, rgba(125, 212, 232, 0.14));
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-.mwm-stats::before {
+.wp-block-mwm-stats.mwm-stats::before {
   content: "";
   position: absolute;
   inset: 0;

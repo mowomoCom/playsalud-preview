@@ -5,7 +5,18 @@
 
 .mwm-modulos__section-title {
   margin: 0.4rem 0 0.7rem;
-  line-height: 1.15;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+}
+
+.mwm-eyebrow-modulos{
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--mwm-sky);
 }
 
 .mwm-modulos__title-light {
@@ -25,7 +36,7 @@
 }
 
 .mwm-modulos .mwm-eyebrow {
-  margin: 0;
+  margin-bottom: .5rem;
 }
 
 .mwm-modulos__grid {

@@ -16,11 +16,18 @@
   justify-content: space-between;
   gap: 1rem;
   min-height: 76px;
+  min-width: 0;
+}
+
+.mwm-header__logo {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .mwm-header__logo img {
   display: block;
   max-height: 36px;
+  max-width: 100%;
   width: auto;
 }
 
@@ -50,5 +57,23 @@
 @media (max-width: 900px) {
   .mwm-header__menu {
     display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mwm-header__inner {
+    gap: 0.6rem;
+  }
+
+  .mwm-header__logo img {
+    max-width: 148px;
+  }
+
+  .mwm-header__inner > .mwm-btn {
+    white-space: normal;
+    line-height: 1.15;
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    min-width: 0;
   }
 }

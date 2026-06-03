@@ -1,3 +1,10 @@
 .editor-styles-wrapper .wp-block-mwm-instituciones {
   outline: 1px dashed rgba(8, 145, 178, 0.25);
 }
+
+.editor-styles-wrapper .wp-block-mwm-instituciones .inst-icon span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(8, 145, 178, 0.7);
+}

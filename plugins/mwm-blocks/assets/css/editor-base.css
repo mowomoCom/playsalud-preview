@@ -1,0 +1,166 @@
+.editor-styles-wrapper {
+  --mwm-bg-base: #ffffff;
+  --mwm-bg-soft: #f8fafc;
+  --mwm-bg-tinted: #f1f5f9;
+  --mwm-bg-deep: #0d1b2e;
+  --mwm-sky: #0891b2;
+  --mwm-orange: #d97706;
+  --mwm-orange-soft: #f59e0b;
+  --mwm-text-main: #0d1b2e;
+  --mwm-text-dim: #475569;
+  --mwm-border: #cbd5e1;
+  --text-main: #0d1b2e;
+  --text-strong: #050b18;
+  --text-dim: #475569;
+  --text-mute: #94a3b8;
+  --text-faint: #cbd5e1;
+  --text-on-dark: #e6f2fb;
+  --sky-light: #cffafe;
+  --mwm-radius-sm: 8px;
+  --mwm-radius-md: 14px;
+  --mwm-radius-lg: 22px;
+  --mwm-shadow-card: 0 4px 12px rgba(13, 27, 46, 0.06), 0 2px 6px rgba(13, 27, 46, 0.04);
+  --shadow-sky: 0 12px 32px rgba(8, 145, 178, 0.18);
+  --shadow-orange: 0 12px 32px rgba(217, 119, 6, 0.2);
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--mwm-text-main);
+}
+
+.editor-styles-wrapper .mwm-home-section {
+  margin: 0;
+  padding: 5rem 0;
+}
+
+@media (max-width: 880px) {
+  .editor-styles-wrapper .mwm-home-section {
+    padding: 3rem 0;
+  }
+}
+
+.editor-styles-wrapper .mwm-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.editor-styles-wrapper .mwm-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sky-light);
+  border: 1px solid rgba(125, 212, 232, 0.18);
+  color: var(--mwm-sky);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+}
+
+.editor-styles-wrapper .mwm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.editor-styles-wrapper .mwm-btn svg {
+  width: 1em;
+  height: 1em;
+}
+
+.editor-styles-wrapper .mwm-btn--sm {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+.editor-styles-wrapper .mwm-btn--md {
+  padding: 0.7rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.editor-styles-wrapper .mwm-btn--lg {
+  padding: 0.9rem 1.35rem;
+  font-size: 0.95rem;
+}
+
+.editor-styles-wrapper .mwm-btn--primary {
+  background: var(--mwm-orange);
+  color: #ffffff;
+}
+
+.editor-styles-wrapper .mwm-btn--ghost {
+  background: transparent;
+  border-color: var(--mwm-border);
+  color: var(--text-main);
+}
+
+.editor-styles-wrapper .mwm-btn--sky {
+  background: var(--mwm-sky);
+  color: #ffffff;
+}
+
+.editor-styles-wrapper .mwm-form-card {
+  background: #ffffff;
+  border: 1px solid rgba(11, 40, 61, 0.12);
+  border-radius: var(--mwm-radius-lg);
+  box-shadow: var(--mwm-shadow-card);
+  padding: 1.2rem;
+}
+
+.editor-styles-wrapper .mwm-form-row {
+  margin-bottom: 0.9rem;
+}
+
+.editor-styles-wrapper .mwm-form-row--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .editor-styles-wrapper .mwm-form-row--split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editor-styles-wrapper .mwm-form-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.editor-styles-wrapper .mwm-form-input,
+.editor-styles-wrapper .mwm-form-textarea {
+  width: 100%;
+  border: 1px solid var(--mwm-border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  margin-top: 0.4rem;
+  background: #ffffff;
+}
+
+.editor-styles-wrapper .mwm-form-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.editor-styles-wrapper .section-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.editor-styles-wrapper .section-subtitle {
+  color: var(--text-dim);
+  line-height: 1.65;
+}

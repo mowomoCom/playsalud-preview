@@ -16,16 +16,74 @@
       "type": "string",
       "default": "PlayAcademy"
     },
-    "title": {
+    "titleLight": {
       "type": "string",
-      "default": "Itinerario formativo en IA aplicada a la salud."
+      "default": "Itinerario formativo en"
+    },
+    "titleBold": {
+      "type": "string",
+      "default": "IA aplicada a la salud."
+    },
+    "sectionDescription": {
+      "type": "string",
+      "default": "Tres cursos diseniados para profesionales sanitarios, sin necesidad de programar. El Curso I se lanza en septiembre de 2026. Los Cursos II y III llegan despues."
+    },
+    "footerButtonLabel": {
+      "type": "string",
+      "default": "Hablar con el equipo formativo"
+    },
+    "footerButtonUrl": {
+      "type": "string",
+      "default": "#contacto"
     },
     "items": {
       "type": "array",
       "default": [
-        { "title": "Curso I: Entender la IA en salud desde cero.", "meta": "56 horas lectivas, 10 modulos, 3 meses.", "featured": true },
-        { "title": "Curso II: IA generativa aplicada.", "meta": "Proximamente.", "featured": false },
-        { "title": "Curso III: IA por perfiles y procesos.", "meta": "Proximamente.", "featured": false }
+        {
+          "status": "Lanzamiento sept-2026",
+          "tag": "Curso I · Inicial",
+          "title": "Entender la inteligencia artificial en salud desde cero.",
+          "description": "Itinerario introductorio para profesionales sanitarios LOPS sin conocimientos previos de programacion. Comprender la IA, valorar herramientas, identificar riesgos y participar en proyectos con criterio clinico.",
+          "chips": [ "56 h lectivas", "10 modulos", "3 meses", "E-learning tutorizado", "Acreditacion en proceso" ],
+          "imageUrl": "assets/academy-ia-salud.png",
+          "imageAlt": "Curso I - Entender la IA en salud desde cero",
+          "ctaLabel": "Solicita informacion del curso",
+          "ctaUrl": "#contacto",
+          "buttonStyle": "primary",
+          "featured": true,
+          "upcoming": false,
+          "showPlay": true
+        },
+        {
+          "status": "Proximamente",
+          "tag": "Curso II · Intermedio",
+          "title": "IA generativa aplicada para profesionales sanitarios.",
+          "description": "Uso practico de IA generativa para ahorrar tiempo, comunicar mejor, enseniar mejor y trabajar con mas orden, siempre con supervision clinica y respeto a la privacidad.",
+          "chips": [ "Formato audiovisual", "Practico aplicado" ],
+          "imageUrl": "assets/vert-academy-real.jpg",
+          "imageAlt": "Curso II - IA generativa aplicada",
+          "ctaLabel": "Avisame cuando abra",
+          "ctaUrl": "#contacto",
+          "buttonStyle": "ghost",
+          "featured": false,
+          "upcoming": true,
+          "showPlay": false
+        },
+        {
+          "status": "Proximamente",
+          "tag": "Curso III · Intermedio-Avanzado",
+          "title": "IA practica por perfiles y procesos sanitarios.",
+          "description": "Aplicacion real de IA en consulta, hospitalizacion, quirofano, urgencias, cuidados, gestion, docencia e innovacion, por perfiles y con casos reales.",
+          "chips": [ "Por perfiles", "Casos reales" ],
+          "imageUrl": "assets/academy-ia-salud.png",
+          "imageAlt": "Curso III - IA practica por perfiles y procesos",
+          "ctaLabel": "Avisame cuando abra",
+          "ctaUrl": "#contacto",
+          "buttonStyle": "ghost",
+          "featured": false,
+          "upcoming": true,
+          "showPlay": false
+        }
       ]
     }
   },

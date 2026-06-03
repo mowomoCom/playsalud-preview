@@ -5,9 +5,13 @@
 
 .mwm-contacto__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.2rem;
   align-items: start;
+}
+
+.mwm-contacto__grid > * {
+  min-width: 0;
 }
 
 @media (max-width: 900px) {

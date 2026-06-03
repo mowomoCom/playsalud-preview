@@ -27,8 +27,15 @@ $defaults = array(
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
+$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'stats';
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'id'    => $section_id,
+		'class' => 'mwm-home-section mwm-stats',
+	)
+);
 ?>
-<section id="stats" class="mwm-home-section mwm-stats">
+<section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
 		<p class="mwm-eyebrow-stats mwm-eyebrow stats-eyebrow eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 		<div class="mwm-stats__grid stats-grid">

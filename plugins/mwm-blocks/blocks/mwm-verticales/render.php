@@ -66,6 +66,8 @@ $defaults = array(
 );
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
+$title_care = ! empty( $attributes['careTag'] ) ? $attributes['careTag'] : 'PlayCare';
+$title_academy = ! empty( $attributes['academyTag'] ) ? $attributes['academyTag'] : 'PlayAcademy';
 
 $care_image_url = ! empty( $attributes['careImageUrl'] )
 	? $attributes['careImageUrl']
@@ -113,8 +115,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; ?>>
 	<div class="mwm-container">
-		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
-		<h2 class="mwm-verticales__title"><?php echo wp_kses_post( $attributes['title'] ); ?></h2>
+		<p class="mwm-eyebrow mwm-eyebrow-verticales"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<h2 class="mwm-verticales__title">
+			<span class="t-bold accent"><?php echo esc_html( $title_care ); ?></span>
+			<span class="t-thin">y</span>
+			<span class="t-bold accent-orange"><?php echo esc_html( $title_academy ); ?></span>
+			.
+		</h2>
 		<p class="mwm-verticales__subtitle"><?php echo wp_kses_post( $attributes['subtitle'] ); ?></p>
 		<div class="mwm-verticales__grid">
 			<?php foreach ( $cards as $card ) : ?>

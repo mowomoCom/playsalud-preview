@@ -18,8 +18,15 @@ $defaults = array(
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
+$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'muestra';
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'id'    => $section_id,
+		'class' => 'mwm-home-section mwm-muestra',
+	)
+);
 ?>
-<section id="muestra" class="mwm-home-section mwm-muestra">
+<section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
 		<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 		<h2><?php echo wp_kses_post( $attributes['title'] ); ?></h2>

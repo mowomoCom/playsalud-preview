@@ -20,7 +20,13 @@ function mwm_playsalud_setup() {
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
-	add_editor_style( 'assets/css/editor.css' );
+	add_editor_style(
+		array(
+			'assets/fonts/fonts.css',
+			'assets/css/global.css',
+			'assets/css/editor.css',
+		)
+	);
 
 	register_nav_menus(
 		array(
@@ -44,16 +50,21 @@ function mwm_playsalud_enqueue_assets() {
 
 	wp_enqueue_script( 'mwm-playsalud-theme', $theme_uri . '/assets/js/theme.js', array(), filemtime( $theme_path . '/assets/js/theme.js' ), true );
 }
-add_action( 'wp_enqueue_scripts', 'mwm_playsalud_enqueue_assets' );
+add_action( 'wp_enqueue_scripts', 'mwm_playsalud_enqueue_assets', 5 );
 
 function mwm_playsalud_enqueue_editor_assets() {
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
+	$fonts_css  = $theme_path . '/assets/fonts/fonts.css';
+	$global_css = $theme_path . '/assets/css/global.css';
 	$editor_css = $theme_path . '/assets/css/editor.css';
+	$fonts_ver  = file_exists( $fonts_css ) ? filemtime( $fonts_css ) : MWM_PLAYSALUD_THEME_VERSION;
+	$global_ver = file_exists( $global_css ) ? filemtime( $global_css ) : MWM_PLAYSALUD_THEME_VERSION;
 	$editor_ver = file_exists( $editor_css ) ? filemtime( $editor_css ) : MWM_PLAYSALUD_THEME_VERSION;
 
-	// Solo estilos encapsulados dentro del canvas del editor.
-	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array(), $editor_ver );
+	wp_enqueue_style( 'mwm-playsalud-fonts', $theme_uri . '/assets/fonts/fonts.css', array(), $fonts_ver );
+	wp_enqueue_style( 'mwm-playsalud-global', $theme_uri . '/assets/css/global.css', array( 'mwm-playsalud-fonts' ), $global_ver );
+	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array( 'mwm-playsalud-global' ), $editor_ver );
 }
 add_action( 'enqueue_block_editor_assets', 'mwm_playsalud_enqueue_editor_assets' );
 

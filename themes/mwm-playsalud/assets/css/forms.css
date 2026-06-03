@@ -4,6 +4,7 @@
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: var(--mwm-shadow-card);
+  min-width: 0;
 }
 
 .mwm-form-row {
@@ -13,7 +14,7 @@
 }
 
 .mwm-form-row--split {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .mwm-form-label {

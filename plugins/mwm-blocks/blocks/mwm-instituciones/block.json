@@ -20,15 +20,35 @@
       "type": "string",
       "default": "Una plataforma para cada tipo de institucion."
     },
+    "subtitle": {
+      "type": "string",
+      "default": "PlaySalud se despliega por modulos, packs tematicos, campus, intranet, QR, marca blanca o integracion en plataformas institucionales. Adaptamos la propuesta a tu organizacion."
+    },
+    "ctaPrimaryText": {
+      "type": "string",
+      "default": "Hablar con el equipo comercial"
+    },
+    "ctaPrimaryUrl": {
+      "type": "string",
+      "default": "#contacto"
+    },
+    "ctaSecondaryText": {
+      "type": "string",
+      "default": "Solicitar propuesta B2B"
+    },
+    "ctaSecondaryUrl": {
+      "type": "string",
+      "default": "#contacto"
+    },
     "items": {
       "type": "array",
       "default": [
-        { "title": "Hospitales", "description": "Rutas clinicas + formacion." },
-        { "title": "Aseguradoras", "description": "Mejora de experiencia del asegurado." },
-        { "title": "Universidades", "description": "Integracion en LMS o campus." },
-        { "title": "Sociedades cientificas", "description": "Cursos co-brandeados." },
-        { "title": "Asociaciones de pacientes", "description": "Informacion fiable y accesible." },
-        { "title": "Industria sanitaria", "description": "Patrocinio educativo responsable." }
+        { "title": "Hospitales", "description": "Rutas clinicas + formacion.", "iconUrl": "", "iconAlt": "Hospitales" },
+        { "title": "Aseguradoras", "description": "Mejora de experiencia del asegurado.", "iconUrl": "", "iconAlt": "Aseguradoras" },
+        { "title": "Universidades", "description": "Integracion en LMS o campus.", "iconUrl": "", "iconAlt": "Universidades" },
+        { "title": "Sociedades cientificas", "description": "Cursos co-brandeados.", "iconUrl": "", "iconAlt": "Sociedades cientificas" },
+        { "title": "Asociaciones de pacientes", "description": "Informacion fiable y accesible.", "iconUrl": "", "iconAlt": "Asociaciones de pacientes" },
+        { "title": "Industria sanitaria", "description": "Patrocinio educativo responsable.", "iconUrl": "", "iconAlt": "Industria sanitaria" }
       ]
     }
   },

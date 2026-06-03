@@ -14,8 +14,15 @@ $defaults = array(
 );
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
+$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'contacto';
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'id'    => $section_id,
+		'class' => 'mwm-home-section mwm-contacto',
+	)
+);
 ?>
-<section id="contacto" class="mwm-home-section mwm-contacto">
+<section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container mwm-contacto__grid">
 		<div>
 			<p class="mwm-eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>

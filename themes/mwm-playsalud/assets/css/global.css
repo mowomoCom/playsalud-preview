@@ -39,10 +39,22 @@ body {
   background: var(--mwm-bg-base);
   color: var(--mwm-text-main);
   font-family: "Plus Jakarta Sans", sans-serif;
+  overflow-x: clip;
+}
+
+html {
+  overflow-x: clip;
 }
 
 section{
   margin: 0;
+  padding: 5rem 0;
+}
+
+@media (max-width: 880px) {
+  section{
+    padding: 3rem 0;
+  }
 }
 
 .mwm-main {
@@ -50,6 +62,7 @@ section{
 }
 
 .mwm-container {
+  width: 100%;
   max-width:1240px;
   margin: 0 auto;
   padding: 0 1.25rem;
