@@ -2,9 +2,49 @@
   outline: 1px dashed rgba(8, 145, 178, 0.25);
 }
 
-.editor-styles-wrapper .wp-block-mwm-instituciones .inst-icon span {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: rgba(8, 145, 178, 0.7);
+.editor-styles-wrapper .wp-block-mwm-instituciones .section-header {
+  max-width: 900px;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+.editor-styles-wrapper .wp-block-mwm-instituciones .inst-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.editor-styles-wrapper .wp-block-mwm-instituciones .inst-card {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-faint, rgba(11, 40, 61, 0.12));
+  border-radius: var(--radius-lg, 18px);
+  padding: 2rem;
+}
+
+.editor-styles-wrapper .wp-block-mwm-instituciones .inst-cta-row {
+  margin-top: 3rem;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.editor-styles-wrapper .wp-block-mwm-instituciones .inst-cta-row .mwm-btn {
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .editor-styles-wrapper .wp-block-mwm-instituciones .inst-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .editor-styles-wrapper .wp-block-mwm-instituciones .inst-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-styles-wrapper .wp-block-mwm-instituciones .inst-card {
+    padding: 1.5rem;
+  }
 }

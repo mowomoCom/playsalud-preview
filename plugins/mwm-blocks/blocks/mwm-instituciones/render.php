@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $defaults = array(
 	'eyebrow'          => 'Para instituciones',
 	'title'            => 'Una plataforma para cada tipo de institucion.',
+	'titlePartThin'    => '',
+	'titlePartBold'    => '',
+	'titleAccent'      => '',
 	'subtitle'         => 'PlaySalud se despliega por modulos, packs tematicos, campus, intranet, QR, marca blanca o integracion en plataformas institucionales. Adaptamos la propuesta a tu organizacion.',
 	'ctaPrimaryText'   => 'Hablar con el equipo comercial',
 	'ctaPrimaryUrl'    => '#contacto',
@@ -13,46 +16,63 @@ $defaults = array(
 	'ctaSecondaryUrl'  => '#contacto',
 	'items'            => array(
 		array(
-			'title'       => 'Hospitales',
-			'description' => 'Rutas clinicas + formacion.',
+			'title'       => 'Hospitales y grupos hospitalarios',
+			'description' => 'Estandariza informacion al paciente y forma a tus equipos. PlayCare por rutas clinicas + PlayAcademy para profesionales.',
 			'iconUrl'     => '',
-			'iconAlt'     => 'Hospitales',
+			'iconAlt'     => 'Hospitales y grupos hospitalarios',
 		),
 		array(
 			'title'       => 'Aseguradoras',
-			'description' => 'Mejora de experiencia del asegurado.',
+			'description' => 'Acompana al asegurado y mejora la experiencia con modulos PlayCare por procesos frecuentes y bonos de acceso.',
 			'iconUrl'     => '',
 			'iconAlt'     => 'Aseguradoras',
 		),
 		array(
 			'title'       => 'Universidades',
-			'description' => 'Integracion en LMS o campus.',
+			'description' => 'Formacion visual, moderna y acreditable. PlayAcademy integrado en LMS, Moodle o campus institucional.',
 			'iconUrl'     => '',
 			'iconAlt'     => 'Universidades',
 		),
 		array(
 			'title'       => 'Sociedades cientificas',
-			'description' => 'Cursos co-brandeados.',
+			'description' => 'Ofrece formacion y contenido de valor a tus socios. Cursos co-brandeados y modulos especializados.',
 			'iconUrl'     => '',
 			'iconAlt'     => 'Sociedades cientificas',
 		),
 		array(
 			'title'       => 'Asociaciones de pacientes',
-			'description' => 'Informacion fiable y accesible.',
+			'description' => 'Informacion fiable, clara y accesible. Modulos PlayCare abiertos o patrocinados para tus colectivos.',
 			'iconUrl'     => '',
 			'iconAlt'     => 'Asociaciones de pacientes',
 		),
 		array(
-			'title'       => 'Industria sanitaria',
-			'description' => 'Patrocinio educativo responsable.',
+			'title'       => 'Industria sanitaria responsable',
+			'description' => 'Patrocina educacion sanitaria con impacto. Licencia de modulos, becas, bonos o acceso abierto patrocinado.',
 			'iconUrl'     => '',
-			'iconAlt'     => 'Industria sanitaria',
+			'iconAlt'     => 'Industria sanitaria responsable',
 		),
 	),
 );
 
-$attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
+$raw_attributes = is_array( $attributes ) ? $attributes : array();
+$attributes     = wp_parse_args( $raw_attributes, $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
+$legacy_title = trim( wp_strip_all_tags( (string) $attributes['title'] ) );
+$title_part_thin = trim( wp_strip_all_tags( (string) $attributes['titlePartThin'] ) );
+$title_part_bold = trim( wp_strip_all_tags( (string) $attributes['titlePartBold'] ) );
+$title_accent    = trim( wp_strip_all_tags( (string) $attributes['titleAccent'] ) );
+
+if ( '' === $title_part_thin && '' === $title_part_bold && '' === $title_accent ) {
+	if ( 'Una plataforma para cada tipo de institucion.' === $legacy_title ) {
+		$title_part_thin = 'Una plataforma para';
+		$title_part_bold = 'cada tipo de';
+		$title_accent    = 'institucion.';
+	} else {
+		$title_part_thin = $legacy_title;
+	}
+}
+
+$has_segmented_title = '' !== $title_part_thin || '' !== $title_part_bold || '' !== $title_accent;
 $section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'instituciones';
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
@@ -65,7 +85,21 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	<div class="mwm-container">
 		<div class="section-header reveal">
 			<div class="mwm-eyebrow mwm-eyebrow-instituciones"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></div>
-			<h2 class="section-title mwm-instituciones__title"><?php echo wp_kses_post( $attributes['title'] ); ?></h2>
+			<h2 class="section-title mwm-instituciones__title">
+				<?php if ( $has_segmented_title ) : ?>
+					<?php if ( '' !== $title_part_thin ) : ?>
+						<span class="t-thin"><?php echo esc_html( $title_part_thin . ' ' ); ?></span>
+					<?php endif; ?>
+					<?php if ( '' !== $title_part_bold ) : ?>
+						<span class="accent"><?php echo esc_html( $title_part_bold ); ?></span>
+					<?php endif; ?>
+					<?php if ( '' !== $title_accent ) : ?>
+						<span class="accent"><?php echo esc_html( ' ' . $title_accent ); ?></span>
+					<?php endif; ?>
+				<?php else : ?>
+					<?php echo esc_html( $legacy_title ); ?>
+				<?php endif; ?>
+			</h2>
 			<p class="section-subtitle"><?php echo wp_kses_post( $attributes['subtitle'] ); ?></p>
 		</div>
 

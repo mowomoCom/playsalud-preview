@@ -1,38 +1,192 @@
 .wp-block-mwm-muestra {
   padding: 5rem 0;
-  background: #0d1b2e;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(125, 212, 232, 0.1), transparent 70%),
+    #0d1b2e;
   color: #e6f2fb;
+  position: relative;
+  overflow: hidden;
 }
 
-.wp-block-mwm-muestra h2 {
-  color: #fff;
+.wp-block-mwm-muestra::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(125, 212, 232, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 212, 232, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  pointer-events: none;
 }
 
-.mwm-muestra__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 1fr);
-  gap: 1rem;
-  overflow-x: auto;
-  max-width: 100%;
-  min-width: 0;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 0.25rem;
+.wp-block-mwm-muestra .mwm-container {
+  position: relative;
+  z-index: 1;
+}
+
+.mwm-muestra__header {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.wp-block-mwm-muestra .mwm-muestra__title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+}
+
+.mwm-muestra__eyebrow {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: var(--mwm-sky);
+}
+
+.mwm-muestra__carousel {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mwm-muestra__swiper {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 3rem;
+}
+
+.wp-block-mwm-muestra .swiper-slide {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(125, 212, 232, 0.32);
+  border-radius: 16px;
+  min-height: 320px;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(125, 212, 232, 0.18);
+  height: auto;
+}
+
+.mwm-muestra__slide-image {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+.mwm-muestra__slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .mwm-muestra__slide {
-  scroll-snap-align: start;
-  border: 1px solid rgba(203, 213, 225, 0.35);
-  border-radius: 14px;
-  padding: 1.2rem;
-  min-height: 130px;
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  min-height: inherit;
   display: flex;
-  align-items: end;
-  background: rgba(255, 255, 255, 0.05);
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(8, 15, 28, 0.15) 32%, rgba(8, 15, 28, 0.86) 100%);
 }
 
-.mwm-muestra__nav {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.5rem;
+.mwm-muestra__slide span {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-display, inherit);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.wp-block-mwm-muestra .mwm-muestra__arrow {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: rgba(8, 15, 28, 0.85);
+  border: 1px solid rgba(125, 212, 232, 0.25);
+  color: #7dd4e8;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s, border-color 0.2s, transform 0.18s, color 0.2s;
+}
+
+.wp-block-mwm-muestra .mwm-muestra__arrow::after {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wp-block-mwm-muestra .mwm-muestra__arrow:hover {
+  background: #7dd4e8;
+  color: #0d1b2e;
+  border-color: #7dd4e8;
+  transform: scale(1.06);
+}
+
+.wp-block-mwm-muestra .swiper-button-prev {
+  left: 0;
+}
+
+.wp-block-mwm-muestra .swiper-button-next {
+  right: 0;
+}
+
+.wp-block-mwm-muestra .swiper-pagination {
+  bottom: 0;
+}
+
+.wp-block-mwm-muestra .swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  opacity: 1;
+  background: rgba(125, 212, 232, 0.25);
+  transition: width 0.25s ease, background 0.2s ease;
+}
+
+.wp-block-mwm-muestra .swiper-pagination-bullet-active {
+  width: 28px;
+  background: #7dd4e8;
+}
+
+@media (max-width: 1100px) {
+  .wp-block-mwm-muestra .swiper-button-prev {
+    left: 0.5rem;
+  }
+
+  .wp-block-mwm-muestra .swiper-button-next {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .wp-block-mwm-muestra {
+    padding: 4rem 0;
+  }
+
+  .mwm-muestra__swiper {
+    padding-bottom: 2.5rem;
+  }
+
+  .mwm-muestra__slide {
+    padding: 1.25rem;
+  }
+
+  .wp-block-mwm-muestra .swiper-slide {
+    min-height: 240px;
+  }
+
+  .wp-block-mwm-muestra .mwm-muestra__arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .wp-block-mwm-muestra .mwm-muestra__arrow::after {
+    font-size: 16px;
+  }
 }

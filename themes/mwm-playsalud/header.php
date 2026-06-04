@@ -36,8 +36,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'fallback_cb'    => 'mwm_playsalud_header_fallback_menu',
 				)
 			);
+			$header_button_title = trim( (string) get_theme_mod( 'mwm_playsalud_header_button_title', '' ) );
+			$header_button_link  = trim( (string) get_theme_mod( 'mwm_playsalud_header_button_link', '' ) );
+
+			if ( '' === $header_button_title ) {
+				$header_button_title = __( 'Solicita info', 'mwm-playsalud' );
+			}
+
+			if ( '' === $header_button_link ) {
+				$header_button_link = '#contacto';
+			}
 			?>
-			<a href="#contacto" class="mwm-btn mwm-btn--primary mwm-btn--sm"><?php esc_html_e( 'Solicita info', 'mwm-playsalud' ); ?></a>
+			<a href="<?php echo esc_url( $header_button_link ); ?>" class="mwm-btn mwm-btn--primary mwm-btn--sm"><?php echo esc_html( $header_button_title ); ?></a>
 		</div>
 	</nav>
 </header>

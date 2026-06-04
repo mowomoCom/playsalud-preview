@@ -20,6 +20,18 @@
       "type": "string",
       "default": "Una plataforma para cada tipo de institucion."
     },
+    "titlePartThin": {
+      "type": "string",
+      "default": ""
+    },
+    "titlePartBold": {
+      "type": "string",
+      "default": ""
+    },
+    "titleAccent": {
+      "type": "string",
+      "default": ""
+    },
     "subtitle": {
       "type": "string",
       "default": "PlaySalud se despliega por modulos, packs tematicos, campus, intranet, QR, marca blanca o integracion en plataformas institucionales. Adaptamos la propuesta a tu organizacion."
@@ -43,12 +55,12 @@
     "items": {
       "type": "array",
       "default": [
-        { "title": "Hospitales", "description": "Rutas clinicas + formacion.", "iconUrl": "", "iconAlt": "Hospitales" },
-        { "title": "Aseguradoras", "description": "Mejora de experiencia del asegurado.", "iconUrl": "", "iconAlt": "Aseguradoras" },
-        { "title": "Universidades", "description": "Integracion en LMS o campus.", "iconUrl": "", "iconAlt": "Universidades" },
-        { "title": "Sociedades cientificas", "description": "Cursos co-brandeados.", "iconUrl": "", "iconAlt": "Sociedades cientificas" },
-        { "title": "Asociaciones de pacientes", "description": "Informacion fiable y accesible.", "iconUrl": "", "iconAlt": "Asociaciones de pacientes" },
-        { "title": "Industria sanitaria", "description": "Patrocinio educativo responsable.", "iconUrl": "", "iconAlt": "Industria sanitaria" }
+        { "title": "Hospitales y grupos hospitalarios", "description": "Estandariza informacion al paciente y forma a tus equipos. PlayCare por rutas clinicas + PlayAcademy para profesionales.", "iconUrl": "", "iconAlt": "Hospitales y grupos hospitalarios" },
+        { "title": "Aseguradoras", "description": "Acompana al asegurado y mejora la experiencia con modulos PlayCare por procesos frecuentes y bonos de acceso.", "iconUrl": "", "iconAlt": "Aseguradoras" },
+        { "title": "Universidades", "description": "Formacion visual, moderna y acreditable. PlayAcademy integrado en LMS, Moodle o campus institucional.", "iconUrl": "", "iconAlt": "Universidades" },
+        { "title": "Sociedades cientificas", "description": "Ofrece formacion y contenido de valor a tus socios. Cursos co-brandeados y modulos especializados.", "iconUrl": "", "iconAlt": "Sociedades cientificas" },
+        { "title": "Asociaciones de pacientes", "description": "Informacion fiable, clara y accesible. Modulos PlayCare abiertos o patrocinados para tus colectivos.", "iconUrl": "", "iconAlt": "Asociaciones de pacientes" },
+        { "title": "Industria sanitaria responsable", "description": "Patrocina educacion sanitaria con impacto. Licencia de modulos, becas, bonos o acceso abierto patrocinado.", "iconUrl": "", "iconAlt": "Industria sanitaria responsable" }
       ]
     }
   },

@@ -3,7 +3,40 @@
 	const { addFilter } = wp.hooks;
 	const { createElement: el, Fragment } = wp.element;
 	const { PanelBody, TextControl, TextareaControl, Button } = wp.components;
-	const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
+	const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck, URLInputButton } = wp.blockEditor;
+
+	const LEGACY_DEFAULT_TITLE = 'Una plataforma para cada tipo de institucion.';
+
+	function composeLegacyTitle( thin, bold, accent, fallback ) {
+		const composed = [ thin, bold, accent ].filter( Boolean ).join( ' ' ).trim();
+		return composed || fallback || '';
+	}
+
+	function resolveTitleParts( attributes ) {
+		const thin = ( attributes.titlePartThin || '' ).trim();
+		const bold = ( attributes.titlePartBold || '' ).trim();
+		const accent = ( attributes.titleAccent || '' ).trim();
+
+		if ( thin || bold || accent ) {
+			return { thin: thin, bold: bold, accent: accent };
+		}
+
+		const legacyTitle = ( attributes.title || '' ).trim();
+
+		if ( ! legacyTitle ) {
+			return { thin: '', bold: '', accent: '' };
+		}
+
+		if ( legacyTitle === LEGACY_DEFAULT_TITLE ) {
+			return {
+				thin: 'Una plataforma para',
+				bold: 'cada tipo de',
+				accent: 'institucion.',
+			};
+		}
+
+		return { thin: legacyTitle, bold: '', accent: '' };
+	}
 
 	function normalizeItems( items ) {
 		if ( ! Array.isArray( items ) ) {
@@ -24,7 +57,20 @@
 	function renderInstitucionesEdit( props ) {
 		const { attributes, setAttributes } = props;
 		const items = normalizeItems( attributes.items );
-		const blockProps = useBlockProps( { className: 'mwm-instituciones-editor' } );
+		const blockProps = useBlockProps( { className: 'mwm-home-section mwm-instituciones mwm-instituciones-editor' } );
+		const titleParts = resolveTitleParts( attributes );
+
+		function updateTitleParts( patch ) {
+			const nextThin = Object.prototype.hasOwnProperty.call( patch, 'titlePartThin' ) ? patch.titlePartThin : titleParts.thin;
+			const nextBold = Object.prototype.hasOwnProperty.call( patch, 'titlePartBold' ) ? patch.titlePartBold : titleParts.bold;
+			const nextAccent = Object.prototype.hasOwnProperty.call( patch, 'titleAccent' ) ? patch.titleAccent : titleParts.accent;
+
+			setAttributes(
+				Object.assign( {}, patch, {
+					title: composeLegacyTitle( nextThin, nextBold, nextAccent, attributes.title || '' ),
+				} )
+			);
+		}
 
 		function updateItem( index, patch ) {
 			const next = items.slice();
@@ -58,9 +104,23 @@
 					} ),
 					el( TextControl, {
 						label: __( 'Titulo', 'mwm-blocks' ),
-						value: attributes.title || '',
+						value: titleParts.thin || '',
 						onChange: function ( value ) {
-							setAttributes( { title: value } );
+							updateTitleParts( { titlePartThin: value } );
+						},
+					} ),
+					el( TextControl, {
+						label: __( 'Titulo destacado', 'mwm-blocks' ),
+						value: titleParts.bold || '',
+						onChange: function ( value ) {
+							updateTitleParts( { titlePartBold: value } );
+						},
+					} ),
+					el( TextControl, {
+						label: __( 'Palabra/frase en accent', 'mwm-blocks' ),
+						value: titleParts.accent || '',
+						onChange: function ( value ) {
+							updateTitleParts( { titleAccent: value } );
 						},
 					} ),
 					el( TextareaControl, {
@@ -88,6 +148,12 @@
 							setAttributes( { ctaPrimaryUrl: value } );
 						},
 					} ),
+					el( URLInputButton, {
+						url: attributes.ctaPrimaryUrl || '',
+						onChange: function ( value ) {
+							setAttributes( { ctaPrimaryUrl: value || '' } );
+						},
+					} ),
 					el( TextControl, {
 						label: __( 'Texto boton secundario', 'mwm-blocks' ),
 						value: attributes.ctaSecondaryText || '',
@@ -100,6 +166,12 @@
 						value: attributes.ctaSecondaryUrl || '',
 						onChange: function ( value ) {
 							setAttributes( { ctaSecondaryUrl: value } );
+						},
+					} ),
+					el( URLInputButton, {
+						url: attributes.ctaSecondaryUrl || '',
+						onChange: function ( value ) {
+							setAttributes( { ctaSecondaryUrl: value || '' } );
 						},
 					} )
 				),
@@ -224,8 +296,15 @@
 					el(
 						'div',
 						{ className: 'section-header reveal' },
-						el( 'div', { className: 'eyebrow' }, attributes.eyebrow || '' ),
-						el( 'h2', { className: 'section-title' }, attributes.title || '' ),
+						el( 'div', { className: 'mwm-eyebrow mwm-eyebrow-instituciones' }, attributes.eyebrow || '' ),
+						el(
+							'h2',
+							{ className: 'section-title mwm-instituciones__title' },
+							titleParts.thin ? el( 'span', { className: 't-thin' }, titleParts.thin + ' ' ) : null,
+							titleParts.bold ? el( 'span', { className: 't-bold' }, titleParts.bold ) : null,
+							titleParts.accent ? el( 'span', { className: 'accent' }, ' ' + titleParts.accent ) : null,
+							! titleParts.thin && ! titleParts.bold && ! titleParts.accent ? attributes.title || '' : null
+						),
 						el( 'p', { className: 'section-subtitle' }, attributes.subtitle || '' )
 					),
 					el(
@@ -240,7 +319,7 @@
 									{ className: 'inst-icon' },
 									item && item.iconUrl
 										? el( 'img', { src: item.iconUrl, alt: item.iconAlt || '' } )
-										: el( 'span', null, 'IMG' )
+										: null
 								),
 								el(
 									'div',
@@ -256,12 +335,26 @@
 						{ className: 'inst-cta-row' },
 						el(
 							'a',
-							{ href: attributes.ctaPrimaryUrl || '#', className: 'btn btn-primary btn-lg' },
-							attributes.ctaPrimaryText || ''
+							{
+								href: attributes.ctaPrimaryUrl || '#',
+								className: 'mwm-btn mwm-btn--md mwm-btn--primary',
+							},
+							attributes.ctaPrimaryText || '',
+							el(
+								'svg',
+								{ width: '16', height: '16', viewBox: '0 0 16 16', fill: 'none', 'aria-hidden': 'true', focusable: 'false' },
+								el( 'path', {
+									d: 'M3 8h10m-4-4l4 4-4 4',
+									stroke: 'currentColor',
+									'stroke-width': '2',
+									'stroke-linecap': 'round',
+									'stroke-linejoin': 'round',
+								} )
+							)
 						),
 						el(
 							'a',
-							{ href: attributes.ctaSecondaryUrl || '#', className: 'btn btn-ghost btn-lg' },
+							{ href: attributes.ctaSecondaryUrl || '#', className: 'mwm-btn mwm-btn--ghost mwm-btn--md' },
 							attributes.ctaSecondaryText || ''
 						)
 					)

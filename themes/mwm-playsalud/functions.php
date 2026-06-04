@@ -5,6 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'MWM_PLAYSALUD_THEME_VERSION', '1.0.0' );
 
+$mwm_playsalud_customizer_file = get_template_directory() . '/include/customizer.php';
+
+if ( file_exists( $mwm_playsalud_customizer_file ) ) {
+	require_once $mwm_playsalud_customizer_file;
+}
+
 function mwm_playsalud_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
@@ -47,7 +53,10 @@ function mwm_playsalud_enqueue_assets() {
 	wp_enqueue_style( 'mwm-playsalud-header', $theme_uri . '/assets/css/header.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/header.css' ) );
 	wp_enqueue_style( 'mwm-playsalud-footer', $theme_uri . '/assets/css/footer.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/footer.css' ) );
 	wp_enqueue_style( 'mwm-playsalud-forms', $theme_uri . '/assets/css/forms.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/forms.css' ) );
+	wp_enqueue_style( 'mwm-playsalud-swiper', $theme_uri . '/assets/js/swiper/swiper-bundle.min.css', array(), filemtime( $theme_path . '/assets/js/swiper/swiper-bundle.min.css' ) );
 
+	wp_enqueue_script( 'mwm-playsalud-swiper', $theme_uri . '/assets/js/swiper/swiper-bundle.min.js', array(), filemtime( $theme_path . '/assets/js/swiper/swiper-bundle.min.js' ), true );
+	wp_enqueue_script( 'mwm-playsalud-scripts', $theme_uri . '/assets/js/scripts.js', array( 'jquery', 'mwm-playsalud-swiper' ), filemtime( $theme_path . '/assets/js/scripts.js' ), true );
 	wp_enqueue_script( 'mwm-playsalud-theme', $theme_uri . '/assets/js/theme.js', array(), filemtime( $theme_path . '/assets/js/theme.js' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'mwm_playsalud_enqueue_assets', 5 );

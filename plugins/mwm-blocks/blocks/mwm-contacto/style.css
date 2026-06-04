@@ -1,12 +1,12 @@
-.wp-block-mwm-contacto {
+.wp-block-mwm-contacto.mwm-contacto {
   padding: 5rem 0;
-  background: #f8fafc;
+  background: var(--bg-soft, #f3f7fb);
 }
 
 .mwm-contacto__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5rem;
   align-items: start;
 }
 
@@ -14,8 +14,285 @@
   min-width: 0;
 }
 
-@media (max-width: 900px) {
+.mwm-eyebrow-contacto{
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: var(--mwm-sky, var(--sky, #0ea5c6));
+}
+
+.mwm-contacto__side .section-title {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-strong, #0d1b2e);
+}
+
+.wp-block-mwm-contacto .mwm-contacto__title .t-thin {
+  font-weight: 300;
+}
+
+.wp-block-mwm-contacto .mwm-contacto__title .t-bold {
+  font-weight: 700;
+}
+
+.wp-block-mwm-contacto .mwm-contacto__title .accent {
+  color: var(--sky, #0ea5c6);
+}
+
+.mwm-form-card {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-faint, rgba(11, 40, 61, 0.08));
+  border-radius: var(--radius-lg, 24px);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card, 0 18px 45px rgba(11, 40, 61, 0.12));
+}
+
+.contacto-features {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contacto-feature {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contacto-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--orange-light, rgba(240, 168, 50, 0.14));
+  border: 1px solid rgba(240, 168, 50, 0.18);
+  display: grid;
+  place-items: center;
+  color: var(--orange, #f0a832);
+  flex-shrink: 0;
+}
+
+.contacto-feature-title {
+  font-family: var(--font-display, inherit);
+  font-weight: 700;
+  color: var(--text-strong, #0b283d);
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.contacto-feature-text {
+  font-size: 14px;
+  color: var(--text-dim, #5d7387);
+  line-height: 1.55;
+}
+
+.mwm-contacto__shortcode-empty {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dim, #5d7387);
+}
+
+.mwm-contacto__form .wpcf7 {
+  width: 100%;
+}
+
+.mwm-contacto__form p {
+  margin: 0;
+}
+
+.mwm-contacto__form label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim, #5d7387);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  line-height: 1.4;
+}
+
+.mwm-contacto__form .wpcf7-form-control-wrap {
+  display: block;
+  margin-top: 8px;
+}
+
+.mwm-contacto__form input[type="text"],
+.mwm-contacto__form input[type="email"],
+.mwm-contacto__form input[type="tel"],
+.mwm-contacto__form input[type="url"],
+.mwm-contacto__form select,
+.mwm-contacto__form textarea {
+  width: 100%;
+  background: var(--bg-base, #ffffff);
+  border: 1px solid var(--border, rgba(11, 40, 61, 0.18));
+  border-radius: var(--radius-sm, 12px);
+  padding: 12px 14px;
+  color: var(--text-strong, #0b283d);
+  font-family: var(--font-body, inherit);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mwm-contacto__form input[type="text"]:focus,
+.mwm-contacto__form input[type="email"]:focus,
+.mwm-contacto__form input[type="tel"]:focus,
+.mwm-contacto__form input[type="url"]:focus,
+.mwm-contacto__form select:focus,
+.mwm-contacto__form textarea:focus {
+  outline: none;
+  border-color: var(--sky, #7dd4e8);
+  box-shadow: 0 0 0 3px rgba(125, 212, 232, 0.15);
+}
+
+.mwm-contacto__form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.mwm-contacto__form .cf7-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.mwm-contacto__form .cf7-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.mwm-contacto__form .cf7-col {
+  min-width: 0;
+}
+
+.mwm-contacto__form .cf7-full-width {
+  margin-bottom: 1.25rem;
+}
+
+.mwm-contacto__form .interes-section .wpcf7-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 8px;
+}
+
+.mwm-contacto__form .interes-section .wpcf7-list-item {
+  margin: 0;
+}
+
+.mwm-contacto__form .interes-section .wpcf7-list-item label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-main, #24465d);
+  background: var(--bg-base, #ffffff);
+  border: 1px solid var(--border, rgba(11, 40, 61, 0.18));
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.mwm-contacto__form .interes-section .wpcf7-list-item label:hover {
+  border-color: var(--border-md, rgba(11, 40, 61, 0.28));
+}
+
+.mwm-contacto__form .interes-section input[type="checkbox"] {
+  accent-color: var(--sky, #7dd4e8);
+}
+
+.mwm-contacto__form .interes-section .wpcf7-list-item input[type="checkbox"]:checked + .wpcf7-list-item-label {
+  color: var(--sky, #7dd4e8);
+}
+
+.mwm-contacto__form .cf7-privacy {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 13px;
+  color: var(--text-dim, #5d7387);
+  line-height: 1.5;
+}
+
+.mwm-contacto__form .cf7-privacy .wpcf7-list-item {
+  margin: 0;
+}
+
+.mwm-contacto__form .cf7-privacy label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.mwm-contacto__form .cf7-privacy input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--sky, #7dd4e8);
+}
+
+.mwm-contacto__form .cf7-submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mwm-contacto__form .cf7-submit-btn p,
+.mwm-contacto__form .cf7-submit-info p {
+  margin: 0;
+}
+
+.mwm-contacto__form input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.95rem 1.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--orange, #f0a832);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mwm-contacto__form .cf7-submit-info {
+  font-size: 12px;
+  color: var(--text-mute, #7f91a1);
+}
+
+@media (max-width: 1100px) {
   .mwm-contacto__grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .wp-block-mwm-contacto.mwm-contacto {
+    padding: 3.5rem 0;
+  }
+
+  .mwm-contacto__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mwm-form-card {
+    padding: 1.5rem;
+  }
+
+  .mwm-contacto__form .cf7-row {
     grid-template-columns: 1fr;
   }
 }

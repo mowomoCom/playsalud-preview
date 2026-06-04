@@ -23,10 +23,10 @@
     "items": {
       "type": "array",
       "default": [
-        { "title": "Como cuidar tu herida postoperatoria" },
-        { "title": "Preparacion para consulta preanestesica" },
-        { "title": "Vivir con una ostomia" },
-        { "title": "Entender el cancer colorrectal" }
+        { "title": "Como cuidar tu herida postoperatoria", "imageId": 0, "imageAlt": "" },
+        { "title": "Preparacion para consulta preanestesica", "imageId": 0, "imageAlt": "" },
+        { "title": "Vivir con una ostomia", "imageId": 0, "imageAlt": "" },
+        { "title": "Entender el cancer colorrectal", "imageId": 0, "imageAlt": "" }
       ]
     },
     "prevLabel": {

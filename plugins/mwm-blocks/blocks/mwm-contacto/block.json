@@ -20,25 +20,45 @@
       "type": "string",
       "default": "Solicita informacion para tu institucion."
     },
+    "titlePartThin": {
+      "type": "string",
+      "default": ""
+    },
+    "titlePartBold": {
+      "type": "string",
+      "default": ""
+    },
+    "titleAccent": {
+      "type": "string",
+      "default": ""
+    },
     "lead": {
       "type": "string",
       "default": "Cuentanos que necesitas y te contactamos en 1 o 2 dias laborables."
     },
-    "nameLabel": {
-      "type": "string",
-      "default": "Nombre"
+    "features": {
+      "type": "array",
+      "default": [
+        {
+          "icon": "sun",
+          "title": "Respuesta en 48 h",
+          "text": "Te contestamos dentro de los dos primeros dias laborables."
+        },
+        {
+          "icon": "message",
+          "title": "Demo personalizada",
+          "text": "Si encajamos, te mostramos como PlaySalud se adapta a tu centro."
+        },
+        {
+          "icon": "check",
+          "title": "Sin compromiso",
+          "text": "El primer contacto es gratuito. Sin venta agresiva."
+        }
+      ]
     },
-    "emailLabel": {
+    "contactFormShortcode": {
       "type": "string",
-      "default": "Email"
-    },
-    "messageLabel": {
-      "type": "string",
-      "default": "Mensaje"
-    },
-    "submitText": {
-      "type": "string",
-      "default": "Enviar consulta"
+      "default": ""
     }
   },
   "supports": { "anchor": true }

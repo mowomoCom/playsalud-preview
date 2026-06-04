@@ -11,9 +11,10 @@
 }
 
 .mwm-footer__logo img {
-  max-height: 34px;
   max-width: 100%;
   width: auto;
+  height: 38px;
+  filter: brightness(0) invert(1);
 }
 
 .mwm-footer__tagline {
