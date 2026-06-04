@@ -2,7 +2,7 @@
 	const { __ } = wp.i18n;
 	const { addFilter } = wp.hooks;
 	const { createElement: el, Fragment } = wp.element;
-	const { PanelBody, TextControl, Button } = wp.components;
+	const { PanelBody, TextControl, TextareaControl, Button } = wp.components;
 	const { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } = wp.blockEditor;
 
 	function normalizeItems( items ) {
@@ -57,10 +57,24 @@
 						},
 					} ),
 					el( TextControl, {
-						label: __( 'Titulo', 'mwm-blocks' ),
-						value: attributes.title || '',
+						label: __( 'Titulo (parte light)', 'mwm-blocks' ),
+						value: attributes.titleLight || '',
 						onChange: function ( value ) {
-							setAttributes( { title: value } );
+							setAttributes( { titleLight: value } );
+						},
+					} ),
+					el( TextControl, {
+						label: __( 'Titulo (parte bold)', 'mwm-blocks' ),
+						value: attributes.titleBold || '',
+						onChange: function ( value ) {
+							setAttributes( { titleBold: value } );
+						},
+					} ),
+					el( TextareaControl, {
+						label: __( 'Descripcion', 'mwm-blocks' ),
+						value: attributes.description || '',
+						onChange: function ( value ) {
+							setAttributes( { description: value } );
 						},
 					} ),
 					el( TextControl, {
@@ -91,6 +105,27 @@
 								value: item && item.title ? item.title : '',
 								onChange: function ( value ) {
 									updateItem( index, { title: value } );
+								},
+							} ),
+							el( TextControl, {
+								label: __( 'Duracion', 'mwm-blocks' ),
+								value: item && item.time ? item.time : '',
+								onChange: function ( value ) {
+									updateItem( index, { time: value } );
+								},
+							} ),
+							el( TextControl, {
+								label: __( 'Tag', 'mwm-blocks' ),
+								value: item && item.tag ? item.tag : '',
+								onChange: function ( value ) {
+									updateItem( index, { tag: value } );
+								},
+							} ),
+							el( TextControl, {
+								label: __( 'Aria label del play', 'mwm-blocks' ),
+								value: item && item.playAriaLabel ? item.playAriaLabel : '',
+								onChange: function ( value ) {
+									updateItem( index, { playAriaLabel: value } );
 								},
 							} ),
 							el(
@@ -159,7 +194,17 @@
 							variant: 'secondary',
 							onClick: function () {
 								setAttributes( {
-									items: items.concat( [ { title: '', imageId: 0, imageAlt: '', imageUrl: '' } ] ),
+									items: items.concat( [
+										{
+											title: '',
+											time: '',
+											tag: '',
+											playAriaLabel: '',
+											imageId: 0,
+											imageAlt: '',
+											imageUrl: '',
+										},
+									] ),
 								} );
 							},
 						},
@@ -173,8 +218,19 @@
 				el(
 					'div',
 					{ className: 'mwm-container' },
-					el( 'p', { className: 'mwm-eyebrow' }, attributes.eyebrow || '' ),
-					el( 'h2', null, attributes.title || '' ),
+					el(
+						'div',
+						{ className: 'mwm-muestra__header' },
+						el( 'p', { className: 'mwm-eyebrow mwm-muestra__eyebrow' }, attributes.eyebrow || '' ),
+						el(
+							'h2',
+							{ className: 'mwm-muestra__title' },
+							el( 'span', { className: 'mwm-muestra__title-light' }, attributes.titleLight || '' ),
+							' ',
+							el( 'span', { className: 'mwm-muestra__title-bold' }, attributes.titleBold || '' )
+						),
+						el( 'p', { className: 'mwm-muestra__description' }, attributes.description || '' )
+					),
 					el(
 						'div',
 						{ className: 'mwm-muestra__carousel' },
@@ -183,20 +239,49 @@
 							return el(
 								'div',
 								{ key: index, className: 'swiper-slide' },
-								imageUrl
-									? el(
-											'figure',
-											{ className: 'mwm-muestra__slide-image' },
-											el( 'img', {
-												src: imageUrl,
-												alt: item && item.imageAlt ? item.imageAlt : item && item.title ? item.title : '',
-											} )
-									  )
-									: null,
 								el(
-									'article',
+									'div',
 									{ className: 'mwm-muestra__slide' },
-									el( 'span', null, item && item.title ? item.title : '' )
+									el(
+										'div',
+										{
+											className: 'mwm-muestra__player',
+											role: 'button',
+											tabIndex: 0,
+											'aria-label':
+												item && item.playAriaLabel
+													? item.playAriaLabel
+													: __( 'Reproducir capitulo', 'mwm-blocks' ),
+										},
+										imageUrl
+											? el(
+													'figure',
+													{ className: 'mwm-muestra__slide-image' },
+													el( 'img', {
+														src: imageUrl,
+														alt: item && item.imageAlt ? item.imageAlt : item && item.title ? item.title : '',
+													} )
+											  )
+											: null,
+										el(
+											'div',
+											{ className: 'mwm-muestra__play' },
+											el(
+												'svg',
+												{ viewBox: '0 0 24 24', fill: 'currentColor' },
+												el( 'path', { d: 'M8 5v14l11-7z' } )
+											)
+										)
+									),
+									el(
+										'div',
+										{ className: 'mwm-muestra__meta-row' },
+										el( 'span', { className: 'mwm-muestra__video-title' }, item && item.title ? item.title : '' ),
+										el( 'span', { className: 'mwm-muestra__meta-dot' } ),
+										el( 'span', { className: 'mwm-muestra__time' }, item && item.time ? item.time : '' ),
+										el( 'span', { className: 'mwm-muestra__meta-dot' } ),
+										el( 'span', { className: 'mwm-muestra__tag' }, item && item.tag ? item.tag : '' )
+									)
 								)
 							);
 						} )

@@ -99,5 +99,132 @@ function mwm_playsalud_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	$wp_customize->add_section(
+		'mwm_playsalud_404_section',
+		array(
+			'title'    => __( '404', 'mwm-playsalud' ),
+			'priority' => 32,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_code',
+		array(
+			'default'           => '404',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_code',
+		array(
+			'label'   => __( 'Texto H1 (numero de error)', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_title',
+		array(
+			'default'           => __( 'Ups, pagina no encontrada', 'mwm-playsalud' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_title',
+		array(
+			'label'   => __( 'Titulo H2', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_description',
+		array(
+			'default'           => __( 'Lo sentimos, la direccion que buscas no existe o ha sido movida. Verifica la URL o regresa al inicio para seguir comprando.', 'mwm-playsalud' ),
+			'sanitize_callback' => 'sanitize_textarea_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_description',
+		array(
+			'label'   => __( 'Parrafo', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'textarea',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_home_button_text',
+		array(
+			'default'           => __( 'Ir al inicio', 'mwm-playsalud' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_home_button_text',
+		array(
+			'label'   => __( 'Texto boton Ir al inicio', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_home_button_url',
+		array(
+			'default'           => home_url( '/' ),
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_home_button_url',
+		array(
+			'label'   => __( 'Enlace boton Ir al inicio', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'url',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_support_button_text',
+		array(
+			'default'           => __( 'Contactar Soporte', 'mwm-playsalud' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_support_button_text',
+		array(
+			'label'   => __( 'Texto boton Contactar soporte', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'mwm_playsalud_404_support_button_url',
+		array(
+			'default'           => '#contacto',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+
+	$wp_customize->add_control(
+		'mwm_playsalud_404_support_button_url',
+		array(
+			'label'   => __( 'Enlace boton Contactar soporte', 'mwm-playsalud' ),
+			'section' => 'mwm_playsalud_404_section',
+			'type'    => 'url',
+		)
+	);
 }
 add_action( 'customize_register', 'mwm_playsalud_customize_register' );

@@ -46,6 +46,7 @@ add_action( 'after_setup_theme', 'mwm_playsalud_setup' );
 function mwm_playsalud_enqueue_assets() {
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
+	$style_404  = $theme_path . '/assets/css/404.css';
 
 	wp_enqueue_style( 'mwm-playsalud-theme', get_stylesheet_uri(), array(), MWM_PLAYSALUD_THEME_VERSION );
 	wp_enqueue_style( 'mwm-playsalud-fonts', $theme_uri . '/assets/fonts/fonts.css', array(), filemtime( $theme_path . '/assets/fonts/fonts.css' ) );
@@ -53,6 +54,11 @@ function mwm_playsalud_enqueue_assets() {
 	wp_enqueue_style( 'mwm-playsalud-header', $theme_uri . '/assets/css/header.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/header.css' ) );
 	wp_enqueue_style( 'mwm-playsalud-footer', $theme_uri . '/assets/css/footer.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/footer.css' ) );
 	wp_enqueue_style( 'mwm-playsalud-forms', $theme_uri . '/assets/css/forms.css', array( 'mwm-playsalud-global' ), filemtime( $theme_path . '/assets/css/forms.css' ) );
+
+	if ( is_404() && file_exists( $style_404 ) ) {
+		wp_enqueue_style( 'mwm-playsalud-404', $theme_uri . '/assets/css/404.css', array( 'mwm-playsalud-global' ), filemtime( $style_404 ) );
+	}
+
 	wp_enqueue_style( 'mwm-playsalud-swiper', $theme_uri . '/assets/js/swiper/swiper-bundle.min.css', array(), filemtime( $theme_path . '/assets/js/swiper/swiper-bundle.min.css' ) );
 
 	wp_enqueue_script( 'mwm-playsalud-swiper', $theme_uri . '/assets/js/swiper/swiper-bundle.min.js', array(), filemtime( $theme_path . '/assets/js/swiper/swiper-bundle.min.js' ), true );
