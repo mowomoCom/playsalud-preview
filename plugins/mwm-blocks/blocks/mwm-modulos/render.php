@@ -66,7 +66,9 @@ $section_description = isset( $attributes['sectionDescription'] ) ? trim( (strin
 $button_url = isset( $attributes['buttonUrl'] ) ? trim( (string) $attributes['buttonUrl'] ) : '';
 $button_label = isset( $attributes['buttonLabel'] ) ? trim( (string) $attributes['buttonLabel'] ) : '';
 $has_split_title = '' !== $title_light || '' !== $title_bold;
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'modulos';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'modulos' );
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $section_id,

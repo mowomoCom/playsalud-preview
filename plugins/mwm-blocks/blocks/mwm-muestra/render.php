@@ -48,7 +48,9 @@ $defaults = array(
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'muestra';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'muestra' );
 $swiper_id  = wp_unique_id( 'mwm-muestra-swiper-' );
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
@@ -115,22 +117,22 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						</div>
 					<?php endforeach; ?>
 				</div>
-				<button
-					id="<?php echo esc_attr( $swiper_id . '-prev' ); ?>"
-					type="button"
-					class="swiper-button-prev mwm-muestra__arrow mwm-muestra__arrow--prev"
-					aria-label="<?php echo esc_attr( $attributes['prevLabel'] ); ?>"
-					aria-controls="<?php echo esc_attr( $swiper_id ); ?>"
-				></button>
-				<button
-					id="<?php echo esc_attr( $swiper_id . '-next' ); ?>"
-					type="button"
-					class="swiper-button-next mwm-muestra__arrow mwm-muestra__arrow--next"
-					aria-label="<?php echo esc_attr( $attributes['nextLabel'] ); ?>"
-					aria-controls="<?php echo esc_attr( $swiper_id ); ?>"
-				></button>
 				<div class="swiper-pagination mwm-muestra__pagination"></div>
 			</div>
+			<button
+				id="<?php echo esc_attr( $swiper_id . '-prev' ); ?>"
+				type="button"
+				class="swiper-button-prev mwm-muestra__arrow mwm-muestra__arrow--prev"
+				aria-label="<?php echo esc_attr( $attributes['prevLabel'] ); ?>"
+				aria-controls="<?php echo esc_attr( $swiper_id ); ?>"
+			></button>
+			<button
+				id="<?php echo esc_attr( $swiper_id . '-next' ); ?>"
+				type="button"
+				class="swiper-button-next mwm-muestra__arrow mwm-muestra__arrow--next"
+				aria-label="<?php echo esc_attr( $attributes['nextLabel'] ); ?>"
+				aria-controls="<?php echo esc_attr( $swiper_id ); ?>"
+			></button>
 		</div>
 	</div>
 </section>

@@ -73,7 +73,9 @@ if ( '' === $title_part_thin && '' === $title_part_bold && '' === $title_accent 
 }
 
 $has_segmented_title = '' !== $title_part_thin || '' !== $title_part_bold || '' !== $title_accent;
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'instituciones';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'instituciones' );
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $section_id,

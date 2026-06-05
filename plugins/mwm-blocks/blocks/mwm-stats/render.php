@@ -27,7 +27,9 @@ $defaults = array(
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $items      = is_array( $attributes['items'] ) ? $attributes['items'] : $defaults['items'];
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'stats';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'stats' );
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $section_id,

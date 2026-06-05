@@ -1,0 +1,36 @@
+.customize-control-mwm_social_repeater .mwm-social-repeater__items {
+	display: grid;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+
+.customize-control-mwm_social_repeater .mwm-social-repeater__item {
+	border: 1px solid #dcdcde;
+	background: #fff;
+	padding: 10px;
+	display: grid;
+	gap: 8px;
+}
+
+.customize-control-mwm_social_repeater .mwm-social-repeater__preview {
+	height: 64px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f6f7f7;
+	overflow: hidden;
+}
+
+.customize-control-mwm_social_repeater .mwm-social-repeater__preview-image {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
+.customize-control-mwm_social_repeater .mwm-social-repeater__buttons {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

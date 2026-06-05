@@ -162,7 +162,9 @@ if (
 	$quote_suffix   = '';
 }
 
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'about';
+$block_anchor     = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id       = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'about' );
 $wrapper    = get_block_wrapper_attributes(
 	array(
 		'id'    => $section_id,

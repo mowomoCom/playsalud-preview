@@ -47,6 +47,7 @@ function mwm_playsalud_enqueue_assets() {
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
 	$style_404  = $theme_path . '/assets/css/404.css';
+	$style_page_text = $theme_path . '/assets/css/page-text.css';
 
 	wp_enqueue_style( 'mwm-playsalud-theme', get_stylesheet_uri(), array(), MWM_PLAYSALUD_THEME_VERSION );
 	wp_enqueue_style( 'mwm-playsalud-fonts', $theme_uri . '/assets/fonts/fonts.css', array(), filemtime( $theme_path . '/assets/fonts/fonts.css' ) );
@@ -57,6 +58,9 @@ function mwm_playsalud_enqueue_assets() {
 
 	if ( is_404() && file_exists( $style_404 ) ) {
 		wp_enqueue_style( 'mwm-playsalud-404', $theme_uri . '/assets/css/404.css', array( 'mwm-playsalud-global' ), filemtime( $style_404 ) );
+	}
+	if ( is_page_template( 'page-text.php' ) && file_exists( $style_page_text ) ) {
+		wp_enqueue_style( 'mwm-playsalud-page-text', $theme_uri . '/assets/css/page-text.css', array( 'mwm-playsalud-global' ), filemtime( $style_page_text ) );
 	}
 
 	wp_enqueue_style( 'mwm-playsalud-swiper', $theme_uri . '/assets/js/swiper/swiper-bundle.min.css', array(), filemtime( $theme_path . '/assets/js/swiper/swiper-bundle.min.css' ) );
@@ -82,6 +86,31 @@ function mwm_playsalud_enqueue_editor_assets() {
 	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array( 'mwm-playsalud-global' ), $editor_ver );
 }
 add_action( 'enqueue_block_editor_assets', 'mwm_playsalud_enqueue_editor_assets' );
+
+function mwm_playsalud_enqueue_customizer_assets() {
+	$theme_uri  = get_template_directory_uri();
+	$theme_path = get_template_directory();
+	$script     = $theme_path . '/assets/js/customizer-social-repeater.js';
+	$style      = $theme_path . '/assets/css/customizer-social-repeater.css';
+	$script_ver = file_exists( $script ) ? filemtime( $script ) : MWM_PLAYSALUD_THEME_VERSION;
+	$style_ver  = file_exists( $style ) ? filemtime( $style ) : MWM_PLAYSALUD_THEME_VERSION;
+
+	wp_enqueue_media();
+	wp_enqueue_script(
+		'mwm-playsalud-customizer-social-repeater',
+		$theme_uri . '/assets/js/customizer-social-repeater.js',
+		array( 'jquery', 'customize-controls' ),
+		$script_ver,
+		true
+	);
+	wp_enqueue_style(
+		'mwm-playsalud-customizer-social-repeater',
+		$theme_uri . '/assets/css/customizer-social-repeater.css',
+		array(),
+		$style_ver
+	);
+}
+add_action( 'customize_controls_enqueue_scripts', 'mwm_playsalud_enqueue_customizer_assets' );
 
 function mwm_playsalud_header_fallback_menu() {
 	echo '<ul class="mwm-header__menu">';

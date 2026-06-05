@@ -11,17 +11,47 @@
 /*	# MWM HEADER
 =============================================== */
 
-var opening;
 jQuery(document).ready(function () {
+	var headerToggle = jQuery('.mwm-header__toggle');
+	var menuContainer = jQuery('.mwm-header__menu-container');
+	var mobileBreakpoint = window.matchMedia('(max-width: 960px)');
+
+	var closeMobileMenu = function () {
+		menuContainer.removeClass('is-opened');
+		headerToggle.attr('aria-expanded', 'false');
+		headerToggle.attr('aria-label', 'Abrir menu');
+		jQuery('body').removeClass('offcanvas-overlay');
+	};
 
 	// OPEN MENU WHEN CLICK ON BARS
-	jQuery('.mwm-header__toggle').click(function () {
-		opening = false;
-		jQuery('.mwm-header__menu-container').toggleClass('is-opened');
-		jQuery('body').toggleClass('offcanvas-overlay');
-		setTimeout(function() {
-			opening = true;
-		}, 500);
+	headerToggle.on('click', function () {
+		var isOpened = menuContainer.hasClass('is-opened');
+		menuContainer.toggleClass('is-opened', !isOpened);
+		headerToggle.attr('aria-expanded', isOpened ? 'false' : 'true');
+		headerToggle.attr('aria-label', isOpened ? 'Abrir menu' : 'Cerrar menu');
+		jQuery('body').toggleClass('offcanvas-overlay', !isOpened);
+	});
+
+	jQuery(document).on('click', '.mwm-header__menu a', function () {
+		if (mobileBreakpoint.matches) {
+			closeMobileMenu();
+		}
+	});
+
+	jQuery(document).on('click', function (event) {
+		if (!mobileBreakpoint.matches || !menuContainer.hasClass('is-opened')) {
+			return;
+		}
+
+		if (!jQuery(event.target).closest('.mwm-header__menu-container, .mwm-header__toggle').length) {
+			closeMobileMenu();
+		}
+	});
+
+	jQuery(window).on('resize', function () {
+		if (!mobileBreakpoint.matches) {
+			closeMobileMenu();
+		}
 	});
 
 	// CREATE ELEMENT TO OPEN MENU ON MOBILE (ARROW)

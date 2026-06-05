@@ -31,7 +31,9 @@ $defaults = array(
 );
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
-$section_id = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : 'contacto';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'contacto' );
 $contact_form_shortcode = trim( (string) $attributes['contactFormShortcode'] );
 $legacy_title = trim( wp_strip_all_tags( (string) $attributes['title'] ) );
 $title_part_thin = trim( wp_strip_all_tags( (string) $attributes['titlePartThin'] ) );

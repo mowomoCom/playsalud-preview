@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php wp_body_open(); ?>
 
 <header class="mwm-header" id="mwm-header">
-	<nav class="mwm-header__nav">
+	<nav class="mwm-header__nav" id="mwm-nav">
 		<div class="mwm-container mwm-header__inner">
 			<?php if ( has_custom_logo() ) : ?>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mwm-header__logo" rel="home" aria-label="<?php esc_attr_e( 'PlaySalud', 'mwm-playsalud' ); ?>">
@@ -28,14 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</a>
 			<?php endif; ?>
 			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_class'     => 'mwm-header__menu',
-					'fallback_cb'    => 'mwm_playsalud_header_fallback_menu',
-				)
-			);
 			$header_button_title = trim( (string) get_theme_mod( 'mwm_playsalud_header_button_title', '' ) );
 			$header_button_link  = trim( (string) get_theme_mod( 'mwm_playsalud_header_button_link', '' ) );
 
@@ -47,7 +39,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$header_button_link = '#contacto';
 			}
 			?>
-			<a href="<?php echo esc_url( $header_button_link ); ?>" class="mwm-btn mwm-btn--primary mwm-btn--sm"><?php echo esc_html( $header_button_title ); ?></a>
+			<div class="mwm-header__menu-container" id="mwm-header-menu-container">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary',
+						'container'      => false,
+						'menu_id'        => 'mwm-header-menu',
+						'menu_class'     => 'mwm-header__menu nav-links',
+						'fallback_cb'    => 'mwm_playsalud_header_fallback_menu',
+					)
+				);
+				?>
+				<a href="<?php echo esc_url( $header_button_link ); ?>" class="mwm-btn mwm-btn--primary mwm-btn--sm mwm-header__cta mwm-header__cta--mobile"><?php echo esc_html( $header_button_title ); ?></a>
+			</div>
+			<a href="<?php echo esc_url( $header_button_link ); ?>" class="mwm-btn mwm-btn--primary mwm-btn--sm mwm-header__cta"><?php echo esc_html( $header_button_title ); ?></a>
+			<button class="mwm-header__toggle nav-burger" type="button" aria-controls="mwm-header-menu-container" aria-expanded="false" aria-label="<?php esc_attr_e( 'Abrir menu', 'mwm-playsalud' ); ?>">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+					<path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+				</svg>
+			</button>
 		</div>
 	</nav>
 </header>

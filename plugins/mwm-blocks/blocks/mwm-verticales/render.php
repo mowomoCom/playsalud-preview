@@ -68,6 +68,9 @@ $defaults = array(
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 $title_care = ! empty( $attributes['careTag'] ) ? $attributes['careTag'] : 'PlayCare';
 $title_academy = ! empty( $attributes['academyTag'] ) ? $attributes['academyTag'] : 'PlayAcademy';
+$block_anchor = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'verticales' );
 
 $care_image_url = ! empty( $attributes['careImageUrl'] )
 	? $attributes['careImageUrl']
@@ -108,7 +111,7 @@ $cards = array(
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'id'    => 'verticales',
+		'id'    => $section_id,
 		'class' => 'mwm-home-section mwm-verticales',
 	)
 );

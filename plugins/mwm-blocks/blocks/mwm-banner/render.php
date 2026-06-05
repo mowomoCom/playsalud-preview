@@ -14,13 +14,17 @@ $defaults = array(
 
 $attributes = wp_parse_args( is_array( $attributes ) ? $attributes : array(), $defaults );
 
+$block_anchor     = mwm_blocks_get_block_anchor( $block );
+$attribute_anchor = ! empty( $attributes['anchor'] ) ? sanitize_title( (string) $attributes['anchor'] ) : '';
+$section_id       = '' !== $block_anchor ? $block_anchor : ( '' !== $attribute_anchor ? $attribute_anchor : 'banner' );
+
 $image_url = ! empty( $attributes['imageUrl'] )
 	? $attributes['imageUrl']
 	: get_stylesheet_directory_uri() . '/assets/images/banner-real.jpg';
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'id'    => 'banner',
+		'id'    => $section_id,
 		'class' => 'mwm-home-section mwm-banner',
 	)
 );
