@@ -61,7 +61,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
-		<div class="mwm-muestra__header">	
+		<div class="mwm-muestra__header reveal">	
 			<p class="mwm-eyebrow mwm-muestra__eyebrow"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 			<h2 class="mwm-muestra__title">
 				<span class="mwm-muestra__title-light"><?php echo wp_kses_post( $attributes['titleLight'] ); ?></span>
@@ -69,7 +69,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			</h2>
 			<p class="mwm-muestra__description"><?php echo wp_kses_post( $attributes['description'] ); ?></p>
 		</div>
-		<div class="mwm-muestra__carousel">
+		<div class="mwm-muestra__carousel reveal">
 			<div id="<?php echo esc_attr( $swiper_id ); ?>" class="swiper mwm-muestra__swiper">
 				<div class="swiper-wrapper">
 					<?php foreach ( $items as $item ) : ?>

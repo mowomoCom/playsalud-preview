@@ -78,8 +78,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
-		<p class="mwm-eyebrow mwm-eyebrow-modulos"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
-		<h2 class="mwm-modulos__section-title">
+		<p class="mwm-eyebrow mwm-eyebrow-modulos reveal"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<h2 class="mwm-modulos__section-title reveal">
 			<?php if ( $has_split_title ) : ?>
 				<span class="mwm-modulos__title-light"><?php echo esc_html( $title_light ); ?></span>
 				<?php if ( '' !== $title_bold ) : ?>
@@ -91,7 +91,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<?php endif; ?>
 		</h2>
 		<?php if ( '' !== $section_description ) : ?>
-			<p class="mwm-modulos__section-desc"><?php echo esc_html( $section_description ); ?></p>
+			<p class="mwm-modulos__section-desc reveal"><?php echo esc_html( $section_description ); ?></p>
 		<?php endif; ?>
 		<div class="mwm-modulos__grid">
 			<?php foreach ( $items as $item ) : ?>
@@ -105,7 +105,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					? (string) $item_data['caption']
 					: $legacy_meta;
 				?>
-				<article class="mwm-modulos__card">
+				<article class="mwm-modulos__card reveal">
 					<div class="mwm-modulos__photo">
 						<?php if ( '' !== $caption ) : ?>
 							<span class="mwm-modulos__badge"><?php echo esc_html( $caption ); ?></span>

@@ -92,18 +92,30 @@
 
 .wp-block-mwm-banner .mwm-banner__title {
   margin: 0 0 1rem;
-  max-width: 760px;
+  max-width: 900px;
   color: #fff;
   font-size: clamp(1.6rem, 3.4vw, 2.8rem);
   line-height: 1.12;
   letter-spacing: -1px;
 }
 
+.wp-block-mwm-banner .mwm-banner__title .t-thin {
+  font-weight: 300;
+}
+
+.wp-block-mwm-banner .mwm-banner__title .t-bold {
+  font-weight: 700;
+}
+
+.wp-block-mwm-banner .mwm-banner__title .accent {
+  color: var(--sky, #7dd4e8);
+}
+
 .wp-block-mwm-banner .mwm-banner__lead {
   margin: 0;
-  max-width: 580px;
+  max-width: 900px;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: rgba(230, 242, 251, 0.82);
 }
 

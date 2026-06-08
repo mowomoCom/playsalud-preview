@@ -16,13 +16,34 @@
       "type": "string",
       "default": "Plataforma sanitaria audiovisual"
     },
+    "titleLines": {
+      "type": "array",
+      "default": [
+        {
+          "text": "Educacion sanitaria",
+          "className": "t-thin"
+        },
+        {
+          "text": "basada en evidencia,",
+          "className": "t-bold accent"
+        },
+        {
+          "text": "para pacientes, profesionales e instituciones.",
+          "className": "t-thin"
+        }
+      ]
+    },
+    "titleLineCount": {
+      "type": "number",
+      "default": 3
+    },
     "title": {
       "type": "string",
-      "default": "Educacion sanitaria basada en evidencia para pacientes, profesionales e instituciones."
+      "default": "Educacion sanitaria basada en evidencia, para pacientes, profesionales e instituciones."
     },
     "lead": {
       "type": "string",
-      "default": "Videos breves, claros y revisados por profesionales. Listos para integrarse en hospitales, aseguradoras y universidades."
+      "default": "Videos breves, claros y revisados por profesionales. Listos para integrarse en hospitales, aseguradoras, universidades, sociedades cientificas y asociaciones de pacientes."
     },
     "imageUrl": {
       "type": "string",

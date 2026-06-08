@@ -121,7 +121,7 @@ $footer_label = isset( $attributes['footerButtonLabel'] ) ? (string) $attributes
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container">
-		<div class="mwm-cursos__header">
+		<div class="mwm-cursos__header reveal">
 			<p class="mwm-eyebrow mwm-cursos__eyebrow mwm-cursos__eyebrow--academy"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 			<h2 class="mwm-cursos__section-title">
 				<span class="mwm-cursos__title-light"><?php echo wp_kses_post( $attributes['titleLight'] ); ?></span><br>
@@ -145,7 +145,7 @@ $footer_label = isset( $attributes['footerButtonLabel'] ) ? (string) $attributes
 				$button_class = 'mwm-btn mwm-btn--md ';
 				$button_class .= 'primary' === $item['buttonStyle'] ? 'mwm-btn--primary' : 'mwm-btn--ghost';
 				?>
-				<article class="<?php echo esc_attr( $card_classes ); ?>">
+				<article class="<?php echo esc_attr( $card_classes . ' reveal' ); ?>">
 					<div class="mwm-cursos__media">
 						<?php if ( ! empty( $item['status'] ) ) : ?>
 							<span class="mwm-cursos__status<?php echo $item['upcoming'] ? ' is-upcoming' : ''; ?>"><?php echo esc_html( $item['status'] ); ?></span>

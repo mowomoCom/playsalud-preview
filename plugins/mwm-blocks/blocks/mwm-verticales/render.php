@@ -118,18 +118,18 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; ?>>
 	<div class="mwm-container">
-		<p class="mwm-eyebrow mwm-eyebrow-verticales"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
-		<h2 class="mwm-verticales__title">
+		<p class="mwm-eyebrow mwm-eyebrow-verticales reveal"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
+		<h2 class="mwm-verticales__title reveal">
 			<span class="t-bold accent"><?php echo esc_html( $title_care ); ?></span>
 			<span class="t-thin">y</span>
 			<span class="t-bold accent-orange"><?php echo esc_html( $title_academy ); ?></span>
 			.
 		</h2>
-		<p class="mwm-verticales__subtitle"><?php echo wp_kses_post( $attributes['subtitle'] ); ?></p>
+		<p class="mwm-verticales__subtitle reveal"><?php echo wp_kses_post( $attributes['subtitle'] ); ?></p>
 		<div class="mwm-verticales__grid">
 			<?php foreach ( $cards as $card ) : ?>
 				<?php $webp_url = mwm_verticales_get_webp_url( $card['imageUrl'] ); ?>
-				<article class="mwm-verticales__card">
+				<article class="mwm-verticales__card reveal">
 					<div class="mwm-verticales__photo-wrap">
 						<span class="mwm-verticales__photo-tag <?php echo esc_attr( $card['tagClass'] ); ?>">
 							<?php echo esc_html( $card['tag'] ); ?>

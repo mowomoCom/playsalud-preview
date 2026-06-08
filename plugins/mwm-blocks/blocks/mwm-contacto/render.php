@@ -106,7 +106,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="mwm-container mwm-contacto__grid">
-		<div class="mwm-contacto__side">
+		<div class="mwm-contacto__side reveal">
 			<p class="mwm-eyebrow mwm-eyebrow-contacto"><?php echo wp_kses_post( $attributes['eyebrow'] ); ?></p>
 			<h2 class="section-title mwm-contacto__title">
 				<?php if ( $has_segmented_title ) : ?>
@@ -154,7 +154,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<?php endforeach; ?>
 			</div>
 		</div>
-		<div class="mwm-form-card mwm-contacto__form">
+		<div class="mwm-form-card mwm-contacto__form reveal">
 			<?php if ( '' !== $contact_form_shortcode ) : ?>
 				<?php echo do_shortcode( $contact_form_shortcode ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php else : ?>
