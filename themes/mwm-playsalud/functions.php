@@ -43,6 +43,18 @@ function mwm_playsalud_setup() {
 }
 add_action( 'after_setup_theme', 'mwm_playsalud_setup' );
 
+/**
+ * Usa index.php?rest_route= cuando Apache no reescribe /wp-json/.
+ *
+ * Sin esto, Gutenberg recibe HTML 404 en lugar de JSON y falla el guardado.
+ */
+function mwm_playsalud_rest_url_index_fallback( $url, $path, $blog_id, $scheme ) {
+	$route = '/' . ltrim( (string) $path, '/' );
+
+	return home_url( '/index.php?rest_route=' . $route, $scheme );
+}
+add_filter( 'rest_url', 'mwm_playsalud_rest_url_index_fallback', 10, 4 );
+
 function mwm_playsalud_enqueue_assets() {
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
@@ -72,6 +84,10 @@ function mwm_playsalud_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'mwm_playsalud_enqueue_assets', 5 );
 
 function mwm_playsalud_enqueue_editor_assets() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	$theme_uri  = get_template_directory_uri();
 	$theme_path = get_template_directory();
 	$fonts_css  = $theme_path . '/assets/fonts/fonts.css';
@@ -85,7 +101,7 @@ function mwm_playsalud_enqueue_editor_assets() {
 	wp_enqueue_style( 'mwm-playsalud-global', $theme_uri . '/assets/css/global.css', array( 'mwm-playsalud-fonts' ), $global_ver );
 	wp_enqueue_style( 'mwm-playsalud-editor', $theme_uri . '/assets/css/editor.css', array( 'mwm-playsalud-global' ), $editor_ver );
 }
-add_action( 'enqueue_block_editor_assets', 'mwm_playsalud_enqueue_editor_assets' );
+add_action( 'enqueue_block_assets', 'mwm_playsalud_enqueue_editor_assets' );
 
 function mwm_playsalud_enqueue_customizer_assets() {
 	$theme_uri  = get_template_directory_uri();

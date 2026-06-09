@@ -1,3 +1,24 @@
 .editor-styles-wrapper .wp-block-mwm-muestra {
   outline: 1px dashed rgba(8, 145, 178, 0.25);
 }
+
+.mwm-muestra-editor__poster-preview {
+  margin: 8px 0 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #142a4a;
+  border: 1px solid #dcdcde;
+}
+
+.mwm-muestra-editor__poster-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.editor-styles-wrapper .wp-block-mwm-muestra .mwm-muestra__player--editor-preview {
+  pointer-events: none;
+  cursor: default;
+}

@@ -7,6 +7,7 @@ return array(
 		'wp-element',
 		'wp-hooks',
 		'wp-i18n',
+		'wp-api-fetch',
 	),
 	'version'      => '1.0.0',
 );

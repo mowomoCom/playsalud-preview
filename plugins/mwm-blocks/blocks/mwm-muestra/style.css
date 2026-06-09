@@ -101,6 +101,12 @@
   cursor: pointer;
 }
 
+.mwm-muestra__player-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .mwm-muestra__slide-image {
   position: absolute;
   inset: 0;

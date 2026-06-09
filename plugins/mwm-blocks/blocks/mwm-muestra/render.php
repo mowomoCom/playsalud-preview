@@ -10,36 +10,48 @@ $defaults = array(
 'description' => 'Videos reales del catalogo PlayCare, sin filtros ni edicion para la demo.',
 	'items'     => array(
 		array(
-			'title'         => 'Como cuidar tu herida postoperatoria',
-			'time'          => '3:42',
-			'tag'           => 'Cirugia · Nivel paciente',
-			'playAriaLabel' => 'Reproducir capitulo: Como cuidar tu herida postoperatoria',
-			'imageId'       => 0,
-			'imageAlt'      => '',
+			'title'    => 'Como cuidar tu herida postoperatoria',
+			'time'     => '',
+			'tag'      => 'Cirugia · Nivel paciente',
+			'imageId'      => 0,
+			'imageAlt'     => '',
+			'imageUrl'     => '',
+			'videoFileId'  => 0,
+			'videoFileUrl' => '',
+			'videoUrl'     => '',
 		),
 		array(
-			'title'         => 'Preparacion para consulta preanestesica',
-			'time'          => '4:18',
-			'tag'           => 'Anestesia · Nivel paciente',
-			'playAriaLabel' => 'Reproducir capitulo: Preparacion para la consulta preanestesica',
-			'imageId'       => 0,
-			'imageAlt'      => '',
+			'title'    => 'Preparacion para consulta preanestesica',
+			'time'     => '',
+			'tag'      => 'Anestesia · Nivel paciente',
+			'imageId'      => 0,
+			'imageAlt'     => '',
+			'imageUrl'     => '',
+			'videoFileId'  => 0,
+			'videoFileUrl' => '',
+			'videoUrl'     => '',
 		),
 		array(
-			'title'         => 'Vivir con una ostomia: primeros dias en casa',
-			'time'          => '5:06',
-			'tag'           => 'Ostomias · Nivel paciente',
-			'playAriaLabel' => 'Reproducir capitulo: Vivir con una ostomia: primeros dias en casa',
-			'imageId'       => 0,
-			'imageAlt'      => '',
+			'title'    => 'Vivir con una ostomia: primeros dias en casa',
+			'time'     => '',
+			'tag'      => 'Ostomias · Nivel paciente',
+			'imageId'      => 0,
+			'imageAlt'     => '',
+			'imageUrl'     => '',
+			'videoFileId'  => 0,
+			'videoFileUrl' => '',
+			'videoUrl'     => '',
 		),
 		array(
-			'title'         => 'Entender el cancer colorrectal: diagnostico y tratamiento',
-			'time'          => '6:24',
-			'tag'           => 'Cancer colorrectal · Nivel paciente',
-			'playAriaLabel' => 'Reproducir capitulo: Entender el cancer colorrectal',
-			'imageId'       => 0,
-			'imageAlt'      => '',
+			'title'    => 'Entender el cancer colorrectal: diagnostico y tratamiento',
+			'time'     => '',
+			'tag'      => 'Cancer colorrectal · Nivel paciente',
+			'imageId'      => 0,
+			'imageAlt'     => '',
+			'imageUrl'     => '',
+			'videoFileId'  => 0,
+			'videoFileUrl' => '',
+			'videoUrl'     => '',
 		),
 	),
 	'prevLabel' => 'Anterior',
@@ -74,38 +86,43 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<div class="swiper-wrapper">
 					<?php foreach ( $items as $item ) : ?>
 						<?php
-						$image_id = isset( $item['imageId'] ) ? absint( $item['imageId'] ) : 0;
-						if ( ! $image_id ) {
+						$video_source = mwm_blocks_resolve_muestra_video_source( $item );
+
+						if ( ! is_array( $video_source ) || empty( $video_source['url'] ) ) {
 							continue;
 						}
 
-						$image_url = wp_get_attachment_image_url( $image_id, 'full' );
-						if ( ! $image_url ) {
+						$poster = mwm_blocks_get_muestra_slide_poster( $item );
+
+						if ( ! is_array( $poster ) || empty( $poster['url'] ) ) {
 							continue;
 						}
 
+						$image_url   = (string) $poster['url'];
+						$slide_alt   = (string) $poster['alt'];
 						$slide_title = isset( $item['title'] ) ? (string) $item['title'] : '';
 						$slide_time  = isset( $item['time'] ) ? (string) $item['time'] : '';
 						$slide_tag   = isset( $item['tag'] ) ? (string) $item['tag'] : '';
-						$play_aria   = isset( $item['playAriaLabel'] ) ? (string) $item['playAriaLabel'] : '';
-						$slide_alt   = isset( $item['imageAlt'] ) ? (string) $item['imageAlt'] : '';
-						if ( '' === trim( $slide_alt ) ) {
-							$slide_alt = (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-						}
-						if ( '' === trim( $slide_alt ) ) {
-							$slide_alt = $slide_title;
-						}
+						$play_aria   = mwm_blocks_get_muestra_play_aria_label( $slide_title );
 						?>
 						<div class="swiper-slide">
 							<div class="mwm-muestra__slide">
-								<div class="mwm-muestra__player" role="button" tabindex="0" aria-label="<?php echo esc_attr( $play_aria ? $play_aria : 'Reproducir capitulo' ); ?>">
+								<a
+									class="mwm-muestra__player mwm-muestra__player-link"
+									href="<?php echo esc_url( $video_source['url'] ); ?>"
+									data-fancybox="mwm-muestra-video"
+									<?php if ( ! empty( $video_source['fancybox_type'] ) ) : ?>
+										data-type="<?php echo esc_attr( $video_source['fancybox_type'] ); ?>"
+									<?php endif; ?>
+									aria-label="<?php echo esc_attr( $play_aria ); ?>"
+								>
 									<figure class="mwm-muestra__slide-image">
 										<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $slide_alt ); ?>" />
 									</figure>
 									<div class="mwm-muestra__play">
 										<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
 									</div>
-								</div>
+								</a>
 								<div class="mwm-muestra__meta-row">
 									<span class="mwm-muestra__video-title"><?php echo esc_html( $slide_title ); ?></span>
 									<span class="mwm-muestra__meta-dot"></span>

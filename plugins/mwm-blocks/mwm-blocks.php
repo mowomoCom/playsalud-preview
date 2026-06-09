@@ -48,7 +48,9 @@ function mwm_blocks_register_all() {
 		}
 	}
 }
+add_action( 'init', 'mwm_blocks_register_fancybox_assets', 9 );
 add_action( 'init', 'mwm_blocks_register_all' );
+add_action( 'rest_api_init', 'mwm_blocks_register_rest_routes' );
 
 /**
  * Hace que los estilos de bloques MWM se impriman despues del global del theme PlaySalud.
@@ -167,6 +169,100 @@ function mwm_blocks_enqueue_editor_base_style() {
 	);
 }
 add_action( 'enqueue_block_assets', 'mwm_blocks_enqueue_editor_base_style' );
+
+function mwm_blocks_register_fancybox_assets() {
+	$vendor_path = MWM_BLOCKS_PATH . 'assets/vendor/fancybox/';
+	$vendor_url  = MWM_BLOCKS_URL . 'assets/vendor/fancybox/';
+	$version     = '5.0.36';
+
+	wp_register_style(
+		'fancyapps-fancybox',
+		$vendor_url . 'fancybox.css',
+		array(),
+		file_exists( $vendor_path . 'fancybox.css' ) ? $version : null
+	);
+
+	wp_register_script(
+		'fancyapps-fancybox',
+		$vendor_url . 'fancybox.umd.js',
+		array(),
+		file_exists( $vendor_path . 'fancybox.umd.js' ) ? $version : null,
+		true
+	);
+}
+/**
+ * Encola estilos de Fancybox cuando el bloque muestra esta en la pagina.
+ *
+ * @param string $block_content HTML del bloque.
+ * @param array  $block         Datos del bloque.
+ * @return string
+ */
+function mwm_blocks_enqueue_muestra_fancybox_styles( $block_content, $block ) {
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return $block_content;
+	}
+
+	if ( empty( $block['blockName'] ) || 'mwm/muestra' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	wp_enqueue_style( 'fancyapps-fancybox' );
+
+	return $block_content;
+}
+
+/**
+ * REST: metadatos de video embebido para el editor (poster).
+ */
+function mwm_blocks_register_rest_routes() {
+	register_rest_route(
+		'mwm-blocks/v1',
+		'/video-duration',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => function () {
+				return current_user_can( 'edit_posts' );
+			},
+			'args'                => array(
+				'url' => array(
+					'required'          => true,
+					'type'              => 'string',
+					'sanitize_callback' => function ( $value ) {
+						return is_string( $value ) ? trim( $value ) : '';
+					},
+				),
+			),
+			'callback'            => function ( $request ) {
+				$url = (string) $request->get_param( 'url' );
+
+				if ( '' === trim( $url ) ) {
+					return new WP_Error(
+						'mwm_missing_params',
+						__( 'Indica la URL del video.', 'mwm-blocks' ),
+						array( 'status' => 400 )
+					);
+				}
+
+				$video = mwm_blocks_parse_video_url( $url );
+
+				if ( ! is_array( $video ) ) {
+					return new WP_Error(
+						'mwm_invalid_video_url',
+						__( 'URL de video no valida.', 'mwm-blocks' ),
+						array( 'status' => 400 )
+					);
+				}
+
+				$metadata = mwm_blocks_fetch_embed_metadata( $video );
+
+				return array(
+					'thumbnail' => isset( $metadata['thumbnail'] ) ? (string) $metadata['thumbnail'] : '',
+				);
+			},
+		)
+	);
+}
+add_filter( 'render_block', 'mwm_blocks_enqueue_muestra_fancybox_styles', 10, 2 );
 
 function mwm_blocks_enqueue_frontend_script() {
 	wp_enqueue_script(

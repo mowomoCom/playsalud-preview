@@ -33,35 +33,47 @@
       "default": [
         {
           "title": "Como cuidar tu herida postoperatoria",
-          "time": "3:42",
+          "time": "",
           "tag": "Cirugia · Nivel paciente",
-          "playAriaLabel": "Reproducir capitulo: Como cuidar tu herida postoperatoria",
           "imageId": 0,
-          "imageAlt": ""
+          "imageAlt": "",
+          "imageUrl": "",
+          "videoFileId": 0,
+          "videoFileUrl": "",
+          "videoUrl": ""
         },
         {
           "title": "Preparacion para consulta preanestesica",
-          "time": "4:18",
+          "time": "",
           "tag": "Anestesia · Nivel paciente",
-          "playAriaLabel": "Reproducir capitulo: Preparacion para la consulta preanestesica",
           "imageId": 0,
-          "imageAlt": ""
+          "imageAlt": "",
+          "imageUrl": "",
+          "videoFileId": 0,
+          "videoFileUrl": "",
+          "videoUrl": ""
         },
         {
           "title": "Vivir con una ostomia: primeros dias en casa",
-          "time": "5:06",
+          "time": "",
           "tag": "Ostomias · Nivel paciente",
-          "playAriaLabel": "Reproducir capitulo: Vivir con una ostomia: primeros dias en casa",
           "imageId": 0,
-          "imageAlt": ""
+          "imageAlt": "",
+          "imageUrl": "",
+          "videoFileId": 0,
+          "videoFileUrl": "",
+          "videoUrl": ""
         },
         {
           "title": "Entender el cancer colorrectal: diagnostico y tratamiento",
-          "time": "6:24",
+          "time": "",
           "tag": "Cancer colorrectal · Nivel paciente",
-          "playAriaLabel": "Reproducir capitulo: Entender el cancer colorrectal",
           "imageId": 0,
-          "imageAlt": ""
+          "imageAlt": "",
+          "imageUrl": "",
+          "videoFileId": 0,
+          "videoFileUrl": "",
+          "videoUrl": ""
         }
       ]
     },
